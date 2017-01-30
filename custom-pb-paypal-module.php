@@ -118,7 +118,8 @@ function ex_divi_child_theme_setup1() {
                 //<button type="submit" class="et_pb_button%3$s%5$s" %3$s%4$s>%1$s</button>       
 		$output = sprintf(
 			'<div class="et_pb_button_module_wrapper et_pb_module%6$s">
-                            <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">                                
+                            <form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post"> 
+                               <input type="hidden" name="bn" value="AngellEYE_PHPClass" />
                                <input type="hidden" name="business" value="tejasm-merchant@itpathsolutions.co.in">
                                <input type="hidden" name="cmd" value="%1$s">
                                <input type="hidden" name="item_name" value="%7$s">
