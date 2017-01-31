@@ -20,12 +20,16 @@ function ex_divi_child_theme_setup1() {
                         'pp_handling',
                         'use_custom',
                         'button_text',
+                        'background_layout',
+                        'button_alignment',
 			'admin_label',
 			'module_id',
 			'module_class'
 		);
                 $this->fields_defaults = array(
                     'test_mode' => array( 'on' ),
+                    'background_color'  => array( et_builder_accent_color(), 'add_default_setting' ),
+                    'background_layout' => array( 'light' ),
                 );
 		$this->main_css_element = '%%order_class%%';
 		$this->advanced_options = array(
@@ -114,6 +118,8 @@ function ex_divi_child_theme_setup1() {
 				),
                                 'affects'     => array(
 					'#et_pb_button_text',
+                                        '#et_pb_button_alignment',
+                                        '#et_pb_background_layout',
 				),
 				'description' => esc_html__( 'enable custom button', 'et_builder' ),
                         ),
@@ -122,6 +128,27 @@ function ex_divi_child_theme_setup1() {
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'description'     => esc_html__( 'Input your desired button text.', 'et_builder' ),
+			),
+                       'button_alignment' => array(
+				'label'           => esc_html__( 'Button alignment', 'et_builder' ),
+				'type'            => 'select',
+				'option_category' => 'configuration',
+				'options'         => array(
+					'left'   => esc_html__( 'Left', 'et_builder' ),
+					'center' => esc_html__( 'Center', 'et_builder' ),
+					'right'  => esc_html__( 'Right', 'et_builder' ),
+				),
+				'description'     => esc_html__( 'Here you can define the alignemnt of Button', 'et_builder' ),
+			),
+			'background_layout' => array(
+				'label'           => esc_html__( 'Text Color', 'et_builder' ),
+				'type'            => 'select',
+				'option_category' => 'color_option',
+				'options'         => array(
+					'light' => esc_html__( 'Dark', 'et_builder' ),
+					'dark'  => esc_html__( 'Light', 'et_builder' ),
+				),
+				'description'     => esc_html__( 'Here you can choose whether your text should be light or dark. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'et_builder' ),
 			),
 			'admin_label' => array(
 				'label'       => esc_html__( 'Admin Label', 'et_builder' ),
@@ -155,6 +182,7 @@ function ex_divi_child_theme_setup1() {
 		$custom_icon       = $this->shortcode_atts['button_icon'];
 		$button_custom     = $this->shortcode_atts['custom_button'];
 		$button_alignment  = $this->shortcode_atts['button_alignment'];
+                $background_layout = $this->shortcode_atts['background_layout'];
                 $pp_select_button  = $this->shortcode_atts['pp_select_button'];
                 $test_mode         = $this->shortcode_atts['test_mode'];
                 $pp_business_name  = $this->shortcode_atts['pp_business_name'];
@@ -167,10 +195,10 @@ function ex_divi_child_theme_setup1() {
                 $pp_option_tax      ='';
                 $pp_option_handling ='';
                 
-		// Nothing to output if neither Button Text defined
-		//if ( '' === $button_text) {
-		//	return;
-		//}
+		// Nothing to output if business_name is blank
+		if ( '' === $pp_business_name) {
+			return;
+		}
                 if ( 'off' !== $test_mode ) {
                     $mode = 'sandbox.';
                 }
@@ -235,11 +263,15 @@ function ex_divi_child_theme_setup1() {
                         $pp_option_handling,
                         $button_text,
                         '' !== $use_custom && 'on' === $use_custom 
-                                               ? sprintf('<button type="submit" class="et_pb_button%2$s%3$s" %2$s%4$s>%1$s</button>',
+                                               ? sprintf('<button type="submit" class="et_pb_button%2$s%3$s" %5$s%4$s>%1$s</button>',
                                                 $button_text,
                                                 '' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '',
                                                 ( '' !== $module_class ? sprintf( ' %1$s', esc_attr( $module_class ) ) : '' ),
-                                                ( '' !== $module_id ? sprintf( ' id="%1$s"', esc_attr( $module_id ) ) : '' ))
+                                                ( '' !== $module_id ? sprintf( ' id="%1$s"', esc_attr( $module_id ) ) : '' ),
+                                                '' !== $custom_icon && 'on' === $button_custom ? sprintf(
+                                                 ' data-icon="%1$s"',
+                                                 esc_attr( et_pb_process_font_icon( $custom_icon ) )
+                                                 ) : '')
                                                : sprintf('<input type="image" name="submit" border="0" src="%1$s" alt="%2$s"/><img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >',
                                                        $pp_img,$pp_alt 
                                                        ) 
