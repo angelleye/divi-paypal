@@ -20,6 +20,7 @@ function ex_divi_child_theme_setup1() {
                         'pp_handling',
                         'use_custom',
                         'button_text',
+                        'src',
                         'background_layout',
                         'button_alignment',
 			'admin_label',
@@ -120,6 +121,7 @@ function ex_divi_child_theme_setup1() {
 					'#et_pb_button_text',
                                         '#et_pb_button_alignment',
                                         '#et_pb_background_layout',
+                                        '#et_pb_src',
 				),
 				'description' => esc_html__( 'enable custom button', 'et_builder' ),
                         ),
@@ -128,6 +130,15 @@ function ex_divi_child_theme_setup1() {
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'description'     => esc_html__( 'Input your desired button text.', 'et_builder' ),
+			),
+                        'src' => array(
+				'label'              => esc_html__( 'Image URL', 'et_builder' ),
+				'type'               => 'upload',
+				'option_category'    => 'basic_option',
+				'upload_button_text' => esc_attr__( 'Upload an image', 'et_builder' ),
+				'choose_text'        => esc_attr__( 'Choose an Image', 'et_builder' ),
+				'update_text'        => esc_attr__( 'Set As Image', 'et_builder' ),
+				'description'        => esc_html__( 'Upload your desired image, or type in the URL to the image you would like to display.', 'et_builder' ),
 			),
                        'button_alignment' => array(
 				'label'           => esc_html__( 'Button alignment', 'et_builder' ),
@@ -176,7 +187,8 @@ function ex_divi_child_theme_setup1() {
 	function shortcode_callback( $atts, $content = null, $function_name ) {
 		$module_id         = $this->shortcode_atts['module_id'];
 		$module_class      = $this->shortcode_atts['module_class'];		
-		$button_text       = $this->shortcode_atts['button_text'];	
+		$button_text       = $this->shortcode_atts['button_text'];
+                $src               = $this->shortcode_atts['src'];
                 $pp_item_name      = $this->shortcode_atts['pp_item_name'];
                 $pp_amount         = $this->shortcode_atts['pp_amount'];
 		$custom_icon       = $this->shortcode_atts['button_icon'];
@@ -234,7 +246,7 @@ function ex_divi_child_theme_setup1() {
                                %13$s
                                %14$s
                                %15$s
-                               %17$s
+                               %17$s                               
                             </form>
 			</div>',
 			$cmd, 
@@ -262,7 +274,7 @@ function ex_divi_child_theme_setup1() {
                         $pp_option_tax,
                         $pp_option_handling,
                         $button_text,
-                        '' !== $use_custom && 'on' === $use_custom 
+                        '' !== $use_custom && 'on' === $use_custom && '' === $src 
                                                ? sprintf('<button type="submit" class="et_pb_button%2$s%3$s" %5$s%4$s>%1$s</button>',
                                                 $button_text,
                                                 '' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '',
@@ -273,8 +285,8 @@ function ex_divi_child_theme_setup1() {
                                                  esc_attr( et_pb_process_font_icon( $custom_icon ) )
                                                  ) : '')
                                                : sprintf('<input type="image" name="submit" border="0" src="%1$s" alt="%2$s"/><img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >',
-                                                       $pp_img,$pp_alt 
-                                                       ) 
+                                                       '' !==  $src ? $src : $pp_img,$pp_alt
+                                                       )                        
 		);
 
 		return $output;
