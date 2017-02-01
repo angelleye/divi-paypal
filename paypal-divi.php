@@ -10,7 +10,7 @@
  * Author URI:        http://www.angelleye.com/
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       angelleye-paypal-divi
+ * Text Domain:       angelleye_paypal_divi
  * Domain Path:       /languages
  */
 
