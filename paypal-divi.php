@@ -16,7 +16,9 @@
 
 function angelleye_setup_For_paypaldivi()
 {
-    // register the "book" custom post type
+    /**
+     * Build PayPal module for Divi theme by ElegantThemes.
+     */
    include_once( plugin_dir_path( __FILE__ ) . 'custom-pb-paypal-module.php' );
 }
 add_action( 'init', 'angelleye_setup_For_paypaldivi' );
