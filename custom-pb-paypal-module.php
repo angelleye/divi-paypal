@@ -1,12 +1,16 @@
 <?php
 
-function ex_divi_child_theme_setup1() {
+function angelleye_paypal_button_module() {
 
     if (class_exists('ET_Builder_Module')) {
         ob_start(); 
        class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
+        /**
+         * Function init() callled while initialization of all Divi modules 
+         * Name, slug, and some other settings for the module are initialize here.       
+        */   
 	function init() {
-		$this->name = esc_html__( 'Paypal_Button', 'et_builder' );
+		$this->name = esc_html__( 'PayPal Button', 'angelleye_paypal_divi' );
 		$this->slug = 'et_pb_paypal_button';
 
 		$this->whitelisted_fields = array(
@@ -28,7 +32,7 @@ function ex_divi_child_theme_setup1() {
 			'module_class'
 		);
                 $this->fields_defaults = array(
-                    'test_mode' => array( 'on' ),
+                    'test_mode'         => array( 'on' ),
                     'background_color'  => array( et_builder_accent_color(), 'add_default_setting' ),
                     'background_layout' => array( 'light' ),
                 );
@@ -36,8 +40,8 @@ function ex_divi_child_theme_setup1() {
 		$this->advanced_options = array(
 			'button' => array(
 				'button' => array(
-					'label' => esc_html__( 'Button', 'et_builder' ),
-					'css' => array(
+					'label' => esc_html__( 'Button', 'angelleye_paypal_divi' ),
+					'css'   => array(
 						'main' => $this->main_css_element,
 					),
 				),
@@ -45,136 +49,139 @@ function ex_divi_child_theme_setup1() {
 		);
                 $this->custom_css_options = array();
 	}
-
+        /*
+         *  Function get_fields. This method returns an array of fields that the module will
+         *  display as the module settings
+         */
 	function get_fields() {
 		$fields = array(
                         'test_mode' => array(
-				'label'           => esc_html__( 'Test mode', 'et_builder' ),
+				'label'           => esc_html__( 'Test Mode', 'angelleye_paypal_divi' ),
 				'type'            => 'yes_no_button',
 				'option_category' => 'basic_option',
 				'options'         => array(
-                                            'on'  => esc_html__( 'Yes', 'et_builder' ),
-					    'off' => esc_html__( 'No', 'et_builder' ),					    
+                                            'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),
+					    'off' => esc_html__( 'No', 'angelleye_paypal_divi' ),					    
 				),
-				'description' => esc_html__( 'Here you can choose whether using "sandbox" mode or "live" mode', 'et_builder' ),
+				'description'     => esc_html__( 'Here you can choose weather to use "sandbox" mode or "live" mode.', 'angelleye_paypal_divi' ),
 			),
                         'pp_business_name' => array(
-                            'label'           => esc_html__( 'Business Name', 'et_builder' ),
+                            'label'           => esc_html__( 'Business Name', 'angelleye_paypal_divi' ),
                             'type'            => 'text',
                             'option_category' => 'basic_option',
-                            'description'     => esc_html__( 'Identify your business so that you can collect the payments. PayPal account email/ID.', 'et_builder' ),
+                            'description'     => esc_html__( 'Identify your business so that you can collect the payments. PayPal account email/ID.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_select_button' => array(
-				'label'           => esc_html__( 'Select Button', 'et_builder' ),
+				'label'           => esc_html__( 'Select Button', 'angelleye_paypal_divi' ),
 				'type'            => 'select',
 				'option_category' => 'layout',
 				'options'         => array(
-					   'on'   => esc_html__( 'Buy now', 'et_builder' ),
-					   'off'  => esc_html__( 'Donate', 'et_builder' ),
+					   'on'   => esc_html__( 'Buy Now', 'angelleye_paypal_divi' ),
+					   'off'  => esc_html__( 'Donate', 'angelleye_paypal_divi' ),
 				),
-                                'affects'     => array(
+                                'affects'         => array(
 					'#et_pb_pp_shipping',
                                         '#et_pb_pp_tax',
                                         '#et_pb_pp_handling',
 				),
-				'description' => esc_html__( 'Here you can choose whether to use PayPal *Buy Now* Button or *Donate* Button ', 'et_builder' ),                                 
+				'description'     => esc_html__( 'Here you can choose whether to use PayPal *Buy Now* Button or *Donate* Button.', 'angelleye_paypal_divi' ),                                 
 			),			
                         'pp_item_name' => array(
-                         	'label'           => esc_html__( 'Paypal Item name', 'et_builder' ),
+                         	'label'           => esc_html__( 'PayPal Item Name', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Input your Paypal Item name here.', 'et_builder' ),                            
+				'description'     => esc_html__( 'Input your PayPal Item name here.', 'angelleye_paypal_divi' ),                            
                         ),
                         'pp_amount' => array(
-                         	'label'           => esc_html__( 'Paypal Amount', 'et_builder' ),
+                         	'label'           => esc_html__( 'PayPal Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Input your amount here.', 'et_builder' ),                            
+				'description'     => esc_html__( 'PayPal Amount to be charged.', 'angelleye_paypal_divi' ),                            
                         ),
                         'pp_shipping' => array(
-                                'label'           => esc_html__( 'Shipping Amount', 'et_builder' ),
+                                'label'           => esc_html__( 'Shipping Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'The cost of shipping each additional unit of this item', 'et_builder' ),
+				'description'     => esc_html__( 'The cost of shipping each additional unit of this item.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_tax'      => array(
-                                'label'           => esc_html__( 'Tax Amount', 'et_builder' ),
+                                'label'           => esc_html__( 'Tax Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Set this value to a flat tax amount to apply to the payment regardless of the buyer\'s location.', 'et_builder' ),
+				'description'     => esc_html__( 'Set this value to a flat tax amount to apply to the payment regardless of the buyer\'s location.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_handling' => array(
-                                'label'           => esc_html__( 'Handling Amount', 'et_builder' ),
+                                'label'           => esc_html__( 'Handling Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'The same handling cost applies, regardless of the number of items on the order.', 'et_builder' ),
+				'description'     => esc_html__( 'The same handling cost applies, regardless of the number of items on the order.', 'angelleye_paypal_divi' ),
                         ), 
                         'use_custom' => array(
-                                'label'           => esc_html__( 'Use Custom Button', 'et_builder' ),
+                                'label'           => esc_html__( 'Use Custom Button', 'angelleye_paypal_divi' ),
 				'type'            => 'yes_no_button',
 				'option_category' => 'basic_option',
 				'options'         => array(
-                                            'off'  => esc_html__( 'No', 'et_builder' ),
-					    'on'   => esc_html__( 'Yes', 'et_builder' ),					    
+                                            'off' => esc_html__( 'No', 'angelleye_paypal_divi' ),
+					    'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),					    
 				),
-                                'affects'     => array(
+                                'affects'         => array(
 					'#et_pb_button_text',
                                         '#et_pb_button_alignment',
                                         '#et_pb_background_layout',
                                         '#et_pb_src',
 				),
-				'description' => esc_html__( 'enable custom button', 'et_builder' ),
+				'description'     => esc_html__( 'Enable this to use Custom Button.', 'angelleye_paypal_divi' ),
                         ),
                         'button_text' => array(
-				'label'           => esc_html__( 'Button Text', 'et_builder' ),
+				'label'           => esc_html__( 'Button Text', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Input your desired button text.', 'et_builder' ),
+				'description'     => esc_html__( 'Input your desired button text.', 'angelleye_paypal_divi' ),
 			),
                         'src' => array(
-				'label'              => esc_html__( 'Image URL', 'et_builder' ),
+				'label'              => esc_html__( 'Image URL', 'angelleye_paypal_divi' ),
 				'type'               => 'upload',
 				'option_category'    => 'basic_option',
-				'upload_button_text' => esc_attr__( 'Upload an image', 'et_builder' ),
-				'choose_text'        => esc_attr__( 'Choose an Image', 'et_builder' ),
-				'update_text'        => esc_attr__( 'Set As Image', 'et_builder' ),
-				'description'        => esc_html__( 'Upload your desired image, or type in the URL to the image you would like to display.', 'et_builder' ),
+				'upload_button_text' => esc_attr__( 'Upload an image', 'angelleye_paypal_divi' ),
+				'choose_text'        => esc_attr__( 'Choose an Image', 'angelleye_paypal_divi' ),
+				'update_text'        => esc_attr__( 'Set As Image', 'angelleye_paypal_divi' ),
+				'description'        => esc_html__( 'Upload your desired image, or type in the URL to the image you would like to display.', 'angelleye_paypal_divi' ),
 			),
                        'button_alignment' => array(
-				'label'           => esc_html__( 'Button alignment', 'et_builder' ),
+				'label'           => esc_html__( 'Button Alignment', 'angelleye_paypal_divi' ),
 				'type'            => 'select',
 				'option_category' => 'configuration',
 				'options'         => array(
-					'left'   => esc_html__( 'Left', 'et_builder' ),
-					'center' => esc_html__( 'Center', 'et_builder' ),
-					'right'  => esc_html__( 'Right', 'et_builder' ),
+					'left'    => esc_html__( 'Left', 'angelleye_paypal_divi' ),
+					'center'  => esc_html__( 'Center', 'angelleye_paypal_divi' ),
+					'right'   => esc_html__( 'Right', 'angelleye_paypal_divi' ),
 				),
-				'description'     => esc_html__( 'Here you can define the alignemnt of Button', 'et_builder' ),
+				'description'     => esc_html__( 'Here you can define the alignemnt of Button.', 'angelleye_paypal_divi' ),
 			),
 			'background_layout' => array(
-				'label'           => esc_html__( 'Text Color', 'et_builder' ),
+				'label'           => esc_html__( 'Text Color', 'angelleye_paypal_divi' ),
 				'type'            => 'select',
 				'option_category' => 'color_option',
 				'options'         => array(
-					'light' => esc_html__( 'Dark', 'et_builder' ),
-					'dark'  => esc_html__( 'Light', 'et_builder' ),
+					'light'   => esc_html__( 'Dark', 'angelleye_paypal_divi' ),
+					'dark'    => esc_html__( 'Light', 'angelleye_paypal_divi' ),
 				),
-				'description'     => esc_html__( 'Here you can choose whether your text should be light or dark. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'et_builder' ),
+				'description'     => esc_html__( 'Here you can choose whether your text should be light or dark. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi' ),
 			),
 			'admin_label' => array(
-				'label'       => esc_html__( 'Admin Label', 'et_builder' ),
+				'label'       => esc_html__( 'Admin Label', 'angelleye_paypal_divi' ),
 				'type'        => 'text',
-				'description' => esc_html__( 'This will change the label of the module in the builder for easy identification.', 'et_builder' ),
+				'description' => esc_html__( 'This will change the label of the module in the builder for easy identification.', 'angelleye_paypal_divi' ),
 			),
 			'module_id' => array(
-				'label'           => esc_html__( 'CSS ID', 'et_builder' ),
+				'label'           => esc_html__( 'CSS ID', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'configuration',
 				'tab_slug'        => 'custom_css',
 				'option_class'    => 'et_pb_custom_css_regular',
 			),
 			'module_class' => array(
-				'label'           => esc_html__( 'CSS Class', 'et_builder' ),
+				'label'           => esc_html__( 'CSS Class', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'configuration',
 				'tab_slug'        => 'custom_css',
@@ -183,7 +190,9 @@ function ex_divi_child_theme_setup1() {
 		);
 		return $fields;
 	}
-
+        /*
+         *  Function shortcode_callback. This method returns the content the module will display
+         */
 	function shortcode_callback( $atts, $content = null, $function_name ) {
 		$module_id         = $this->shortcode_atts['module_id'];
 		$module_class      = $this->shortcode_atts['module_class'];		
@@ -207,7 +216,7 @@ function ex_divi_child_theme_setup1() {
                 $pp_option_tax      ='';
                 $pp_option_handling ='';
                 
-		// Nothing to output if business_name is blank
+		// Nothing to output if $pp_business_name is blank
 		if ( '' === $pp_business_name) {
 			return;
 		}
@@ -298,11 +307,4 @@ function ex_divi_child_theme_setup1() {
     }
 }
 
-add_action('et_builder_ready', 'ex_divi_child_theme_setup1');
-
-/*
- * Shortcode
- * 
-
- * 
- */
+add_action('et_builder_ready', 'angelleye_paypal_button_module');

@@ -14,25 +14,33 @@
  * Domain Path:       /languages
  */
 
-function angelleye_setup_For_paypaldivi()
+function angelleye_setup_for_paypal_divi()
 {
     /**
      * Build PayPal module for Divi theme by ElegantThemes.
      */
    include_once( plugin_dir_path( __FILE__ ) . 'custom-pb-paypal-module.php' );
 }
-add_action( 'init', 'angelleye_setup_For_paypaldivi' );
- 
+add_action( 'init', 'angelleye_setup_for_paypal_divi' );
+
+ /**
+ * The code that runs during plugin activation.
+  * 
+  */
 function angelleye_setup_For_paypaldivi_install()
 {
-    // trigger our function that registers the custom post type
-    angelleye_setup_For_paypaldivi();
+    // trigger our function that registers PayPal for Divi plugin.
+    angelleye_setup_for_paypal_divi();
 }
 register_activation_hook( __FILE__, 'angelleye_setup_For_paypaldivi_install' );
 
-function angelleye_setup_For_paypaldivi_deactivate()
+ /**
+ * The code that runs during plugin deactivation.
+  * 
+  */
+function angelleye_setup_for_paypal_divi_deactivate()
 {
-    flush_rewrite_rules();
-    
+     // trigger our function that deactivate PayPal for Divi plugin.
+    flush_rewrite_rules();    
 }
-register_deactivation_hook( __FILE__, 'angelleye_setup_For_paypaldivi_deactivate' );
+register_deactivation_hook( __FILE__, 'angelleye_setup_for_paypal_divi_deactivate' );
