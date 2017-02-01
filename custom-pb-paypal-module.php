@@ -3,7 +3,7 @@
 function ex_divi_child_theme_setup1() {
 
     if (class_exists('ET_Builder_Module')) {
-
+        ob_start(); 
        class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
 	function init() {
 		$this->name = esc_html__( 'Paypal_Button', 'et_builder' );
@@ -294,6 +294,7 @@ function ex_divi_child_theme_setup1() {
 }
         $et_builder_module_paypal_button = new ET_Builder_Module_Paypal_Button();
         add_shortcode('et_pb_paypal_button', array($et_builder_module_paypal_button, '_shortcode_callback'));
+        ob_end_flush();
     }
 }
 
