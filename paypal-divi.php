@@ -64,6 +64,7 @@ $is_child      = is_child( $theme_data );
 if ( $is_child ) {
     $parent_name = $theme_data->parent()->Name;    
     if ($parent_name != 'Divi'){
+        /* code when divi theme is not activated. */
         global $pagenow;
         if ( $pagenow == 'plugins.php' ){
            add_action('admin_notices', 'check_divi_available');
@@ -80,7 +81,7 @@ else{
     }
 }
 function is_child( $theme_data ) {
-    // For limitation of empty() write in var
+    /* Check current theme is child or not */
     $parent = $theme_data->parent();
     if ( ! empty( $parent ) ) {
         return TRUE;
