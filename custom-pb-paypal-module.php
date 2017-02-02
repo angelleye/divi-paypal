@@ -306,5 +306,4 @@ function angelleye_paypal_button_module() {
         ob_end_flush();
     }
 }
-
 add_action('et_builder_ready', 'angelleye_paypal_button_module');

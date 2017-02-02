@@ -28,9 +28,9 @@ add_action( 'init', 'angelleye_setup_for_paypal_divi' );
   * 
   */
 function angelleye_setup_For_paypal_divi_install()
-{
-    // trigger our function that registers PayPal for Divi plugin.
-    angelleye_setup_for_paypal_divi();
+{    
+        // trigger our function that registers PayPal for Divi plugin.     
+        angelleye_setup_for_paypal_divi();                       
 }
 register_activation_hook( __FILE__, 'angelleye_setup_For_paypal_divi_install' );
 
@@ -44,3 +44,46 @@ function angelleye_setup_for_paypal_divi_deactivate()
     flush_rewrite_rules();    
 }
 register_deactivation_hook( __FILE__, 'angelleye_setup_for_paypal_divi_deactivate' );
+
+
+/* Display a notice */
+function check_divi_available(){
+         ?>
+    <div class="notice notice-info is-dismissible">        
+        <p>
+        <?php _e('<b>PayPal for Divi</b> is designed for the <a href="https://www.elegantthemes.com/gallery/divi/" target="_blank">Divi theme by Elegant Themes.</a> Please install and activate the Divi theme prior to activating <b>PayPal for Divi</b>.'); ?>
+        </p>
+    </div>
+    <?php
+}
+
+
+$theme_data    = wp_get_theme();
+$is_child      = is_child( $theme_data );
+
+if ( $is_child ) {
+    $parent_name = $theme_data->parent()->Name;    
+    if ($parent_name != 'Divi'){
+        global $pagenow;
+        if ( $pagenow == 'plugins.php' ){
+           add_action('admin_notices', 'check_divi_available');
+        }
+    }
+}
+else{
+    if ($theme_data->Name != 'Divi') {
+        /* code when divi theme is not activated. */
+        global $pagenow;
+         if ( $pagenow == 'plugins.php' ){
+            add_action('admin_notices', 'check_divi_available');
+         }
+    }
+}
+function is_child( $theme_data ) {
+    // For limitation of empty() write in var
+    $parent = $theme_data->parent();
+    if ( ! empty( $parent ) ) {
+        return TRUE;
+    }
+    return FALSE;
+}      
