@@ -56,23 +56,23 @@ function angelleye_paypal_button_module() {
 	function get_fields() {
 		$fields = array(
                         'test_mode' => array(
-				'label'           => esc_html__( 'Test Mode', 'angelleye_paypal_divi' ),
+				'label'           => esc_html__( 'Sandbox Testing', 'angelleye_paypal_divi' ),
 				'type'            => 'yes_no_button',
 				'option_category' => 'basic_option',
 				'options'         => array(
                                             'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),
 					    'off' => esc_html__( 'No', 'angelleye_paypal_divi' ),					    
 				),
-				'description'     => esc_html__( 'Here you can choose weather to use "sandbox" mode or "live" mode.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Use the PayPal sandbox to process test payments.  Make sure to enter a sandbox seller account ID or email address in the PayPal Account ID field when using the sandbox.', 'angelleye_paypal_divi' ),
 			),
                         'pp_business_name' => array(
-                            'label'           => esc_html__( 'Business Name', 'angelleye_paypal_divi' ),
+                            'label'           => esc_html__( 'PayPal Account ID', 'angelleye_paypal_divi' ),
                             'type'            => 'text',
                             'option_category' => 'basic_option',
-                            'description'     => esc_html__( 'Identify your business so that you can collect the payments. PayPal account email/ID.', 'angelleye_paypal_divi' ),
+                            'description'     => esc_html__( 'Enter your PayPal account ID or email address to specify where the payment should be sent.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_select_button' => array(
-				'label'           => esc_html__( 'Select Button', 'angelleye_paypal_divi' ),
+				'label'           => esc_html__( 'Button Type', 'angelleye_paypal_divi' ),
 				'type'            => 'select',
 				'option_category' => 'layout',
 				'options'         => array(
@@ -84,40 +84,40 @@ function angelleye_paypal_button_module() {
                                         '#et_pb_pp_tax',
                                         '#et_pb_pp_handling',
 				),
-				'description'     => esc_html__( 'Here you can choose whether to use PayPal *Buy Now* Button or *Donate* Button.', 'angelleye_paypal_divi' ),                                 
+				'description'     => esc_html__( 'Choose between a PayPal *Buy Now* button or *Donate* button.', 'angelleye_paypal_divi' ),
 			),			
                         'pp_item_name' => array(
                          	'label'           => esc_html__( 'Item Name', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Input your item name here.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Add a name / description for the item or service being sold.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_amount' => array(
-                         	'label'           => esc_html__( 'Item Amount', 'angelleye_paypal_divi' ),
+                         	'label'           => esc_html__( 'Item Price', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Amount to be charged for the item.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Enter the price for the item / service being sold.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_shipping' => array(
                                 'label'           => esc_html__( 'Shipping Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'The cost of shipping for the item.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Enter the cost of shipping for the item if you would like to override the shipping rules in your PayPal account profile.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_tax'      => array(
                                 'label'           => esc_html__( 'Tax Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Set this value to a flat tax amount to apply to the payment regardless of the buyer\'s location.  If this is left blank, the tax rules in the PayPal profile will apply.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Enter a sales tax amount to be charged if you would like to override the tax rules in your PayPal account profile.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_handling' => array(
                                 'label'           => esc_html__( 'Handling Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'The same handling cost applies, regardless of the number of items on the order.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Enter a handling fee if you would like to include one with this item / service.', 'angelleye_paypal_divi' ),
                         ), 
                         'use_custom' => array(
-                                'label'           => esc_html__( 'Customize Button Display', 'angelleye_paypal_divi' ),
+                                'label'           => esc_html__( 'Custom Button Display', 'angelleye_paypal_divi' ),
 				'type'            => 'yes_no_button',
 				'option_category' => 'basic_option',
 				'options'         => array(
@@ -130,14 +130,24 @@ function angelleye_paypal_button_module() {
                                         '#et_pb_background_layout',
                                         '#et_pb_src',
 				),
-				'description'     => esc_html__( 'Enable this to use Custom Button.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Enable this option to use a text only or custom graphic button in place of the default Buy Now / Donate button.', 'angelleye_paypal_divi' ),
                         ),
                         'button_text' => array(
 				'label'           => esc_html__( 'Button Text', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Input your desired button text.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Enter a value here to be displayed in a text only button. (If an Image URL is set this text will not be displayed.)', 'angelleye_paypal_divi' ),
 			),
+            'background_layout' => array(
+                'label'           => esc_html__( 'Text Color', 'angelleye_paypal_divi' ),
+                'type'            => 'select',
+                'option_category' => 'color_option',
+                'options'         => array(
+                    'light'   => esc_html__( 'Dark', 'angelleye_paypal_divi' ),
+                    'dark'    => esc_html__( 'Light', 'angelleye_paypal_divi' ),
+                ),
+                'description'     => esc_html__( 'Adjust whether your text only button uses light or dark text. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi' ),
+            ),
                         'src' => array(
 				'label'              => esc_html__( 'Image URL', 'angelleye_paypal_divi' ),
 				'type'               => 'upload',
@@ -145,7 +155,7 @@ function angelleye_paypal_button_module() {
 				'upload_button_text' => esc_attr__( 'Upload an image', 'angelleye_paypal_divi' ),
 				'choose_text'        => esc_attr__( 'Choose an Image', 'angelleye_paypal_divi' ),
 				'update_text'        => esc_attr__( 'Set As Image', 'angelleye_paypal_divi' ),
-				'description'        => esc_html__( 'Upload your desired image, or type in the URL to the image you would like to display.', 'angelleye_paypal_divi' ),
+				'description'        => esc_html__( 'Upload your desired image or type in the URL to the image you would like to display.', 'angelleye_paypal_divi' ),
 			),
                        'button_alignment' => array(
 				'label'           => esc_html__( 'Button Alignment', 'angelleye_paypal_divi' ),
@@ -156,17 +166,7 @@ function angelleye_paypal_button_module() {
 					'center'  => esc_html__( 'Center', 'angelleye_paypal_divi' ),
 					'right'   => esc_html__( 'Right', 'angelleye_paypal_divi' ),
 				),
-				'description'     => esc_html__( 'Here you can define the alignemnt of Button.', 'angelleye_paypal_divi' ),
-			),
-			'background_layout' => array(
-				'label'           => esc_html__( 'Text Color', 'angelleye_paypal_divi' ),
-				'type'            => 'select',
-				'option_category' => 'color_option',
-				'options'         => array(
-					'light'   => esc_html__( 'Dark', 'angelleye_paypal_divi' ),
-					'dark'    => esc_html__( 'Light', 'angelleye_paypal_divi' ),
-				),
-				'description'     => esc_html__( 'Here you can choose whether your text should be light or dark. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Adjust the alignment of your button.', 'angelleye_paypal_divi' ),
 			),
 			'admin_label' => array(
 				'label'       => esc_html__( 'Admin Label', 'angelleye_paypal_divi' ),
