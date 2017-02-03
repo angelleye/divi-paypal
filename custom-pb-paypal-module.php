@@ -117,7 +117,7 @@ function angelleye_paypal_button_module() {
 				'description'     => esc_html__( 'The same handling cost applies, regardless of the number of items on the order.', 'angelleye_paypal_divi' ),
                         ), 
                         'use_custom' => array(
-                                'label'           => esc_html__( 'Use Custom Button', 'angelleye_paypal_divi' ),
+                                'label'           => esc_html__( 'Customize Button Display', 'angelleye_paypal_divi' ),
 				'type'            => 'yes_no_button',
 				'option_category' => 'basic_option',
 				'options'         => array(
@@ -228,15 +228,15 @@ function angelleye_paypal_button_module() {
                 }
                 if($pp_select_button =='on'){
                     $cmd    = '_xclick';
-                    $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_107x26.png';
-                    $pp_alt = 'Buy Now';
+                    $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_cc_171x47.png';
+                    $pp_alt = 'Buy Now With Credit Cards';
                     $pp_option_shipping = '<input type="hidden" name="shipping" value="'.$pp_shipping.'">';
                     $pp_option_tax = '<input type="hidden" name="tax" value="'.$pp_tax.'">';
                     $pp_option_handling = '<input type="hidden" name="handling" value="'.$pp_handling.'">';
                 }
                 elseif($pp_select_button =='off'){
                     $cmd    = '_donations';
-                    $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png';
+                    $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_cc_147x47.png';
                     $pp_alt = 'Donate';
                 }
                     
