@@ -108,7 +108,7 @@ function angelleye_paypal_button_module() {
                                 'label'           => esc_html__( 'Tax Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Set this value to a flat tax amount to apply to the payment regardless of the buyer\'s location.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Set this value to a flat tax amount to apply to the payment regardless of the buyer\'s location.  If this is left blank, the tax rules in the PayPal profile will apply.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_handling' => array(
                                 'label'           => esc_html__( 'Handling Amount', 'angelleye_paypal_divi' ),
