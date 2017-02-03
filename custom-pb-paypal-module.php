@@ -87,22 +87,22 @@ function angelleye_paypal_button_module() {
 				'description'     => esc_html__( 'Here you can choose whether to use PayPal *Buy Now* Button or *Donate* Button.', 'angelleye_paypal_divi' ),                                 
 			),			
                         'pp_item_name' => array(
-                         	'label'           => esc_html__( 'PayPal Item Name', 'angelleye_paypal_divi' ),
+                         	'label'           => esc_html__( 'Item Name', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Input your PayPal Item name here.', 'angelleye_paypal_divi' ),                            
+				'description'     => esc_html__( 'Input your item name here.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_amount' => array(
-                         	'label'           => esc_html__( 'PayPal Amount', 'angelleye_paypal_divi' ),
+                         	'label'           => esc_html__( 'Item Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'PayPal Amount to be charged.', 'angelleye_paypal_divi' ),                            
+				'description'     => esc_html__( 'Amount to be charged for the item.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_shipping' => array(
                                 'label'           => esc_html__( 'Shipping Amount', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'The cost of shipping each additional unit of this item.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'The cost of shipping for the item.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_tax'      => array(
                                 'label'           => esc_html__( 'Tax Amount', 'angelleye_paypal_divi' ),
