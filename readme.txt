@@ -65,28 +65,10 @@ Automatic updates should work great for you.  As always, though, we recommend ba
  
 == Screenshots ==
 
-= We can build three types of Paypal Button by PayPal for Divi module. =
-
-* Default Button
-* Custom Button
-* Image Button
-
-1. Default Button
-   - Default Button For Buy Now is {Put screenshot of buynow button here}
-   - Default Button For Donate is {Put screenshot donate button here} 	
-
-2. Custom Button
-   - Enabled Custom Button Display.(Set option to Yes) {custom_button_step_1.png}
-   - Add your Custom Button Text. {custom_button_step_1.png}
-   - Output is like this. {custom_button_step_2.png}
-   - Go to Advanced Design Settings and Enable it. {custom_button_step_3.png}
-   - Change matched to your theme color. {custom_button_step_4.png}
-   - Customize with icon {custom_button_step_5.png}
-   - Button Alignment {custom_button_step_6.png}
-   
-3. Image Button
-   - Upload your desired image with WP Media Manager/Add directly URL {custom_button_step_7.png}
-   - Output is like {custom_button_step_8.png}
+1. PayPal module added to the Divi Page Builder.
+2. PayPal for Divi module settings screen.
+3. PayPal module placed on the page / post content within the Divi builder.
+4. Default Buy Now button displayed on web page.
 
 == Frequently Asked Questions ==
 
@@ -99,14 +81,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * TIP: Create at least one "seller" account and one "buyer" account if you want to fully test Express Checkout or other PayPal wallet payments. 
 * TUTORIAL: See our [step-by-step instructions with video guide](https://www.angelleye.com/create-paypal-sandbox-account/).
 
-= Where do I get my API credentials? =
+= Can I create more than just Buy Now and Donate buttons? =
 
-= What is PayPal HTML Button? =
-
-= How could you choose payment button ? =
-
-= How could you use the Buy Now button? = 
-
+* We have plans to expand upon this PayPal for Divi module.  In the mean-time, take a look at our free [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin, which allows you to build a variety of PayPal buttons within WordPress.
 
 == Changelog ==
 
