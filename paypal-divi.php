@@ -95,6 +95,6 @@ add_action( 'admin_enqueue_scripts', 'paypal_divi_styles' );
  * Register style sheet decalration.
  */
 function paypal_divi_styles() {
-	wp_register_style( 'paypal_divi', plugins_url( 'css/paypal_divi.css',__FILE__ ) );
+	wp_register_style( 'paypal_divi', plugins_url( 'assets/css/paypal_divi.css',__FILE__ ) );
 	wp_enqueue_style( 'paypal_divi' );
 }
