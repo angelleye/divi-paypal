@@ -126,7 +126,6 @@ function angelleye_paypal_button_module() {
 				),
                                 'affects'         => array(
 					'#et_pb_button_text',
-                                        '#et_pb_button_alignment',
                                         '#et_pb_background_layout',
                                         '#et_pb_src',
 				),
