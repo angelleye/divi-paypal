@@ -27,12 +27,7 @@ Manual Installation
 ## Usage
 
 - From the Divi Builder, add the PayPal Button module to your page / post.
-- Use the module options to build a PayPal button that suits your needs.
-	
-	
-## Referance
-	
-   [PayPal Button](https://developer.paypal.com/docs/integration/web/) 	
+- Use the module options to build a PayPal button that suits your needs.	
  
  
  
