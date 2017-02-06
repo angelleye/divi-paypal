@@ -1,7 +1,7 @@
-﻿=== PayPal module for the Divi theme by Elegant Themes ===
+﻿=== PayPal for Divi ===
 Contributors: angelleye
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SG9SQU2GBXJNA
-Tags: divi theme, elegant themes, paypal, paypal buttons, donate button, buynow button, divi custom module, divi module,angelleye
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B85H6VLV9YGRA
+Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
 Tested up to: 4.7
 Stable tag: 1.0.0
@@ -14,25 +14,22 @@ Developed by an Ace Certified PayPal Developer, Official PayPal Partner, PayPal 
 
 = Introduction =
 
-Easily add PayPal buttons (HTML Buttons) to you divi theme website.
+PayPal for Divi adds a PayPal Button module into the Divi page builder tool making it quick and easy to add PayPal Buy Now and Donate buttons to any WordPress page or post built with Divi.
 
  * Buy Now Button
  * Donate Button 
 
-= Divi theme by Elegant Themes Compatibility =
-Only supports in  Divi theme by Elegant Themes, This is custom module that works as Paypal button module in divi theme page builder.
+= Divi Theme by Elegant Themes Compatibility =
+This plugin is built specifically for the Divi theme.  If you would like to add PayPal buttons to a non-Divi WordPress site, take a look at our [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin.
 
 = Quality Control =
 Payment processing can't go wrong.  It's as simple as that.  Our certified PayPal engineers have developed and thoroughly tested this plugin on the PayPal sandbox (test) servers to ensure your customers don't have problems paying you.  
 
 = Seamless PayPal Integration =
-You don't need to go paypal website and create buttons. Just add your PayPal account id/email, Item name for which payment is and Amount. Everythig is ready and put it anywhere in the page.
-
-= Error Handling =
-Our plugins always handle these warnings/errors correctly so that you do not have to worry about dealing with those types of situations.
+No more leaving the WordPress admin panel to log in to PayPal, create your button, copy HTML code, return to WordPress to paste the code, and finally save your page.  Instead, simply drop the button into the page using the Divi module and you're done within seconds!
 
 = Localization = 
-The PayPal module for the Divi pages will translate based off your WordPress language setting by default.  The rest of the plugin was also developed with localization in mind and is ready for translation.
+This plugin was developed with localization in mind and is ready for translation.
 
 If you're interested in helping translate please [let us know](http://www.angelleye.com/contact-us/)!
 
@@ -43,7 +40,7 @@ Developers can contribute to the source code on the [PayPal for Divi](https://gi
 
 = Minimum Requirements =
 
-* Divi theme by Elegant Themes
+* Divi Theme by Elegant Themes
 
 = Automatic installation =
 
@@ -58,8 +55,8 @@ In the search field type PayPal for Divi and click Search Plugins. Once you've f
  
 = Usage = 
 
-1. Open/Edit any page that has Divi Page Builder.
-2. At any Layout Click Insert module. You will see list of Divi Modules and Select "PayPal Buttons".
+1. Open/Edit any page that uses the Divi Page Builder.
+2. Click to add a new module to any section of your page / post, and you will find a PayPal Button module
 3. Configure your settings accordingly.
 
 = Updating = 
