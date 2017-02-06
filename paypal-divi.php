@@ -30,7 +30,7 @@ add_action( 'init', 'angelleye_setup_for_paypal_divi' );
 function angelleye_setup_For_paypal_divi_install()
 {    
         // trigger our function that registers PayPal for Divi plugin.     
-        angelleye_setup_for_paypal_divi();                       
+        angelleye_setup_for_paypal_divi();                        
 }
 register_activation_hook( __FILE__, 'angelleye_setup_For_paypal_divi_install' );
 
@@ -98,3 +98,8 @@ function paypal_divi_styles() {
 	wp_register_style( 'paypal_divi', plugins_url( 'assets/css/paypal_divi.css',__FILE__ ) );
 	wp_enqueue_style( 'paypal_divi' );
 }
+
+function paypal_divi_clear_local_storage () {
+	wp_enqueue_script( 'paypal_divi_clear_local_storage', plugins_url('assets/js/clear_local_storage.js',__FILE__ ));        
+}
+add_action( 'admin_enqueue_scripts', 'paypal_divi_clear_local_storage', 9999 );
