@@ -99,7 +99,7 @@ function paypal_divi_styles() {
 	wp_enqueue_style( 'paypal_divi' );
 }
 
-function paypal_divi_clear_local_storage () {
+function paypal_divi_clear_local_storage () {        
 	wp_enqueue_script( 'paypal_divi_clear_local_storage', plugins_url('assets/js/clear_local_storage.js',__FILE__ ));        
 }
 add_action( 'admin_enqueue_scripts', 'paypal_divi_clear_local_storage', 9999 );
