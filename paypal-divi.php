@@ -106,7 +106,10 @@ function paypal_divi_styles() {
 	wp_enqueue_style( 'paypal_divi' );
 }
 
-
+/*
+ * Added new function that will also called  at the time of plugin activation.
+ * This will add option to indicate plugin is activated and clear local storage.
+ */
 register_activation_hook( __FILE__, 'my_plugin_activation' );
 function my_plugin_activation() {
   add_option( 'my_plugin_activation','just-activated' );
