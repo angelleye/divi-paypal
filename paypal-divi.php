@@ -19,7 +19,14 @@ function angelleye_setup_for_paypal_divi()
     /**
      * Build PayPal module for Divi theme by ElegantThemes.
      */
-   include_once( plugin_dir_path( __FILE__ ) . 'custom-pb-paypal-module.php' );
+    include_once( plugin_dir_path( __FILE__ ) . 'custom-pb-paypal-module.php' );
+    /* This code will run only while activation of plugin.
+     * Usage : To clear local storage for divi.
+     *  */
+    if( is_admin() && get_option( 'my_plugin_activation' ) == 'just-activated' ) {
+       delete_option( 'my_plugin_activation' );
+       wp_enqueue_script( 'paypal_divi_clear_local_storage', plugins_url('assets/js/clear_local_storage.js',__FILE__ ));
+    }
 }
 add_action( 'init', 'angelleye_setup_for_paypal_divi' );
 
@@ -30,7 +37,7 @@ add_action( 'init', 'angelleye_setup_for_paypal_divi' );
 function angelleye_setup_For_paypal_divi_install()
 {    
         // trigger our function that registers PayPal for Divi plugin.     
-        angelleye_setup_for_paypal_divi();                        
+        angelleye_setup_for_paypal_divi();        
 }
 register_activation_hook( __FILE__, 'angelleye_setup_For_paypal_divi_install' );
 
@@ -40,7 +47,7 @@ register_activation_hook( __FILE__, 'angelleye_setup_For_paypal_divi_install' );
   */
 function angelleye_setup_for_paypal_divi_deactivate()
 {
-     // trigger our function that deactivate PayPal for Divi plugin.
+     // trigger our function that deactivate PayPal for Divi plugin.    
     flush_rewrite_rules();    
 }
 register_deactivation_hook( __FILE__, 'angelleye_setup_for_paypal_divi_deactivate' );
@@ -99,7 +106,8 @@ function paypal_divi_styles() {
 	wp_enqueue_style( 'paypal_divi' );
 }
 
-function paypal_divi_clear_local_storage () {        
-	wp_enqueue_script( 'paypal_divi_clear_local_storage', plugins_url('assets/js/clear_local_storage.js',__FILE__ ));        
+
+register_activation_hook( __FILE__, 'my_plugin_activation' );
+function my_plugin_activation() {
+  add_option( 'my_plugin_activation','just-activated' );
 }
-add_action( 'admin_enqueue_scripts', 'paypal_divi_clear_local_storage', 9999 );
