@@ -118,8 +118,8 @@ add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'paypal_divi_act
 
 
 function paypal_divi_action_links( $links ) {    
-   $links[] = '<a href="" target="_blank">'.  esc_html('Docs','angelleye_paypal_divi').'</a>';
-   $links[] = '<a href="" target="_blank">'.  esc_html('Support','angelleye_paypal_divi').'</a>';
-   $links[] = '<a href="" target="_blank">'.  esc_html('Write a Review','angelleye_paypal_divi').'</a>';
+   $links[] = '<a href="https://www.angelleye.com/category/docs/divi-paypal-module-documentation/" target="_blank">'.  esc_html('Docs','angelleye_paypal_divi').'</a>';
+   $links[] = '<a href="https://wordpress.org/support/plugin/angelleye-paypal-for-divi/" target="_blank">'.  esc_html('Support','angelleye_paypal_divi').'</a>';
+   $links[] = '<a href="https://wordpress.org/support/plugin/angelleye-paypal-for-divi/reviews/" target="_blank">'.  esc_html('Write a Review','angelleye_paypal_divi').'</a>';
    return $links;
 }
