@@ -81,6 +81,10 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * TIP: Create at least one "seller" account and one "buyer" account if you want to fully test Express Checkout or other PayPal wallet payments. 
 * TUTORIAL: See our [step-by-step instructions with video guide](https://www.angelleye.com/create-paypal-sandbox-account/).
 
+= I recently updated the plugin, but the changes do not seem to be taking affect.  Why? =
+
+* The Divi theme utilizes your browser's "local storage" to improve the performance of the Divi Builder.  This does not clear even if you clear your browser cache and history.  If it seems that updates are not taking affect, try to disable and re-enable the plugin, which should clear the browser's locale storage and resolve the issue.
+
 = Can I create more than just Buy Now and Donate buttons? =
 
 * We have plans to expand upon this PayPal for Divi module.  In the mean-time, take a look at our free [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin, which allows you to build a variety of PayPal buttons within WordPress.
