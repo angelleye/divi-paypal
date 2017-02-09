@@ -87,5 +87,5 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.0 - 02.09.2017 =
 * Initial Stable Release
