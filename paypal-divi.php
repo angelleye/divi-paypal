@@ -34,12 +34,12 @@ add_action( 'init', 'angelleye_setup_for_paypal_divi' );
  * The code that runs during plugin activation.
   * 
   */
-function angelleye_setup_For_paypal_divi_install()
+function angelleye_setup_for_paypal_divi_install()
 {    
         // trigger our function that registers PayPal for Divi plugin.     
         angelleye_setup_for_paypal_divi();        
 }
-register_activation_hook( __FILE__, 'angelleye_setup_For_paypal_divi_install' );
+register_activation_hook( __FILE__, 'angelleye_setup_for_paypal_divi_install');
 
  /**
  * The code that runs during plugin deactivation.
