@@ -114,3 +114,12 @@ register_activation_hook( __FILE__, 'my_plugin_activation' );
 function my_plugin_activation() {
   add_option( 'my_plugin_activation','just-activated' );
 }
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'paypal_divi_action_links' );
+
+
+function paypal_divi_action_links( $links ) {    
+   $links[] = '<a href="" target="_blank">'.  esc_html('Docs','angelleye_paypal_divi').'</a>';
+   $links[] = '<a href="" target="_blank">'.  esc_html('Support','angelleye_paypal_divi').'</a>';
+   $links[] = '<a href="" target="_blank">'.  esc_html('Write a Review','angelleye_paypal_divi').'</a>';
+   return $links;
+}
