@@ -91,6 +91,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 1.0.2 - 02.10.2017 =
+* Feature - Adds Return URL and Cancel URL to the PayPal button module settings. ([#17](https://github.com/angelleye/divi-paypal/issues/17))
+
 = 1.0.1 - 02.09.2017 =
 * Tweak - Minor code adjustments (cleanup).
 
