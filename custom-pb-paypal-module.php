@@ -22,6 +22,8 @@ function angelleye_paypal_button_module() {
                         'pp_shipping',
                         'pp_tax',
                         'pp_handling',
+                        'pp_return',
+                        'pp_cancel_return',
                         'use_custom',
                         'button_text',
                         'src',
@@ -116,6 +118,18 @@ function angelleye_paypal_button_module() {
 				'option_category' => 'basic_option',
 				'description'     => esc_html__( 'Enter a handling fee if you would like to include one with this item / service.', 'angelleye_paypal_divi' ),
                         ), 
+                        'pp_return' => array(
+				'label'           => esc_html__( ' Return Url', 'et_builder' ),
+				'type'            => 'text',
+				'option_category' => 'basic_option',
+				'description'     => esc_html__( 'The URL to which PayPal redirects buyers\' browser after they complete their payments.', 'angelleye_paypal_divi' ),
+			),
+                        'pp_cancel_return' => array(
+                                    'label'           => esc_html__( ' Cancel Url', 'et_builder' ),
+                                    'type'            => 'text',
+                                    'option_category' => 'basic_option',
+                                    'description'     => esc_html__( 'A URL to which PayPal redirects the buyers\' browsers if they cancel checkout before completing their payments.', 'angelleye_paypal_divi' ),
+                        ),
                         'use_custom' => array(
                                 'label'           => esc_html__( 'Custom Button Display', 'angelleye_paypal_divi' ),
 				'type'            => 'yes_no_button',
@@ -209,6 +223,10 @@ function angelleye_paypal_button_module() {
                 $pp_shipping       = $this->shortcode_atts['pp_shipping'];
                 $pp_tax            = $this->shortcode_atts['pp_tax'];
                 $pp_handling       = $this->shortcode_atts['pp_handling'];
+                
+                $pp_return         = $this->shortcode_atts['pp_return'];
+                $pp_cancel_return  = $this->shortcode_atts['pp_cancel_return'];
+                
                 $use_custom        = $this->shortcode_atts['use_custom'];
                 
                 $pp_option_shipping ='';
@@ -251,6 +269,8 @@ function angelleye_paypal_button_module() {
                                <input type="hidden" name="item_name" value="%7$s">
                                <input type="hidden" name="amount" value="%8$s">
                                <input type="hidden" name="currency_code" value="USD">
+                               %18$s
+                               %19$s                               
                                %13$s
                                %14$s
                                %15$s
@@ -295,6 +315,9 @@ function angelleye_paypal_button_module() {
                                                : sprintf('<input type="image" name="submit" border="0" src="%1$s" alt="%2$s"/><img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >',
                                                        '' !==  $src ? $src : $pp_img,$pp_alt
                                                        )                        
+                        ,
+                        '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',$pp_return) : '',
+                        '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',$pp_cancel_return) : ''
 		);
 
 		return $output;
