@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -90,6 +90,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * We have plans to expand upon this PayPal for Divi module.  In the mean-time, take a look at our free [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin, which allows you to build a variety of PayPal buttons within WordPress.
 
 == Changelog ==
+
+= 1.0.1 - 02.09.2017 =
+* Tweak - Minor code adjustments (cleanup).
 
 = 1.0.0 - 02.09.2017 =
 * Initial Stable Release
