@@ -56,6 +56,11 @@ function angelleye_paypal_button_module() {
          *  display as the module settings
          */
 	function get_fields() {
+            $pages = get_pages($args);
+            $all_page = array();
+            foreach ($pages as $p) {
+                $all_page[$p->ID] = $p->post_title;
+            }
 		$fields = array(
                         'test_mode' => array(
 				'label'           => esc_html__( 'Sandbox Testing', 'angelleye_paypal_divi' ),
@@ -120,14 +125,16 @@ function angelleye_paypal_button_module() {
                         ), 
                         'pp_return' => array(
 				'label'           => esc_html__( ' Return Url', 'et_builder' ),
-				'type'            => 'text',
+				'type'            => 'select',
 				'option_category' => 'basic_option',
+                                'options' => $all_page,
 				'description'     => esc_html__( 'The URL to which PayPal redirects buyers\' browser after they complete their payments.', 'angelleye_paypal_divi' ),
 			),
                         'pp_cancel_return' => array(
                                     'label'           => esc_html__( ' Cancel Url', 'et_builder' ),
-                                    'type'            => 'text',
+                                    'type'            => 'select',
                                     'option_category' => 'basic_option',
+                                    'options' => $all_page,
                                     'description'     => esc_html__( 'A URL to which PayPal redirects the buyers\' browsers if they cancel checkout before completing their payments.', 'angelleye_paypal_divi' ),
                         ),
                         'use_custom' => array(
@@ -316,8 +323,8 @@ function angelleye_paypal_button_module() {
                                                        '' !==  $src ? $src : $pp_img,$pp_alt
                                                        )                        
                         ,
-                        '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',$pp_return) : '',
-                        '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',$pp_cancel_return) : ''
+                        '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',get_permalink($pp_return)) : '',
+                        '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',get_permalink($pp_cancel_return)) : ''
 		);
 
 		return $output;
