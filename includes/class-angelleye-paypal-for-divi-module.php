@@ -2,8 +2,7 @@
 
 function angelleye_paypal_button_module() {
 
-    if (class_exists('ET_Builder_Module')) {
-        ob_start(); 
+    if (class_exists('ET_Builder_Module')) {    
        class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
         /**
          * Function init() callled while initialization of all Divi modules 
@@ -348,8 +347,7 @@ function angelleye_paypal_button_module() {
 	}
 }
         $et_builder_module_paypal_button = new ET_Builder_Module_Paypal_Button();
-        add_shortcode('et_pb_paypal_button', array($et_builder_module_paypal_button, '_shortcode_callback'));
-        ob_end_flush();
+        add_shortcode('et_pb_paypal_button', array($et_builder_module_paypal_button, '_shortcode_callback'));      
     }
 }
 add_action('et_builder_ready', 'angelleye_paypal_button_module');
