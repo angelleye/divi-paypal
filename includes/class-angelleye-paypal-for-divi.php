@@ -159,7 +159,7 @@ class Angelleye_Paypal_For_Divi {
                     delete_option( 'my_plugin_activation' );
                     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
                 }
-                
+                $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page' );
                 $this->loader->add_action( 'admin_notices', $plugin_admin, 'check_divi_available' );
                 $this->loader->add_filter( 'plugin_action_links_' . ANGELLEYE_PAYPAL_DIVI, $plugin_admin, 'links_action_paypal_divi' );
 	}
