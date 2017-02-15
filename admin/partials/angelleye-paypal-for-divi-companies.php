@@ -53,7 +53,9 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
 
     function column_default($item, $column_name) {
         switch ($column_name) {
-            case 'title':           
+            case 'title':  
+            case 'account_id':
+            case 'paypal_mode':    
                 return $item[$column_name];
         }
     }
@@ -86,7 +88,9 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
     function get_columns() {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'title' => 'PayPal Account ID:',
+            'title' => 'PayPal Account Name',
+            'account_id' => 'PayPal Account ID',
+            'paypal_mode' => 'PayPal Mode'
         );
         return $columns;
     }
@@ -160,7 +164,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
                     <?php } else { ?>
                         <script>window.localStorage.clear()</script>
                         <div id="setting-error-settings_updated" class="updated settings-error"> 
-                            <p><?php echo '<strong>' . __('Company deleted Successfully.', 'angelleye_paypal_divi') . '</strong>'; ?>
+                            <p><?php echo '<strong>' . __('Paypal Account deleted Successfully.', 'angelleye_paypal_divi') . '</strong>'; ?>
                             </p>
                         </div>
                         <?php
@@ -182,7 +186,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
                 ?>
                 <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
                 <h2 class="floatleft"><?php _e('PayPal Account List', 'custom_table_example') ?> </h2>
-                <a href="/wp-admin/admin.php?page=angelleye-paypal-divi-option&tab=company" class="cls_addcompany button-primary">Add Company</a>
+                <a href="/wp-admin/admin.php?page=angelleye-paypal-divi-option&tab=company" class="cls_addcompany button-primary">Add Paypal Account</a>
             <?php } else { ?>
                 <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
                 <h2><?php _e('Companies List', 'custom_table_example') ?> 
@@ -205,17 +209,10 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
     public static function angelleye_paypal_for_divi_company_create_setting() {
         ?>
         <form action="" enctype="multipart/form-data" id="paypal_for_divi_integration_form" method="post" name="paypal_for_divi_integration_form">
-            <h3><?php _e('Add PayPal Account ID / Email', 'angelleye_paypal_divi'); ?></h3>
+            <h3><?php _e('Add PayPal Account', 'angelleye_paypal_divi'); ?></h3>
 
             <p><?php _e('You may configure one or more PayPal accounts to specify where the payment should be sent for any given button you create from the Divi Builder.', 'angelleye_paypal_divi'); ?></p>
-
-            <h4><?php _e('API Credentials Lookup', 'angelleye_paypal_divi'); ?></h4>
-
-            <p><?php _e('You may login to this tool using your PayPal account to quickly obtain your API credentials.') ?></p>
-            <p><a href="https://www.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true"
-                  target="_blank"><?php _e('Get Live API Credentials', 'angelleye_paypal_divi'); ?></a> | <a href="https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_get-api-signature&generic-flow=true"
-                  target="_blank"><?php _e('Get Sandbox API Credentials', 'angelleye_paypal_divi'); ?></a></p>
-
+           
             <?php
             if (isset($_GET['action']) && $_GET['action'] == 'edit') {
                 if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
@@ -224,18 +221,45 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
                     $table_name = $wpdb->prefix . "angelleye_paypal_for_divi_companies";
                     $records = $wpdb->get_row("select * from $table_name where ID='$getid'");
                     $ID = isset($records->ID) ? $records->ID : '';
-                    $title = isset($records->title) ? $records->title : '';                                        
+                    $title = isset($records->title) ? $records->title : '';              
+                    $paypal_for_divi_account_id=isset($records->account_id) ? $records->account_id : '';
+                    $paypal_mode = isset($records->paypal_mode) ? $records->paypal_mode : '';
+                    if ($paypal_mode == 'Sandbox') {
+                        $sandbox_checked = 'checked';
+                    } else {
+                        $sandbox_checked = '';
+                    }
+                    if ($paypal_mode == 'Live') {
+                        $live_checked = 'checked';
+                    } else {
+                        $live_checked = '';
+                    }
                 }
-                $button_text = 'Edit PayPal Account ID';
+                $button_text = 'Edit PayPal Account';
             } else {
-                $button_text = 'Add PayPal Account ID';
+                $button_text = 'Add PayPal Account';
             }
             ?>
             <table class="form-table">
-                <tbody>                    
+                <tbody>
                     <tr valign="top">
-                        <th class="titledesc" scope="row"><label for="CompanyTitle"><?php _e('PayPal Account ID:', 'angelleye_paypal_divi'); ?></label></th>
+                        <th class="titledesc" scope="row"><label for="CompanyTitle"><?php _e('PayPal Account Name:', 'angelleye_paypal_divi'); ?></label></th>
                         <td class="forminp forminp-text"><input autocomplete="off" required="" class="" id="company_title" name="company_title" style="min-width:300px;" type="text" value="<?php echo isset($title) ? $title : ''; ?>"></td>
+                    </tr>
+                    <tr valign="top">
+                        <th class="titledesc" scope="row"><label for="paypal_for_divi_account_id"><?php _e('Paypal Account ID', 'angelleye_paypal_divi'); ?></label></th>
+                        <td class="forminp forminp-text"><input class="" id="paypal_for_divi_account_id" name="paypal_for_divi_account_id" style="min-width:300px;" type="text" value="<?php echo isset($paypal_for_divi_account_id) ? $paypal_for_divi_account_id : ''; ?>"></td>
+                    </tr>
+                    <tr valign="top">
+                        <th class="titledesc" scope="row"><label for="paypal_mode"><?php _e('PayPal Mode', 'paypal-wp-button-manager'); ?></label></th>
+                        <td class="forminp forminp-radio">
+                            <fieldset>
+                                <ul class="ul_paypal_mode">
+                                    <li><label><input class="" <?php echo isset($sandbox_checked) ? $sandbox_checked : ''; ?> name="paypal_mode" type="radio" value="Sandbox" >Sandbox</label></li>
+                                    <li><label><input class="" <?php echo isset($live_checked) ? $live_checked : ''; ?> name="paypal_mode" type="radio" value="Live">Live</label></li>
+                                </ul>
+                            </fieldset>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -275,7 +299,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
                     ?>
                     <script>window.localStorage.clear()</script>
                     <div id="setting-error-settings_updated" class="updated settings-error"> 
-                        <p><?php echo '<strong>' . __('Settings were saved successfully.', 'angelleye_paypal_divi') . '</strong>'; ?></p></div>
+                        <p><?php echo '<strong>' . __('Changes were saved successfully.', 'angelleye_paypal_divi') . '</strong>'; ?></p></div>
                     <?php
                 }
             } else {
@@ -292,7 +316,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
                 <?php } else { ?>
                 <script>window.localStorage.clear()</script>
                     <div id="setting-error-settings_updated" class="updated settings-error"> 
-                        <p><?php echo '<strong>' . __('Company added successfully.', 'angelleye_paypal_divi') . '</strong>'; ?>
+                        <p><?php echo '<strong>' . __('PayPal account added successfully.', 'angelleye_paypal_divi') . '</strong>'; ?>
                         </p>
                     </div>
                     <?php

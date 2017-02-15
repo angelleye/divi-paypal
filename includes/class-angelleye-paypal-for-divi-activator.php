@@ -47,6 +47,8 @@ class Angelleye_Paypal_For_Divi_Activator {
             $sql = "CREATE TABLE " . $table_name . " (
 		`ID` mediumint(9) NOT NULL AUTO_INCREMENT,
 		`title` mediumtext  NULL,
+                `account_id` mediumtext  NULL,
+                `paypal_mode` tinytext  NULL,
 		UNIQUE KEY ID (ID)
 		) $charset_collate;";
 

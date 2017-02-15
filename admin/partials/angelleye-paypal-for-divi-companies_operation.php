@@ -22,10 +22,13 @@ class AngellEYE_PayPal_For_Divi_Company_Operations {
     public function paypal_for_divi_add_company() {
         global $wpdb;
         $table_name = $wpdb->prefix . "angelleye_paypal_for_divi_companies";
-        if(trim($_POST['company_title'])==''){
+        if(trim($_POST['paypal_for_divi_account_id'])==''){
             return false;
         }
-        $add_result = $wpdb->insert($table_name, array('title' => isset($_POST['company_title']) ? trim($_POST['company_title']) : ''));        
+        $add_result = $wpdb->insert($table_name, array('title' => isset($_POST['company_title']) ? trim($_POST['company_title']) : '',
+                                                       'account_id' => isset($_POST['paypal_for_divi_account_id']) ? trim($_POST['paypal_for_divi_account_id']) : '',
+                                                       'paypal_mode' => isset($_POST['paypal_mode']) ? $_POST['paypal_mode'] : ''
+                                                ));        
         return $add_result;
     }
 
@@ -33,7 +36,7 @@ class AngellEYE_PayPal_For_Divi_Company_Operations {
         global $wpdb;
         $table_name = $wpdb->prefix . "angelleye_paypal_for_divi_companies";
         $id = $_GET['cmp_id'];
-        $edit_result = $wpdb->update($table_name, array('title' => isset($_POST['company_title']) ? trim($_POST['company_title']) : ''), array('ID' => $id), array('%s'), array('%d'));
+        $edit_result = $wpdb->update($table_name, array('title' => isset($_POST['company_title']) ? trim($_POST['company_title']) : '','account_id' => isset($_POST['paypal_for_divi_account_id']) ? trim($_POST['paypal_for_divi_account_id']) : '','paypal_mode' => isset($_POST['paypal_mode']) ? $_POST['paypal_mode'] : ''), array('ID' => $id), array('%s'), array('%d'));
         
         return $edit_result;
     }

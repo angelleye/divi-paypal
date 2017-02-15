@@ -79,10 +79,13 @@ function angelleye_paypal_button_module() {
             }            
             global $wpdb;
             $companies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
-            $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE title !=''", ARRAY_A);
+            $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE account_id !=''", ARRAY_A);
             $all_accounts=array();
              foreach ($result_records as $result_records_value) {
-                 $all_accounts[$result_records_value['title']] = $result_records_value['title'];
+                 $all_accounts[$result_records_value['account_id']] = $result_records_value['title'].' ('.$result_records_value['account_id'].')';
+             }
+             if(empty($all_accounts)){
+                 $all_accounts['noAccount']='Please Add Paypal Account';
              }
              
 		$fields = array(
@@ -264,7 +267,12 @@ function angelleye_paypal_button_module() {
                 $pp_option_shipping ='';
                 $pp_option_tax      ='';
                 $pp_option_handling ='';
-                		
+                
+                // Nothing to output if $pp_business_name is blank
+ 		if ( 'noAccount' === $pp_business_name) {
+ 			return;
+ 		}
+ 
                 if ( 'off' !== $test_mode ) {
                     $mode = 'sandbox.';
                 }
