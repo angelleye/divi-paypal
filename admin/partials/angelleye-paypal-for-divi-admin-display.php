@@ -32,7 +32,7 @@ class AngellEYE_PayPal_For_Divi_Admin_Display {
     }
     
         /**
-     * paypal_wp_button_manager_options helper will trigger hook and handle all the settings section 
+     * angelleye_paypal_divi_options helper will trigger hook and handle all the settings section 
      * @since    0.1.0
      * @access   public
      */

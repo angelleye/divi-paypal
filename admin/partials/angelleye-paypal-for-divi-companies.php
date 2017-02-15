@@ -251,7 +251,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
                         <td class="forminp forminp-text"><input class="" id="paypal_for_divi_account_id" name="paypal_for_divi_account_id" style="min-width:300px;" type="text" value="<?php echo isset($paypal_for_divi_account_id) ? $paypal_for_divi_account_id : ''; ?>"></td>
                     </tr>
                     <tr valign="top">
-                        <th class="titledesc" scope="row"><label for="paypal_mode"><?php _e('PayPal Mode', 'paypal-wp-button-manager'); ?></label></th>
+                        <th class="titledesc" scope="row"><label for="paypal_mode"><?php _e('PayPal Mode', 'angelleye_paypal_divi'); ?></label></th>
                         <td class="forminp forminp-radio">
                             <fieldset>
                                 <ul class="ul_paypal_mode">
@@ -281,7 +281,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
     }
 
     /**
-     * paypal_wp_button_manager_general_setting function used for display general setting block from admin side
+     * angelleye_paypal_for_divi_company_setting_save_field function used for display acoount setting block from admin side
      * @since    0.1.0
      * @access   public
      */

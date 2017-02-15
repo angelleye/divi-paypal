@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @class       AngellEYE_PayPal_WP_Button_Manager_Html_output
+ * @class       AngellEYE_PayPal_For_Divi_Html_output
  * @version		1.0.0
- * @package		paypal-wp-button-manager
+ * @package		angelleye-paypal-for-divi
  * @category	Class
  * @author      Angell EYE <service@angelleye.com>
  */
