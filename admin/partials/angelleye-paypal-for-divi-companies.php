@@ -207,7 +207,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
         <form action="" enctype="multipart/form-data" id="paypal_for_divi_integration_form" method="post" name="paypal_for_divi_integration_form">
             <h3><?php _e('Add PayPal Account ID / Email', 'angelleye_paypal_divi'); ?></h3>
 
-            <p><?php _e('You may setup one or more PayPal account ID or email address to specify where the payment should be sent.', 'angelleye_paypal_divi'); ?></p>
+            <p><?php _e('You may configure one or more PayPal accounts to specify where the payment should be sent for any given button you create from the Divi Builder.', 'angelleye_paypal_divi'); ?></p>
 
             <h4><?php _e('API Credentials Lookup', 'angelleye_paypal_divi'); ?></h4>
 
