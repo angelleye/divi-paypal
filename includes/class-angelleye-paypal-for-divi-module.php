@@ -88,17 +88,7 @@ function angelleye_paypal_button_module() {
                  $all_accounts['noAccount']='Please Add Paypal Account';
              }
              
-		$fields = array(
-                        'test_mode' => array(
-				'label'           => esc_html__( 'Sandbox Testing', 'angelleye_paypal_divi' ),
-				'type'            => 'yes_no_button',
-				'option_category' => 'basic_option',
-				'options'         => array(
-                                            'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),
-					    'off' => esc_html__( 'No', 'angelleye_paypal_divi' ),					    
-				),
-				'description'     => esc_html__( 'Use the PayPal sandbox to process test payments.  Make sure to enter a sandbox seller account ID or email address in the PayPal Account ID field when using the sandbox.', 'angelleye_paypal_divi' ),
-			),
+		$fields = array(                        
                         'pp_business_name' => array(
                             'label'           => esc_html__( 'PayPal Account ID', 'angelleye_paypal_divi' ),
                             'type'            => 'select',
@@ -253,7 +243,7 @@ function angelleye_paypal_button_module() {
 		$button_alignment  = $this->shortcode_atts['button_alignment'];
                 $background_layout = $this->shortcode_atts['background_layout'];
                 $pp_select_button  = $this->shortcode_atts['pp_select_button'];
-                $test_mode         = $this->shortcode_atts['test_mode'];
+                $test_mode         = '';
                 $pp_business_name  = $this->shortcode_atts['pp_business_name'];
                 $pp_shipping       = $this->shortcode_atts['pp_shipping'];
                 $pp_tax            = $this->shortcode_atts['pp_tax'];
@@ -272,8 +262,12 @@ function angelleye_paypal_button_module() {
  		if ( 'noAccount' === $pp_business_name) {
  			return;
  		}
- 
-                if ( 'off' !== $test_mode ) {
+                
+                global $wpdb;
+                $tablecompanies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
+                $result_mode = $wpdb->get_results("SELECT paypal_mode FROM `{$tablecompanies}` WHERE account_id ='{$pp_business_name}'", ARRAY_A);                
+                $test_mode=$result_mode[0]['paypal_mode'];
+                if ( 'Sandbox' === $test_mode ) {
                     $mode = 'sandbox.';
                 }
                 else{
