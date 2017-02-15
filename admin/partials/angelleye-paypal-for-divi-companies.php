@@ -151,12 +151,14 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
 
                     if (!$delete_result) {
                         ?>
+                        
                         <div id="setting-error-settings_updated" class="error settings-error"> 
                             <p><?php echo '<strong>' . __('Something went wrong item not deleted.', 'angelleye_paypal_divi') . '</strong>'; ?>
                             </p>
                         </div>
 
                     <?php } else { ?>
+                        <script>window.localStorage.clear()</script>
                         <div id="setting-error-settings_updated" class="updated settings-error"> 
                             <p><?php echo '<strong>' . __('Company deleted Successfully.', 'angelleye_paypal_divi') . '</strong>'; ?>
                             </p>
@@ -202,7 +204,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
 
     public static function angelleye_paypal_for_divi_company_create_setting() {
         ?>
-        <form action="" enctype="multipart/form-data" id="button_manager_integration_form" method="post" name="button_manager_integration_form">
+        <form action="" enctype="multipart/form-data" id="paypal_for_divi_integration_form" method="post" name="paypal_for_divi_integration_form">
             <h3><?php _e('Add PayPal Account ID / Email', 'angelleye_paypal_divi'); ?></h3>
 
             <p><?php _e('You may setup one or more PayPal account ID or email address to specify where the payment should be sent.', 'angelleye_paypal_divi'); ?></p>
@@ -271,8 +273,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
                 if (isset($_GET['cmp_id']) && !empty($_GET['cmp_id'])) {
                     $edit_result = $obj_company_operation->paypal_for_divi_edit_company();
                     ?>
-
-
+                    <script>window.localStorage.clear()</script>
                     <div id="setting-error-settings_updated" class="updated settings-error"> 
                         <p><?php echo '<strong>' . __('Settings were saved successfully.', 'angelleye_paypal_divi') . '</strong>'; ?></p></div>
                     <?php
@@ -280,7 +281,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
             } else {
 
                 $add_result = $obj_company_operation->paypal_for_divi_add_company();
-
+                    
                 if ($add_result == false) {
                     ?>
                     <div id="setting-error-settings_updated" class="error settings-error"> 
@@ -289,6 +290,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
                     </div>
 
                 <?php } else { ?>
+                <script>window.localStorage.clear()</script>
                     <div id="setting-error-settings_updated" class="updated settings-error"> 
                         <p><?php echo '<strong>' . __('Company added successfully.', 'angelleye_paypal_divi') . '</strong>'; ?>
                         </p>

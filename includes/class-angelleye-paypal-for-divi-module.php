@@ -76,7 +76,15 @@ function angelleye_paypal_button_module() {
             $all_page = array();
             foreach ($pages as $p) {
                 $all_page[$p->ID] = $p->post_title;
-            }
+            }            
+            global $wpdb;
+            $companies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
+            $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE title !=''", ARRAY_A);
+            $all_accounts=array();
+             foreach ($result_records as $result_records_value) {
+                 $all_accounts[$result_records_value['title']] = $result_records_value['title'];
+             }
+             
 		$fields = array(
                         'test_mode' => array(
 				'label'           => esc_html__( 'Sandbox Testing', 'angelleye_paypal_divi' ),
@@ -90,8 +98,9 @@ function angelleye_paypal_button_module() {
 			),
                         'pp_business_name' => array(
                             'label'           => esc_html__( 'PayPal Account ID', 'angelleye_paypal_divi' ),
-                            'type'            => 'text',
-                            'option_category' => 'basic_option',
+                            'type'            => 'select',
+                            'option_category' => 'layout',
+                            'options'         => $all_accounts,
                             'description'     => esc_html__( 'Enter your PayPal account ID or email address to specify where the payment should be sent.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_select_button' => array(
@@ -174,16 +183,16 @@ function angelleye_paypal_button_module() {
 				'option_category' => 'basic_option',
 				'description'     => esc_html__( 'Enter a value here to be displayed in a text only button. (If an Image URL is set this text will not be displayed.)', 'angelleye_paypal_divi' ),
 			),
-            'background_layout' => array(
-                'label'           => esc_html__( 'Text Color', 'angelleye_paypal_divi' ),
-                'type'            => 'select',
-                'option_category' => 'color_option',
-                'options'         => array(
-                    'light'   => esc_html__( 'Dark', 'angelleye_paypal_divi' ),
-                    'dark'    => esc_html__( 'Light', 'angelleye_paypal_divi' ),
-                ),
-                'description'     => esc_html__( 'Adjust whether your text only button uses light or dark text. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi' ),
-            ),
+                        'background_layout' => array(
+                            'label'           => esc_html__( 'Text Color', 'angelleye_paypal_divi' ),
+                            'type'            => 'select',
+                            'option_category' => 'color_option',
+                            'options'         => array(
+                                'light'   => esc_html__( 'Dark', 'angelleye_paypal_divi' ),
+                                'dark'    => esc_html__( 'Light', 'angelleye_paypal_divi' ),
+                            ),
+                            'description'     => esc_html__( 'Adjust whether your text only button uses light or dark text. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi' ),
+                        ),
                         'src' => array(
 				'label'              => esc_html__( 'Image URL', 'angelleye_paypal_divi' ),
 				'type'               => 'upload',
@@ -255,11 +264,7 @@ function angelleye_paypal_button_module() {
                 $pp_option_shipping ='';
                 $pp_option_tax      ='';
                 $pp_option_handling ='';
-                
-		// Nothing to output if $pp_business_name is blank
-		if ( '' === $pp_business_name) {
-			return;
-		}
+                		
                 if ( 'off' !== $test_mode ) {
                     $mode = 'sandbox.';
                 }
