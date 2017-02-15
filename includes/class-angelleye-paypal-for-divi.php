@@ -112,7 +112,11 @@ class Angelleye_Paypal_For_Divi {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-angelleye-paypal-for-divi-admin.php';
-
+/**
+                * Included for inherit wordpress table style.
+                */
+                require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
+                
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
@@ -158,8 +162,7 @@ class Angelleye_Paypal_For_Divi {
                 if( is_admin() && get_option( 'my_plugin_activation' ) == 'just-activated' ) {
                     delete_option( 'my_plugin_activation' );
                     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-                }
-                
+                }                
                 $this->loader->add_action( 'admin_notices', $plugin_admin, 'check_divi_available' );
                 $this->loader->add_filter( 'plugin_action_links_' . ANGELLEYE_PAYPAL_DIVI, $plugin_admin, 'links_action_paypal_divi' );
 	}
