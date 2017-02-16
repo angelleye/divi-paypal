@@ -110,16 +110,7 @@ function angelleye_paypal_button_module() {
                                 'dark'    => esc_html__( 'Light', 'angelleye_paypal_divi' ),
                             ),
                             'description'     => esc_html__( 'Adjust whether your text only button uses light or dark text. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi' ),
-                        ),
-                        'src' => array(
-				'label'              => esc_html__( 'Image URL', 'angelleye_paypal_divi' ),
-				'type'               => 'upload',
-				'option_category'    => 'basic_option',
-				'upload_button_text' => esc_attr__( 'Upload an image', 'angelleye_paypal_divi' ),
-				'choose_text'        => esc_attr__( 'Choose an Image', 'angelleye_paypal_divi' ),
-				'update_text'        => esc_attr__( 'Set As Image', 'angelleye_paypal_divi' ),
-				'description'        => esc_html__( 'Upload your desired image or type in the URL to the image you would like to display.', 'angelleye_paypal_divi' ),
-			),
+                        ),                        
                         'button_alignment' => array(
 				'label'           => esc_html__( 'Button Alignment', 'angelleye_paypal_divi' ),
 				'type'            => 'select',
@@ -384,9 +375,9 @@ function angelleye_paypal_button_module() {
                                 %2$s
                             </div>',                       
                             'right' === $button_alignment || 'center' === $button_alignment ? sprintf( ' et_pb_button_alignment_%1$s', esc_attr( $button_alignment ) )  : '',
-                            '' !== $use_custom && 'on' === $use_custom && '' === $src 
+                            '' !== $use_custom && 'on' === $use_custom
                                                    ? sprintf('<a href="%6$s" type="submit" class="et_pb_button%2$s%3$s" %5$s%4$s>%1$s</a>',
-                                                    $button_text,
+                                                     $button_text,
                                                     '' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '',
                                                     ( '' !== $module_class ? sprintf( ' %1$s', esc_attr( $module_class ) ) : '' ),
                                                     ( '' !== $module_id ? sprintf( ' id="%1$s"', esc_attr( $module_id ) ) : '' ),
