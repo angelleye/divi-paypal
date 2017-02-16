@@ -18,7 +18,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .et-pb-all-modules .et_pb_paypal_button:before, .et_pb_saved_layouts_list .et_pb_paypal_button:before { font-family: 'FontAwesome';  content: "\f1ed"; }
-#companies-table {width:50%; float:right;}
+#accounts-table {width:50%; float:right;}
 form#paypal_for_divi_integration_form {
     float: left;
     width: 50%;

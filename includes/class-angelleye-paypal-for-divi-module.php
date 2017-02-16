@@ -13,7 +13,8 @@ function angelleye_paypal_button_module() {
 		$this->slug = 'et_pb_paypal_button';
 
 		$this->whitelisted_fields = array(
-                        'test_mode',
+                        'use_pbm',
+                        'pbm_list',
                         'pp_business_name',
                         'pp_select_button',
 			'pp_item_name',
@@ -33,7 +34,7 @@ function angelleye_paypal_button_module() {
 			'module_class'
 		);
                 $this->fields_defaults = array(
-                    'test_mode'         => array( 'on' ),
+                    'use_pbm'           => array( 'on' ),
                     'background_color'  => array( et_builder_accent_color(), 'add_default_setting' ),
                     'background_layout' => array( 'light' ),
                 );
@@ -55,28 +56,35 @@ function angelleye_paypal_button_module() {
          *  display as the module settings
          */
 	function get_fields() {
-                    $args = array(
-            'sort_order' => 'ASC',
-            'sort_column' => 'post_title',
-            'hierarchical' => 1,
-            'exclude' => '',
-            'include' => '',
-            'meta_key' => '',
-            'meta_value' => '',
-            'authors' => '',
-            'child_of' => 0,
-            'parent' => -1,
-            'exclude_tree' => '',
-            'number' => '',
-            'offset' => 0,
-            'post_type' => 'page',
-            'post_status' => 'publish'
-        );
+            
+            /*
+             * Below code is to get all the pages of the website to put into the return url and cancle url             
+             */
+            $args = array(
+                'sort_order' => 'ASC',
+                'sort_column' => 'post_title',
+                'hierarchical' => 1,
+                'exclude' => '',
+                'include' => '',
+                'meta_key' => '',
+                'meta_value' => '',
+                'authors' => '',
+                'child_of' => 0,
+                'parent' => -1,
+                'exclude_tree' => '',
+                'number' => '',
+                'offset' => 0,
+                'post_type' => 'page',
+                'post_status' => 'publish'
+            );
             $pages = get_pages($args);
             $all_page = array();
             foreach ($pages as $p) {
                 $all_page[$p->ID] = $p->post_title;
-            }            
+            }      
+            /* end */
+            
+            /* Below code get all the companies from database. */
             global $wpdb;
             $companies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
             $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE account_id !=''", ARRAY_A);
@@ -87,8 +95,105 @@ function angelleye_paypal_button_module() {
              if(empty($all_accounts)){
                  $all_accounts['noAccount']='Please Add Paypal Account';
              }
+             /* end */             
              
-		$fields = array(                        
+             include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+             if (is_plugin_active('paypal-wp-button-manager/paypal-wp-button-manager.php')) {
+                    /* Below code is getting all the Buttons created by PayPal Button Manager Plugin */
+                       $button_manager_args = array(
+                                  'orderby'          => 'date',
+                                  'order'            => 'DESC',
+                                  'post_type'        => 'paypal_buttons',                        
+                              );
+                          $button_manager_posts_array = get_posts( $button_manager_args );
+                          $paypal_button_manager_option_arrray=array();                
+                          foreach ($button_manager_posts_array as $value) {
+                              $paypal_button_manager_option_arrray[$value->ID]=$value->post_title;
+                          }
+                    /* end */
+                    $fields = array(
+                         'pbm_list' => array(
+                            'label'           => esc_html__( 'PayPal Buttons From Button Manager', 'angelleye_paypal_divi' ),
+                            'type'            => 'select',
+                            'option_category' => 'layout',
+                            'options'         => $paypal_button_manager_option_arrray,
+                            'description'     => esc_html__( 'List of Buttons from PayPal Button Manager Plugin', 'angelleye_paypal_divi' ),
+                        ),
+                        'use_custom' => array(
+                                'label'           => esc_html__( 'Custom Button Display', 'angelleye_paypal_divi' ),
+				'type'            => 'yes_no_button',
+				'option_category' => 'basic_option',
+				'options'         => array(
+                                            'off' => esc_html__( 'No', 'angelleye_paypal_divi' ),
+					    'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),					    
+				),
+                                'affects'         => array(
+					'#et_pb_button_text',
+                                        '#et_pb_background_layout',
+                                        '#et_pb_src',
+				),
+				'description'     => esc_html__( 'Enable this option to use a text only or custom graphic button in place of the default Buy Now / Donate button.', 'angelleye_paypal_divi' ),
+                        ),
+                         'button_text' => array(
+				'label'           => esc_html__( 'Button Text', 'angelleye_paypal_divi' ),
+				'type'            => 'text',
+				'option_category' => 'basic_option',
+				'description'     => esc_html__( 'Enter a value here to be displayed in a text only button. (If an Image URL is set this text will not be displayed.)', 'angelleye_paypal_divi' ),
+			),
+                        'background_layout' => array(
+                            'label'           => esc_html__( 'Text Color', 'angelleye_paypal_divi' ),
+                            'type'            => 'select',
+                            'option_category' => 'color_option',
+                            'options'         => array(
+                                'light'   => esc_html__( 'Dark', 'angelleye_paypal_divi' ),
+                                'dark'    => esc_html__( 'Light', 'angelleye_paypal_divi' ),
+                            ),
+                            'description'     => esc_html__( 'Adjust whether your text only button uses light or dark text. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi' ),
+                        ),
+                        'src' => array(
+				'label'              => esc_html__( 'Image URL', 'angelleye_paypal_divi' ),
+				'type'               => 'upload',
+				'option_category'    => 'basic_option',
+				'upload_button_text' => esc_attr__( 'Upload an image', 'angelleye_paypal_divi' ),
+				'choose_text'        => esc_attr__( 'Choose an Image', 'angelleye_paypal_divi' ),
+				'update_text'        => esc_attr__( 'Set As Image', 'angelleye_paypal_divi' ),
+				'description'        => esc_html__( 'Upload your desired image or type in the URL to the image you would like to display.', 'angelleye_paypal_divi' ),
+			),
+                        'button_alignment' => array(
+				'label'           => esc_html__( 'Button Alignment', 'angelleye_paypal_divi' ),
+				'type'            => 'select',
+				'option_category' => 'configuration',
+				'options'         => array(
+					'left'    => esc_html__( 'Left', 'angelleye_paypal_divi' ),
+					'center'  => esc_html__( 'Center', 'angelleye_paypal_divi' ),
+					'right'   => esc_html__( 'Right', 'angelleye_paypal_divi' ),
+				),
+				'description'     => esc_html__( 'Adjust the alignment of your button.', 'angelleye_paypal_divi' ),
+			),
+			'admin_label' => array(
+				'label'       => esc_html__( 'Admin Label', 'angelleye_paypal_divi' ),
+				'type'        => 'text',
+				'description' => esc_html__( 'This will change the label of the module in the builder for easy identification.', 'angelleye_paypal_divi' ),
+			),
+			'module_id' => array(
+				'label'           => esc_html__( 'CSS ID', 'angelleye_paypal_divi' ),
+				'type'            => 'text',
+				'option_category' => 'configuration',
+				'tab_slug'        => 'custom_css',
+				'option_class'    => 'et_pb_custom_css_regular',
+			),
+			'module_class' => array(
+				'label'           => esc_html__( 'CSS Class', 'angelleye_paypal_divi' ),
+				'type'            => 'text',
+				'option_category' => 'configuration',
+				'tab_slug'        => 'custom_css',
+				'option_class'    => 'et_pb_custom_css_regular',
+			),
+                    );
+                    return $fields;
+             }
+             else{                 
+                $fields = array(                       
                         'pp_business_name' => array(
                             'label'           => esc_html__( 'PayPal Account ID', 'angelleye_paypal_divi' ),
                             'type'            => 'select',
@@ -227,6 +332,7 @@ function angelleye_paypal_button_module() {
 			),
 		);
 		return $fields;
+             }
 	}
         /*
          *  Function shortcode_callback. This method returns the content the module will display
@@ -254,11 +360,14 @@ function angelleye_paypal_button_module() {
                 
                 $use_custom        = $this->shortcode_atts['use_custom'];
                 
+                $use_pbm           = $this->shortcode_atts['use_pbm'];
+                $pbm_list          = $this->shortcode_atts['pbm_list'];
+                
                 $pp_option_shipping ='';
                 $pp_option_tax      ='';
                 $pp_option_handling ='';
                 
-                // Nothing to output if $pp_business_name is blank
+                // Nothing to output if Account is not setup
  		if ( 'noAccount' === $pp_business_name) {
  			return;
  		}
@@ -289,68 +398,93 @@ function angelleye_paypal_button_module() {
                     
 		$module_class = ET_Builder_Element::add_module_order_class( $module_class, $function_name );
 
-		$module_class .= " et_pb_module et_pb_bg_layout_{$background_layout}";       
-		$output = sprintf(
-			'<div class="et_pb_button_module_wrapper et_pb_module%6$s">                            
-                            <form target="paypal" action="https://www.%11$spaypal.com/cgi-bin/webscr" method="post"> 
-                               <input type="hidden" name="bn" value="AngellEYE_SP_Divi" />
-                               <input type="hidden" name="business" value="%12$s">
-                               <input type="hidden" name="cmd" value="%1$s">
-                               <input type="hidden" name="item_name" value="%7$s">
-                               <input type="hidden" name="amount" value="%8$s">
-                               <input type="hidden" name="currency_code" value="USD">
-                               %18$s
-                               %19$s                               
-                               %13$s
-                               %14$s
-                               %15$s
-                               %17$s                               
-                            </form>
-			</div>',
-			$cmd, 
-                        
-			'' !== $custom_icon && 'on' === $button_custom ? sprintf(
-				' data-icon="%1$s"',
-				esc_attr( et_pb_process_font_icon( $custom_icon ) )
-			) : '', 
-                        
-			'' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '', 
-                        
-			( '' !== $module_id ? sprintf( ' id="%1$s"', esc_attr( $module_id ) ) : '' ), 
-                        
-			( '' !== $module_class ? sprintf( ' %1$s', esc_attr( $module_class ) ) : '' ), 
-                        
-			'right' === $button_alignment || 'center' === $button_alignment ? sprintf( ' et_pb_button_alignment_%1$s', esc_attr( $button_alignment ) )  : '', 
-                        
-                        $pp_item_name, 
-                        $pp_amount,
-                        $pp_img,
-                        $pp_alt,
-                        $mode,
-                        $pp_business_name,
-                        $pp_option_shipping,
-                        $pp_option_tax,
-                        $pp_option_handling,
-                        $button_text,
-                        '' !== $use_custom && 'on' === $use_custom && '' === $src 
-                                               ? sprintf('<button type="submit" class="et_pb_button%2$s%3$s" %5$s%4$s>%1$s</button>',
-                                                $button_text,
-                                                '' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '',
-                                                ( '' !== $module_class ? sprintf( ' %1$s', esc_attr( $module_class ) ) : '' ),
-                                                ( '' !== $module_id ? sprintf( ' id="%1$s"', esc_attr( $module_id ) ) : '' ),
-                                                '' !== $custom_icon && 'on' === $button_custom ? sprintf(
-                                                 ' data-icon="%1$s"',
-                                                 esc_attr( et_pb_process_font_icon( $custom_icon ) )
-                                                 ) : '')
-                                               : sprintf('<input type="image" name="submit" border="0" src="%1$s" alt="%2$s"/><img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >',
-                                                       '' !==  $src ? $src : $pp_img,$pp_alt
-                                                       )                        
-                        ,
-                        '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',get_permalink($pp_return)) : '',
-                        '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',get_permalink($pp_cancel_return)) : ''
-		);
+		$module_class .= " et_pb_module et_pb_bg_layout_{$background_layout}";  
+                
+                include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+                if (is_plugin_active('paypal-wp-button-manager/paypal-wp-button-manager.php')) {
+                    
+                    $paypal_button_manager_post_meta=get_post_meta($pbm_list);
+                    $_pbm_form             = $paypal_button_manager_post_meta['paypal_button_response'][0];
+                    $_pbm_hosted_button_id = $paypal_button_manager_post_meta['paypal_wp_button_manager_button_id'][0];
+                    $_pbm_email_link       = $paypal_button_manager_post_meta['paypal_wp_button_manager_email_link'][0];
+                    $output = sprintf(
+                            '<div class="et_pb_button_module_wrapper et_pb_module%1$s">                            
+                                %2$s
+                            </div>',                       
+                            'right' === $button_alignment || 'center' === $button_alignment ? sprintf( ' et_pb_button_alignment_%1$s', esc_attr( $button_alignment ) )  : '',
+                            '' !== $use_custom && 'on' === $use_custom && '' === $src 
+                                                   ? sprintf('<a href="%6$s" type="submit" class="et_pb_button%2$s%3$s" %5$s%4$s>%1$s</a>',
+                                                    $button_text,
+                                                    '' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '',
+                                                    ( '' !== $module_class ? sprintf( ' %1$s', esc_attr( $module_class ) ) : '' ),
+                                                    ( '' !== $module_id ? sprintf( ' id="%1$s"', esc_attr( $module_id ) ) : '' ),
+                                                    '' !== $custom_icon && 'on' === $button_custom ? sprintf(' data-icon="%1$s"',esc_attr( et_pb_process_font_icon( $custom_icon ) )) : '',$_pbm_email_link)
+                                                   : $_pbm_form
+                    );
+                    return $output;
+                }
+                else{
+                        $output = sprintf(
+                            '<div class="et_pb_button_module_wrapper et_pb_module%6$s">                            
+                                <form target="paypal" action="https://www.%11$spaypal.com/cgi-bin/webscr" method="post"> 
+                                   <input type="hidden" name="bn" value="AngellEYE_SP_Divi" />
+                                   <input type="hidden" name="business" value="%12$s">
+                                   <input type="hidden" name="cmd" value="%1$s">
+                                   <input type="hidden" name="item_name" value="%7$s">
+                                   <input type="hidden" name="amount" value="%8$s">
+                                   <input type="hidden" name="currency_code" value="USD">
+                                   %18$s
+                                   %19$s                               
+                                   %13$s
+                                   %14$s
+                                   %15$s
+                                   %17$s                               
+                                </form>
+                            </div>',
+                            $cmd, 
 
-		return $output;
+                            '' !== $custom_icon && 'on' === $button_custom ? sprintf(
+                                    ' data-icon="%1$s"',
+                                    esc_attr( et_pb_process_font_icon( $custom_icon ) )
+                            ) : '', 
+
+                            '' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '', 
+
+                            ( '' !== $module_id ? sprintf( ' id="%1$s"', esc_attr( $module_id ) ) : '' ), 
+
+                            ( '' !== $module_class ? sprintf( ' %1$s', esc_attr( $module_class ) ) : '' ), 
+
+                            'right' === $button_alignment || 'center' === $button_alignment ? sprintf( ' et_pb_button_alignment_%1$s', esc_attr( $button_alignment ) )  : '', 
+
+                            $pp_item_name, 
+                            $pp_amount,
+                            $pp_img,
+                            $pp_alt,
+                            $mode,
+                            $pp_business_name,
+                            $pp_option_shipping,
+                            $pp_option_tax,
+                            $pp_option_handling,
+                            $button_text,
+                            '' !== $use_custom && 'on' === $use_custom && '' === $src 
+                                                   ? sprintf('<button type="submit" class="et_pb_button%2$s%3$s" %5$s%4$s>%1$s</button>',
+                                                    $button_text,
+                                                    '' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '',
+                                                    ( '' !== $module_class ? sprintf( ' %1$s', esc_attr( $module_class ) ) : '' ),
+                                                    ( '' !== $module_id ? sprintf( ' id="%1$s"', esc_attr( $module_id ) ) : '' ),
+                                                    '' !== $custom_icon && 'on' === $button_custom ? sprintf(
+                                                     ' data-icon="%1$s"',
+                                                     esc_attr( et_pb_process_font_icon( $custom_icon ) )
+                                                     ) : '')
+                                                   : sprintf('<input type="image" name="submit" border="0" src="%1$s" alt="%2$s"/><img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >',
+                                                           '' !==  $src ? $src : $pp_img,$pp_alt
+                                                           )                        
+                            ,
+                            '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',get_permalink($pp_return)) : '',
+                            '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',get_permalink($pp_cancel_return)) : ''
+                    );
+                    return $output;
+                }		
 	}
 }
         $et_builder_module_paypal_button = new ET_Builder_Module_Paypal_Button();
