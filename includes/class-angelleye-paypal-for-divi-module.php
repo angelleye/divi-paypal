@@ -8,7 +8,8 @@ function angelleye_paypal_button_module() {
          * Function init() callled while initialization of all Divi modules 
          * Name, slug, and some other settings for the module are initialize here.       
         */   
-	function init() {
+	function init() {            
+                wp_enqueue_script( 'local-storage-clear', plugins_url('../admin/js/angelleye-paypal-for-divi-admin.js',__FILE__), array(), '1.0.0', true );
 		$this->name = esc_html__( 'PayPal Button', 'angelleye_paypal_divi' );
 		$this->slug = 'et_pb_paypal_button';
 
@@ -56,46 +57,6 @@ function angelleye_paypal_button_module() {
          *  display as the module settings
          */
 	function get_fields() {
-            
-            /*
-             * Below code is to get all the pages of the website to put into the return url and cancle url             
-             */
-            $args = array(
-                'sort_order' => 'ASC',
-                'sort_column' => 'post_title',
-                'hierarchical' => 1,
-                'exclude' => '',
-                'include' => '',
-                'meta_key' => '',
-                'meta_value' => '',
-                'authors' => '',
-                'child_of' => 0,
-                'parent' => -1,
-                'exclude_tree' => '',
-                'number' => '',
-                'offset' => 0,
-                'post_type' => 'page',
-                'post_status' => 'publish'
-            );
-            $pages = get_pages($args);
-            $all_page = array();
-            foreach ($pages as $p) {
-                $all_page[$p->ID] = $p->post_title;
-            }      
-            /* end */
-            
-            /* Below code get all the companies from database. */
-            global $wpdb;
-            $companies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
-            $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE account_id !=''", ARRAY_A);
-            $all_accounts=array();
-             foreach ($result_records as $result_records_value) {
-                 $all_accounts[$result_records_value['account_id']] = $result_records_value['title'].' ('.$result_records_value['account_id'].')';
-             }
-             if(empty($all_accounts)){
-                 $all_accounts['noAccount']='Please Add Paypal Account';
-             }
-             /* end */             
              
              include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
              if (is_plugin_active('paypal-wp-button-manager/paypal-wp-button-manager.php')) {
@@ -193,6 +154,45 @@ function angelleye_paypal_button_module() {
                     return $fields;
              }
              else{                 
+                   /*
+                    * Below code is to get all the pages of the website to put into the return url and cancle url             
+                    */
+                   $args = array(
+                       'sort_order' => 'ASC',
+                       'sort_column' => 'post_title',
+                       'hierarchical' => 1,
+                       'exclude' => '',
+                       'include' => '',
+                       'meta_key' => '',
+                       'meta_value' => '',
+                       'authors' => '',
+                       'child_of' => 0,
+                       'parent' => -1,
+                       'exclude_tree' => '',
+                       'number' => '',
+                       'offset' => 0,
+                       'post_type' => 'page',
+                       'post_status' => 'publish'
+                   );
+                   $pages = get_pages($args);
+                   $all_page = array();
+                   foreach ($pages as $p) {
+                       $all_page[$p->ID] = $p->post_title;
+                   }      
+                   /* end */
+
+                   /* Below code get all the companies from database. */
+                   global $wpdb;
+                   $companies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
+                   $result_records = $wpdb->get_results("SELECT * FROM `{$companies}` WHERE account_id !=''", ARRAY_A);
+                   $all_accounts=array();
+                    foreach ($result_records as $result_records_value) {
+                        $all_accounts[$result_records_value['account_id']] = $result_records_value['title'].' ('.$result_records_value['account_id'].')';
+                    }
+                    if(empty($all_accounts)){
+                        $all_accounts['noAccount']='Please Add Paypal Account';
+                    }
+                    /* end */   
                 $fields = array(                       
                         'pp_business_name' => array(
                             'label'           => esc_html__( 'PayPal Account ID', 'angelleye_paypal_divi' ),
@@ -366,35 +366,7 @@ function angelleye_paypal_button_module() {
                 $pp_option_shipping ='';
                 $pp_option_tax      ='';
                 $pp_option_handling ='';
-                
-                // Nothing to output if Account is not setup
- 		if ( 'noAccount' === $pp_business_name) {
- 			return;
- 		}
-                
-                global $wpdb;
-                $tablecompanies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
-                $result_mode = $wpdb->get_results("SELECT paypal_mode FROM `{$tablecompanies}` WHERE account_id ='{$pp_business_name}'", ARRAY_A);                
-                $test_mode=$result_mode[0]['paypal_mode'];
-                if ( 'Sandbox' === $test_mode ) {
-                    $mode = 'sandbox.';
-                }
-                else{
-                    $mode = '';
-                }
-                if($pp_select_button =='on'){
-                    $cmd    = '_xclick';
-                    $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_cc_171x47.png';
-                    $pp_alt = 'Buy Now With Credit Cards';                    
-                    $pp_option_shipping = '' !== trim($pp_shipping) ? '<input type="hidden" name="shipping" value="'.$pp_shipping.'">' : '';
-                    $pp_option_tax = '' !== trim($pp_tax) ? '<input type="hidden" name="tax" value="'.$pp_tax.'">' : '';                    
-                    $pp_option_handling = '' !== trim($pp_handling) ? '<input type="hidden" name="handling" value="'.$pp_handling.'">' : '';
-                }
-                elseif($pp_select_button =='off'){
-                    $cmd    = '_donations';
-                    $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_cc_147x47.png';
-                    $pp_alt = 'Donate';
-                }
+                             
                     
 		$module_class = ET_Builder_Element::add_module_order_class( $module_class, $function_name );
 
@@ -424,6 +396,35 @@ function angelleye_paypal_button_module() {
                     return $output;
                 }
                 else{
+                        // Nothing to output if Account is not setup
+                   if ( 'noAccount' === $pp_business_name) {
+                           return;
+                   }
+
+                   global $wpdb;
+                   $tablecompanies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
+                   $result_mode = $wpdb->get_results("SELECT paypal_mode FROM `{$tablecompanies}` WHERE account_id ='{$pp_business_name}'", ARRAY_A);                
+                   $test_mode=$result_mode[0]['paypal_mode'];
+                   if ( 'Sandbox' === $test_mode ) {
+                       $mode = 'sandbox.';
+                   }
+                   else{
+                       $mode = '';
+                   }
+                   if($pp_select_button =='on'){
+                       $cmd    = '_xclick';
+                       $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_cc_171x47.png';
+                       $pp_alt = 'Buy Now With Credit Cards';                    
+                       $pp_option_shipping = '' !== trim($pp_shipping) ? '<input type="hidden" name="shipping" value="'.$pp_shipping.'">' : '';
+                       $pp_option_tax = '' !== trim($pp_tax) ? '<input type="hidden" name="tax" value="'.$pp_tax.'">' : '';                    
+                       $pp_option_handling = '' !== trim($pp_handling) ? '<input type="hidden" name="handling" value="'.$pp_handling.'">' : '';
+                   }
+                   elseif($pp_select_button =='off'){
+                       $cmd    = '_donations';
+                       $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_cc_147x47.png';
+                       $pp_alt = 'Donate';
+                   }
+                
                         $output = sprintf(
                             '<div class="et_pb_button_module_wrapper et_pb_module%6$s">                            
                                 <form target="paypal" action="https://www.%11$spaypal.com/cgi-bin/webscr" method="post"> 
