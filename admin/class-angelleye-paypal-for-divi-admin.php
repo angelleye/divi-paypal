@@ -117,9 +117,9 @@ class Angelleye_Paypal_For_Divi_Admin {
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/angelleye-paypal-for-divi-companies_operation.php';
 
         /**
-         * The class responsible for defining function for display custom tab shown in product page
+         * The class responsible for defining function for display custom tab store
          */
-        //require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/woocommerce-price-per-word-html-custom-tab.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/angelleye-paypal-for-divi-store-setting.php';
     }
 
     public function links_action_paypal_divi($links) {

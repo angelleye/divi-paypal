@@ -37,7 +37,7 @@ class AngellEYE_PayPal_For_Divi_Admin_Display {
      * @access   public
      */
     public static function angelleye_paypal_divi_options() {
-        $setting_tabs = apply_filters('angelleye_paypal_divi_setting_tab', array('company' => 'General'));
+        $setting_tabs = apply_filters('angelleye_paypal_divi_setting_tab', array('company' => 'General','store' => 'Store'));
         $current_tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'company';
         ?>
         <h2 class="nav-tab-wrapper">
