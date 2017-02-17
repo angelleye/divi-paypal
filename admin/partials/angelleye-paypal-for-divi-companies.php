@@ -198,7 +198,7 @@ class AngellEYE_PayPal_For_Divi_Company_Setting_Class extends WP_List_Table {
         ?>
         <?php echo $message; ?>
 
-        <form id="companies-table" method="GET">
+        <form id="accounts-table" method="GET">
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
             <?php $table->display() ?>
         </form>
