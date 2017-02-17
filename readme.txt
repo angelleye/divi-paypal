@@ -92,6 +92,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 == Changelog ==
 
 = 1.0.3 - xx.xx.2017 =
+* Feature - Adds a settings panel where you can setup one or more PayPal accounts to be used with the Divi PayPal Button module. ([#18](https://github.com/angelleye/divi-paypal/issues/18))
 * Refactor - Structures plugin in OOP template. ([#20](https://github.com/angelleye/divi-paypal/issues/20))
 
 = 1.0.2 - 02.10.2017 =
