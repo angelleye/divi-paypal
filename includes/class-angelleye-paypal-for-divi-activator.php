@@ -59,6 +59,14 @@ class Angelleye_Paypal_For_Divi_Activator {
             if (!$row_title) {
                 $wpdb->query("ALTER TABLE $table_name ADD title mediumtext NULL");
             }
+            $row_account_id = $wpdb->get_var("SHOW COLUMNS FROM `$table_name` LIKE 'account_id'");            
+            if (!$row_account_id) {
+                $wpdb->query("ALTER TABLE $table_name ADD account_id mediumtext NULL");
+            }
+            $row_paypal_mode = $wpdb->get_var("SHOW COLUMNS FROM `$table_name` LIKE 'paypal_mode'");            
+            if (!$row_paypal_mode) {
+                $wpdb->query("ALTER TABLE $table_name ADD paypal_mode tinytext NULL");
+            }            
         }
     }
 
