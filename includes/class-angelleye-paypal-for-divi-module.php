@@ -74,11 +74,11 @@ function angelleye_paypal_button_module() {
                     /* end */
                     $fields = array(
                          'pbm_list' => array(
-                            'label'           => esc_html__( 'PayPal Buttons From Button Manager', 'angelleye_paypal_divi' ),
+                            'label'           => esc_html__( 'PayPal Button', 'angelleye_paypal_divi' ),
                             'type'            => 'select',
                             'option_category' => 'layout',
                             'options'         => $paypal_button_manager_option_arrray,
-                            'description'     => esc_html__( 'List of Buttons from PayPal Button Manager Plugin', 'angelleye_paypal_divi' ),
+                            'description'     => esc_html__( 'Choose the button you would like to use in this module.  This list comes from the buttons created in the PayPal WP Button Manager plugin.', 'angelleye_paypal_divi' ),
                         ),
                         'use_custom' => array(
                                 'label'           => esc_html__( 'Custom Button Display', 'angelleye_paypal_divi' ),
