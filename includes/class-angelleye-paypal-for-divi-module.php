@@ -32,8 +32,7 @@ function angelleye_paypal_button_module() {
                         'button_alignment',
 			'admin_label',
 			'module_id',
-			'module_class',
-                        'instruction_label'
+			'module_class'                        
 		);
                 $this->fields_defaults = array(
                     'use_pbm'           => array( 'on' ),
@@ -185,13 +184,7 @@ function angelleye_paypal_button_module() {
                         $all_accounts['noAccount']='Please Add Paypal Account';
                     }
                     /* end */   
-                $fields = array(      
-                        'instruction_label' => array(
-                            'label'           => esc_html__( 'PayPal Buttons From Button Manager', 'angelleye_paypal_divi' ),
-                             'type'            => 'select',
-                            'option_category' => 'layout',
-                            'description'     => esc_html__( 'To utilize this field,Please Install PayPal Button Manager Plugin', 'angelleye_paypal_divi' ),
-                        ),
+                $fields = array(                              
                         'pp_business_name' => array(
                             'label'           => esc_html__( 'PayPal Account ID', 'angelleye_paypal_divi' ),
                             'type'            => 'select',
