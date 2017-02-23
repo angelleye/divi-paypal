@@ -49,7 +49,7 @@ class AngellEYE_PayPal_For_Divi_Store_Setting_Class {
                             </div>
                             
                             <div class="desc column-description">
-                                <p> <?php _e('Developed by an Ace Certified PayPal Developer, official PayPal Partner, PayPal Ambassador, and 3-time PayPal Star Developer Award Winner.','angelleye_paypal_divi'); ?> </p>
+                                <p> <?php _e('Create more advanced PayPal buttons with PayPal WP Button Manager.  Fully compatible with PayPal for Divi so that you can easily drop PayPal buttons you have created into Divi modules.','angelleye_paypal_divi'); ?> </p>
                                 <p class="authors"> <cite>By <a href="http://www.angelleye.com/">Angell EYE</a></cite></p>
                             </div>
 			</div>
