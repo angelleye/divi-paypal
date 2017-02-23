@@ -64,7 +64,8 @@ function angelleye_paypal_button_module() {
                        $button_manager_args = array(
                                   'orderby'          => 'date',
                                   'order'            => 'DESC',
-                                  'post_type'        => 'paypal_buttons',                        
+                                  'post_type'        => 'paypal_buttons',  
+                                  'post_status'      => 'publish'
                               );
                           $button_manager_posts_array = get_posts( $button_manager_args );
                           $paypal_button_manager_option_arrray=array();                
