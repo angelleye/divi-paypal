@@ -104,3 +104,8 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 = 1.0.0 - 02.09.2017 =
 * Initial Stable Release
+
+== Upgrade Notice ==
+
+= 1.0.3 =
+* This update changes the way the PayPal accounts are hooked up to buttons you add via the Divi builder.  Unfortunately, you will need to update your PayPal account settings in the plugin after applying this update, and then re-save your PayPal buttons anywhere you have already placed one.  We apologize for the inconvenience, and this won't have to be done again.
