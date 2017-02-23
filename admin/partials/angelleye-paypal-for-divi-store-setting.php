@@ -37,7 +37,7 @@ class AngellEYE_PayPal_For_Divi_Store_Setting_Class {
         $message='';
         $button='';
         if($angelleye_bm_install==false && $angelleye_bm_plugin_activate==false){
-            $message= "Install the PayPal WP Button Manager plugin for a more advanced PayPal Button manager that is fully compatible with PayPal for Divi.";
+            $message= "Install the PayPal WP Button Manager plugin for a more advanced PayPal button manager that is fully compatible with PayPal for Divi.";
             $slug = 'paypal-wp-button-manager';
             $install_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=' . $slug), 'install-plugin_' . $slug);
             $button=  sprintf('<a href="%2$s" class="button">%1$s</a>',esc_html('Install Now','angelleye_paypal_divi'),esc_url($install_url));
