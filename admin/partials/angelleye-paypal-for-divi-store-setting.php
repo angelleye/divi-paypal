@@ -24,12 +24,31 @@ class AngellEYE_PayPal_For_Divi_Store_Setting_Class {
      * @access public
      */
     public static function angelleye_paypal_for_divi_store_setting() {
-                
-        if (is_plugin_active('paypal-wp-button-manager/paypal-wp-button-manager.php')) {
-           $plugin_activate=true;
+        
+        $angelleye_bm_install=false;
+        $angelleye_bm_plugin_activate=false;
+        $plugins = array_keys(get_plugins());
+        if(in_array('paypal-wp-button-manager/paypal-wp-button-manager.php',$plugins)){
+                $angelleye_bm_install=true;
+                if (is_plugin_active('paypal-wp-button-manager/paypal-wp-button-manager.php')) {
+                   $angelleye_bm_plugin_activate=true;
+                }
         }
-        else{
-           $plugin_activate=false;
+        $message='';
+        $button='';
+        if($angelleye_bm_install==false && $angelleye_bm_plugin_activate==false){
+            $message= "Install the PayPal WP Button Manager plugin for a more advanced PayPal Button manager that is fully compatible with PayPal for Divi.";
+            $slug = 'paypal-wp-button-manager';
+            $install_url = wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=' . $slug), 'install-plugin_' . $slug);
+            $button=  sprintf('<a href="%2$s" class="button">%1$s</a>',esc_html('Install Now','angelleye_paypal_divi'),esc_url($install_url));
+        }
+        else if($angelleye_bm_install==true && $angelleye_bm_plugin_activate==false){
+            $message= "Activate the PayPal WP Button Manager plugin if you would like to use it to manage PayPal buttons in WordPress.";
+            $button=  sprintf('<a href="%2$s" class="button" aria-label="Activate PayPal WP Button Manager">%1$s</a>',  esc_html('Activate','angelleye_paypal_divi'),AngellEYE_PayPal_For_Divi_Store_Setting_Class::na_action_link('paypal-wp-button-manager/paypal-wp-button-manager.php'));
+        }
+        else if($angelleye_bm_install==true && $angelleye_bm_plugin_activate==true){
+            $message='';
+            $button=  sprintf('<a href="#" class="button">%1$s</a>',  esc_html('Installed','angelleye_paypal_divi'));
         }
     ?>       
         <div class="div_store_settings">
@@ -45,26 +64,39 @@ class AngellEYE_PayPal_For_Divi_Store_Setting_Class {
                             </div>
                             
                             <div class="action-links">
-                                <ul class="plugin-action-buttons"><li><?php if(!$plugin_activate) { ?> <a href="https://wordpress.org/plugins/paypal-wp-button-manager/" class="button" aria-label="Activate PayPal WP Button Manager"><?php _e('Get It Now','angelleye_paypal_divi'); ?></a><?php } else { _e( "<strong>Installed</strong>",'angelleye_paypal_divi'); } ?></li></ul>
+                                <ul class="plugin-action-buttons"><li><?php echo $button; ?></li></ul>
                             </div>
                             
                             <div class="desc column-description">
                                 <p> <?php _e('Create more advanced PayPal buttons with PayPal WP Button Manager.  Fully compatible with PayPal for Divi so that you can easily drop PayPal buttons you have created into Divi modules.','angelleye_paypal_divi'); ?> </p>
                                 <p class="authors"> <cite>By <a href="http://www.angelleye.com/">Angell EYE</a></cite></p>
                             </div>
-			</div>
-                        <?php if(!$plugin_activate) : ?>
-                        <div class="plugin-card-bottom">                    
-                          <div id="message" class="notice notice-info">
-                              <?php _e('<p><strong>PayPal Button Manager Plugin</strong> is Compatible with <strong>PayPal For Divi Plugin</strong>.<strong>PayPal Button Manager Plugin</strong> is not installed/activated.</p>','angelleye_paypal_divi'); ?>
+			</div>                                            
+                        <div class="plugin-card-bottom">         
+                          <?php 
+                            if($message!=''):
+                          ?>  
+                          <div id="message" class="notice notice-info">       
+                              <?php echo $message; ?>
                           </div>
+                          <?php endif; ?>  
                         </div>
-                        <?php endif; ?>                
+                                        
         </div>
        </div>
       </div>
     <?php
     }
+    
+    public static function na_action_link( $plugin, $action = 'activate' ) {
+	if ( strpos( $plugin, '/' ) ) {
+		$plugin = str_replace( '\/', '%2F', $plugin );
+	}
+	$url = sprintf( admin_url( 'plugins.php?action=' . $action . '&plugin=%s&plugin_status=all&paged=1&s' ), $plugin );
+	$_REQUEST['plugin'] = $plugin;
+	$url = wp_nonce_url( $url, $action . '-plugin_' . $plugin );
+	return $url;
+    }       
 }
 
 AngellEYE_PayPal_For_Divi_Store_Setting_Class::init();
