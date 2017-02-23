@@ -61,11 +61,10 @@ function angelleye_paypal_button_module() {
              include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
              if (is_plugin_active('paypal-wp-button-manager/paypal-wp-button-manager.php')) {
                     /* Below code is getting all the Buttons created by PayPal Button Manager Plugin */
-                       $button_manager_args = array(
-                                  'orderby'          => 'date',
-                                  'order'            => 'DESC',
+                       $button_manager_args = array(                                  
                                   'post_type'        => 'paypal_buttons',  
-                                  'post_status'      => 'publish'
+                                  'post_status'      => 'publish',
+                                  'posts_per_page' => -1, 
                               );
                           $button_manager_posts_array = get_posts( $button_manager_args );
                           $paypal_button_manager_option_arrray=array();                
