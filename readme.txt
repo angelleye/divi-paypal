@@ -17,7 +17,10 @@ Developed by an Ace Certified PayPal Developer, Official PayPal Partner, PayPal 
 PayPal for Divi adds a PayPal Button module into the Divi page builder tool making it quick and easy to add PayPal Buy Now and Donate buttons to any WordPress page or post built with Divi.
 
  * Buy Now Button
- * Donate Button 
+ * Donate Button
+
+= PayPal WP Button Manager Compatibility =
+If you are using our [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin to create buttons, or if you would like to install it and use it to create and manage buttons, you will then be able to easily add buttons created by the Button Manager through the PayPal Button Divi module.
 
 = Divi Theme by Elegant Themes Compatibility =
 This plugin is built specifically for the Divi theme.  If you would like to add PayPal buttons to a non-Divi WordPress site, take a look at our [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin.
