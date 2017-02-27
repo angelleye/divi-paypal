@@ -19,6 +19,7 @@ function angelleye_paypal_button_module() {
                         'pp_business_name',
                         'pp_select_button',
 			'pp_item_name',
+                        'pp_currency_code',
 			'pp_amount',
                         'pp_shipping',
                         'pp_tax',
@@ -71,7 +72,7 @@ function angelleye_paypal_button_module() {
                           foreach ($button_manager_posts_array as $value) {
                               $paypal_button_manager_option_arrray[$value->ID]=$value->post_title;
                           }
-                    /* end */
+                    /* end */ 
                     $fields = array(
                          'pbm_list' => array(
                             'label'           => esc_html__( 'PayPal Button', 'angelleye_paypal_divi' ),
@@ -184,6 +185,39 @@ function angelleye_paypal_button_module() {
                         $all_accounts['noAccount']='Please Add Paypal Account';
                     }
                     /* end */   
+                    
+                     /*
+                     * Currency Array
+                     */      
+                    
+                    $currency_codes = array(
+                         'AUD' => 'Austrailian Dollar',
+                         'BRL' => 'Brazilian Real',
+                         'CAD' => 'Canadian Dollar',
+                         'CZK' => 'Czeck Koruna',
+                         'DKK' => 'Danish Krone',
+                         'EUR' => 'Euro',
+                         'HKD' => 'Hong Kong Dollar',
+                         'HUF' => 'Hungarian Forint',
+                         'ILS' => 'Israeli New Sheqel',
+                         'JPY' => 'Japanese Yen',
+                         'MYR' => 'Malaysian Ringgit',
+                         'MXN' => 'Mexican Peso',
+                         'NOK' => 'Norwegian Krone',
+                         'NZD' => 'New Zealand Dollar',
+                         'PHP' => 'Philippine Peso',
+                         'PLN' => 'Polish Zloty',
+                         'GBP' => 'Pound Sterling',
+                         'SGD' => 'Singapore Dollar',
+                         'SEK' => 'Swedish Krona',
+                         'CHF' => 'Swiss Franc',
+                         'TWD' => 'Taiwan New Dollar',
+                         'THB' => 'Thai Baht',
+                         'USD' => 'U.S. Dollar',
+                         'TRY' => 'Turkish Lira',
+                     ); 
+                    /* currency end */
+                    
                 $fields = array(                              
                         'pp_business_name' => array(
                             'label'           => esc_html__( 'PayPal Account ID', 'angelleye_paypal_divi' ),
@@ -218,6 +252,13 @@ function angelleye_paypal_button_module() {
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'description'     => esc_html__( 'Enter the price for the item / service being sold.', 'angelleye_paypal_divi' ),
+                        ),
+                       'pp_currency_code'=> array(
+                            'label'           => esc_html__( 'Currency', 'angelleye_paypal_divi' ),
+                            'type'            => 'select',
+                            'option_category' => 'layout',
+                            'options'         => $currency_codes,
+                            'description'     => esc_html__( 'Select your currency in which payment will be made.', 'angelleye_paypal_divi' ),
                         ),
                         'pp_shipping' => array(
                                 'label'           => esc_html__( 'Shipping Amount', 'angelleye_paypal_divi' ),
@@ -354,6 +395,8 @@ function angelleye_paypal_button_module() {
                 $use_pbm           = $this->shortcode_atts['use_pbm'];
                 $pbm_list          = $this->shortcode_atts['pbm_list'];
                 
+                $pp_currency_code  = $this->shortcode_atts['pp_currency_code'];
+                
                 $pp_option_shipping ='';
                 $pp_option_tax      ='';
                 $pp_option_handling ='';
@@ -424,13 +467,13 @@ function angelleye_paypal_button_module() {
                                    <input type="hidden" name="cmd" value="%1$s">
                                    <input type="hidden" name="item_name" value="%7$s">
                                    <input type="hidden" name="amount" value="%8$s">
-                                   <input type="hidden" name="currency_code" value="USD">
+                                   <input type="hidden" name="currency_code" value="%20$s">
                                    %18$s
                                    %19$s                               
                                    %13$s
                                    %14$s
                                    %15$s
-                                   %17$s                               
+                                   %17$s                                   
                                 </form>
                             </div>',
                             $cmd, 
@@ -473,7 +516,8 @@ function angelleye_paypal_button_module() {
                                                            )                        
                             ,
                             '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',get_permalink($pp_return)) : '',
-                            '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',get_permalink($pp_cancel_return)) : ''
+                            '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',get_permalink($pp_cancel_return)) : '',
+                            $pp_currency_code
                     );
                     return $output;
                 }		
