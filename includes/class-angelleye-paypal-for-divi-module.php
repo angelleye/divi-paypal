@@ -191,10 +191,10 @@ function angelleye_paypal_button_module() {
                      */      
                     
                     $currency_codes = array(
-                        'USD'  => 'Default (USD)',
-                         'AUD' => 'Austrailian Dollar (AUD)',
-                         'BRL' => 'Brazilian Real (BRL)',                         
+                         'USD' => 'U.S. Dollar (USD)',
                          'CAD' => 'Canadian Dollar (CAD)',
+                         'AUD' => 'Austrailian Dollar (AUD)',
+                         'BRL' => 'Brazilian Real (BRL)',                                                  
                          'CZK' => 'Czeck Koruna (CZK)',
                          'DKK' => 'Danish Krone (DKK)',
                          'EUR' => 'Euro (EUR)',
