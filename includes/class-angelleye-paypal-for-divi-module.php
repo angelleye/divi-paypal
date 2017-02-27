@@ -38,7 +38,7 @@ function angelleye_paypal_button_module() {
                 $this->fields_defaults = array(
                     'use_pbm'           => array( 'on' ),
                     'background_color'  => array( et_builder_accent_color(), 'add_default_setting' ),
-                    'background_layout' => array( 'light' ),
+                    'background_layout' => array( 'light' )                        
                 );
 		$this->main_css_element = '%%order_class%%';
 		$this->advanced_options = array(
@@ -191,30 +191,30 @@ function angelleye_paypal_button_module() {
                      */      
                     
                     $currency_codes = array(
-                         'AUD' => 'Austrailian Dollar',
-                         'BRL' => 'Brazilian Real',
-                         'CAD' => 'Canadian Dollar',
-                         'CZK' => 'Czeck Koruna',
-                         'DKK' => 'Danish Krone',
-                         'EUR' => 'Euro',
-                         'HKD' => 'Hong Kong Dollar',
-                         'HUF' => 'Hungarian Forint',
-                         'ILS' => 'Israeli New Sheqel',
-                         'JPY' => 'Japanese Yen',
-                         'MYR' => 'Malaysian Ringgit',
-                         'MXN' => 'Mexican Peso',
-                         'NOK' => 'Norwegian Krone',
-                         'NZD' => 'New Zealand Dollar',
-                         'PHP' => 'Philippine Peso',
-                         'PLN' => 'Polish Zloty',
-                         'GBP' => 'Pound Sterling',
-                         'SGD' => 'Singapore Dollar',
-                         'SEK' => 'Swedish Krona',
-                         'CHF' => 'Swiss Franc',
-                         'TWD' => 'Taiwan New Dollar',
-                         'THB' => 'Thai Baht',
-                         'USD' => 'U.S. Dollar',
-                         'TRY' => 'Turkish Lira',
+                        'USD'  => 'Default (USD)',
+                         'AUD' => 'Austrailian Dollar (AUD)',
+                         'BRL' => 'Brazilian Real (BRL)',                         
+                         'CAD' => 'Canadian Dollar (CAD)',
+                         'CZK' => 'Czeck Koruna (CZK)',
+                         'DKK' => 'Danish Krone (DKK)',
+                         'EUR' => 'Euro (EUR)',
+                         'HKD' => 'Hong Kong Dollar (HKD)',
+                         'HUF' => 'Hungarian Forint (HUF)',
+                         'ILS' => 'Israeli New Sheqel (ILS)',
+                         'JPY' => 'Japanese Yen (JPY)',
+                         'MYR' => 'Malaysian Ringgit (MYR)',
+                         'MXN' => 'Mexican Peso (MXN)',
+                         'NOK' => 'Norwegian Krone (NOK)',
+                         'NZD' => 'New Zealand Dollar (NZD)',
+                         'PHP' => 'Philippine Peso (PHP)',
+                         'PLN' => 'Polish Zloty (PLN)',
+                         'GBP' => 'Pound Sterling (GBP)',
+                         'SGD' => 'Singapore Dollar (SGD)',
+                         'SEK' => 'Swedish Krona (SEK)',
+                         'CHF' => 'Swiss Franc (CHF)',
+                         'TWD' => 'Taiwan New Dollar (TWD)',
+                         'THB' => 'Thai Baht (THB)',                                                  
+                         'TRY' => 'Turkish Lira (TRY)',                        
                      ); 
                     /* currency end */
                     
