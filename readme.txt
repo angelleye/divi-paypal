@@ -96,6 +96,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 1.0.4 - 02.25.2017 =
+* Feature - Adds multi-currency support. ([#23](https://github.com/angelleye/divi-paypal/issues/23))
+
 = 1.0.3 - 02.25.2017 =
 * Feature - Adds a settings panel where you can setup one or more PayPal accounts to be used with the Divi PayPal Button module. ([#18](https://github.com/angelleye/divi-paypal/issues/18))
 * Feature - PayPal WP Button Manager Compatibility. ([#19](https://github.com/angelleye/divi-paypal/issues/19))
