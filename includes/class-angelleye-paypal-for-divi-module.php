@@ -80,49 +80,7 @@ function angelleye_paypal_button_module() {
                             'option_category' => 'layout',
                             'options'         => $paypal_button_manager_option_arrray,
                             'description'     => esc_html__( 'Choose the button you would like to use in this module.  This list comes from the buttons created in the PayPal WP Button Manager plugin.', 'angelleye_paypal_divi' ),
-                        ),
-                        'use_custom' => array(
-                                'label'           => esc_html__( 'Custom Button Display', 'angelleye_paypal_divi' ),
-				'type'            => 'yes_no_button',
-				'option_category' => 'basic_option',
-				'options'         => array(
-                                            'off' => esc_html__( 'No', 'angelleye_paypal_divi' ),
-					    'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),					    
-				),
-                                'affects'         => array(
-					'#et_pb_button_text',
-                                        '#et_pb_background_layout',
-                                        '#et_pb_src',
-				),
-				'description'     => esc_html__( 'Enable this option to use a text only or custom graphic button in place of the default Buy Now / Donate button.', 'angelleye_paypal_divi' ),
-                        ),
-                         'button_text' => array(
-				'label'           => esc_html__( 'Button Text', 'angelleye_paypal_divi' ),
-				'type'            => 'text',
-				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Enter a value here to be displayed in a text only button. (If an Image URL is set this text will not be displayed.)', 'angelleye_paypal_divi' ),
-			),
-                        'background_layout' => array(
-                            'label'           => esc_html__( 'Text Color', 'angelleye_paypal_divi' ),
-                            'type'            => 'select',
-                            'option_category' => 'color_option',
-                            'options'         => array(
-                                'light'   => esc_html__( 'Dark', 'angelleye_paypal_divi' ),
-                                'dark'    => esc_html__( 'Light', 'angelleye_paypal_divi' ),
-                            ),
-                            'description'     => esc_html__( 'Adjust whether your text only button uses light or dark text. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi' ),
                         ),                        
-                        'button_alignment' => array(
-				'label'           => esc_html__( 'Button Alignment', 'angelleye_paypal_divi' ),
-				'type'            => 'select',
-				'option_category' => 'configuration',
-				'options'         => array(
-					'left'    => esc_html__( 'Left', 'angelleye_paypal_divi' ),
-					'center'  => esc_html__( 'Center', 'angelleye_paypal_divi' ),
-					'right'   => esc_html__( 'Right', 'angelleye_paypal_divi' ),
-				),
-				'description'     => esc_html__( 'Adjust the alignment of your button.', 'angelleye_paypal_divi' ),
-			),
 			'admin_label' => array(
 				'label'       => esc_html__( 'Admin Label', 'angelleye_paypal_divi' ),
 				'type'        => 'text',
@@ -370,32 +328,32 @@ function angelleye_paypal_button_module() {
          *  Function shortcode_callback. This method returns the content the module will display
          */
 	function shortcode_callback( $atts, $content = null, $function_name ) {
-		$module_id         = $this->shortcode_atts['module_id'];
-		$module_class      = $this->shortcode_atts['module_class'];		
-		$button_text       = $this->shortcode_atts['button_text'];
-                $src               = $this->shortcode_atts['src'];
-                $pp_item_name      = $this->shortcode_atts['pp_item_name'];
-                $pp_amount         = $this->shortcode_atts['pp_amount'];
-		$custom_icon       = $this->shortcode_atts['button_icon'];
-		$button_custom     = $this->shortcode_atts['custom_button'];
-		$button_alignment  = $this->shortcode_atts['button_alignment'];
-                $background_layout = $this->shortcode_atts['background_layout'];
-                $pp_select_button  = $this->shortcode_atts['pp_select_button'];
+		$module_id         = isset($this->shortcode_atts['module_id']) ? $this->shortcode_atts['module_id'] : '';
+		$module_class      = isset($this->shortcode_atts['module_class']) ? $this->shortcode_atts['module_class'] : '';		
+		$button_text       = isset($this->shortcode_atts['button_text']) ? $this->shortcode_atts['button_text'] : '';
+                $src               = isset($this->shortcode_atts['src']) ? $this->shortcode_atts['src'] : '';
+                $pp_item_name      = isset($this->shortcode_atts['pp_item_name']) ? $this->shortcode_atts['pp_item_name'] : '';
+                $pp_amount         = isset($this->shortcode_atts['pp_amount']) ? $this->shortcode_atts['pp_amount'] : '';
+		$custom_icon       = isset($this->shortcode_atts['button_icon']) ? $this->shortcode_atts['button_icon'] : '';
+		$button_custom     = isset($this->shortcode_atts['custom_button']) ? $this->shortcode_atts['custom_button'] : '';
+		$button_alignment  = isset($this->shortcode_atts['button_alignment']) ? $this->shortcode_atts['button_alignment'] : '';
+                $background_layout = isset($this->shortcode_atts['background_layout']) ? $this->shortcode_atts['background_layout'] : '';
+                $pp_select_button  = isset($this->shortcode_atts['pp_select_button']) ? $this->shortcode_atts['pp_select_button'] : '';
                 $test_mode         = '';
-                $pp_business_name  = $this->shortcode_atts['pp_business_name'];
-                $pp_shipping       = $this->shortcode_atts['pp_shipping'];
-                $pp_tax            = $this->shortcode_atts['pp_tax'];
-                $pp_handling       = $this->shortcode_atts['pp_handling'];
+                $pp_business_name  = isset($this->shortcode_atts['pp_business_name']) ? $this->shortcode_atts['pp_business_name'] : '';
+                $pp_shipping       = isset($this->shortcode_atts['pp_shipping']) ? $this->shortcode_atts['pp_shipping'] : '';
+                $pp_tax            = isset($this->shortcode_atts['pp_tax']) ? $this->shortcode_atts['pp_tax'] : '';
+                $pp_handling       = isset($this->shortcode_atts['pp_handling']) ? $this->shortcode_atts['pp_handling'] : '';
                 
-                $pp_return         = $this->shortcode_atts['pp_return'];
-                $pp_cancel_return  = $this->shortcode_atts['pp_cancel_return'];
+                $pp_return         = isset($this->shortcode_atts['pp_return']) ? $this->shortcode_atts['pp_return'] : '';
+                $pp_cancel_return  = isset($this->shortcode_atts['pp_cancel_return']) ? $this->shortcode_atts['pp_cancel_return'] : '';
                 
-                $use_custom        = $this->shortcode_atts['use_custom'];
+                $use_custom        = isset($this->shortcode_atts['use_custom']) ? $this->shortcode_atts['use_custom'] : '';
                 
-                $use_pbm           = $this->shortcode_atts['use_pbm'];
-                $pbm_list          = $this->shortcode_atts['pbm_list'];
+                $use_pbm           = isset($this->shortcode_atts['use_pbm']) ? $this->shortcode_atts['use_pbm'] : '';
+                $pbm_list          = isset($this->shortcode_atts['pbm_list']) ? $this->shortcode_atts['pbm_list'] : '';
                 
-                $pp_currency_code  = $this->shortcode_atts['pp_currency_code'];
+                $pp_currency_code  = isset($this->shortcode_atts['pp_currency_code']) ? $this->shortcode_atts['pp_currency_code'] : '';
                 
                 $pp_option_shipping ='';
                 $pp_option_tax      ='';
@@ -411,8 +369,8 @@ function angelleye_paypal_button_module() {
                     
                     $paypal_button_manager_post_meta=get_post_meta($pbm_list);
                     $_pbm_form             = $paypal_button_manager_post_meta['paypal_button_response'][0];
-                    $_pbm_hosted_button_id = $paypal_button_manager_post_meta['paypal_wp_button_manager_button_id'][0];
-                    $_pbm_email_link       = $paypal_button_manager_post_meta['paypal_wp_button_manager_email_link'][0];
+                    $_pbm_hosted_button_id = isset($paypal_button_manager_post_meta['paypal_wp_button_manager_button_id'][0]) ? $paypal_button_manager_post_meta['paypal_wp_button_manager_button_id'][0] : '';
+                    $_pbm_email_link       = isset($paypal_button_manager_post_meta['paypal_wp_button_manager_email_link'][0]) ? $paypal_button_manager_post_meta['paypal_wp_button_manager_email_link'][0] : '';
                     $output = sprintf(
                             '<div class="et_pb_button_module_wrapper et_pb_module%1$s">                            
                                 %2$s
