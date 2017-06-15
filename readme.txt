@@ -97,7 +97,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 == Changelog ==
 
 = 1.0.5 - xx.xx.2017 =
-* Fix - Resolves PHP notices causing problems with drop down menu when PayPal Button Manager is being used. ([#24](https://github.com/angelleye/divi-paypal/issues/24))
+* Fix - Resolves PHP notices causing problems with drop down menu when PayPal Button Manager is being used. ([#24](https://github.com/angelleye/divi-paypal/issues/24)) ([#25](https://github.com/angelleye/divi-paypal/issues/25))
 
 = 1.0.4 - 02.25.2017 =
 * Feature - Adds multi-currency support. ([#23](https://github.com/angelleye/divi-paypal/issues/23))
