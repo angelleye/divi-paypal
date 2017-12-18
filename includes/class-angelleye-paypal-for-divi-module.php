@@ -460,7 +460,7 @@ function angelleye_paypal_button_module() {
                             $pp_option_handling,
                             $button_text,
                             '' !== $use_custom && 'on' === $use_custom && '' === $src 
-                                                   ? sprintf('<button type="submit" class="et_pb_button%2$s%3$s" %5$s%4$s>%1$s</button>',
+                                                   ? sprintf('<button style="cursor: pointer;" type="submit" class="et_pb_button%2$s%3$s" %5$s%4$s>%1$s</button>',
                                                     $button_text,
                                                     '' !== $custom_icon && 'on' === $button_custom ? ' et_pb_custom_button_icon' : '',
                                                     ( '' !== $module_class ? sprintf( ' %1$s', esc_attr( $module_class ) ) : '' ),
@@ -469,7 +469,7 @@ function angelleye_paypal_button_module() {
                                                      ' data-icon="%1$s"',
                                                      esc_attr( et_pb_process_font_icon( $custom_icon ) )
                                                      ) : '')
-                                                   : sprintf('<input type="image" name="submit" border="0" src="%1$s" alt="%2$s"/><img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >',
+                                                   : sprintf('<input style="cursor: pointer;" type="image" name="submit" border="0" src="%1$s" alt="%2$s"/><img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >',
                                                            '' !==  $src ? $src : $pp_img,$pp_alt
                                                            )                        
                             ,
