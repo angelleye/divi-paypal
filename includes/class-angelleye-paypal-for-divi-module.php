@@ -204,20 +204,7 @@ function angelleye_paypal_button_module() {
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'description'     => esc_html__( 'Add a name / description for the item or service being sold.', 'angelleye_paypal_divi' ),
-                        ),
-                        'set_our_price' => array(
-                                'label'           => esc_html__( 'Set Item Price', 'angelleye_paypal_divi' ),
-				'type'            => 'yes_no_button',
-				'option_category' => 'basic_option',
-				'options'         => array(
-                                            'on' => esc_html__( 'Yes', 'angelleye_paypal_divi' ),
-					    'off'  => esc_html__( 'No', 'angelleye_paypal_divi' ),					    
-				),
-                                'affects'         => array(					
-                                        '#et_pb_pp_amount',
-				),
-				'description'     => esc_html__( 'Enable this option to set Item Price for Button. If you set this "No" user can enter amount on PayPal.', 'angelleye_paypal_divi' ),
-                        ),
+                        ),                        
                         'pp_amount' => array(
                          	'label'           => esc_html__( 'Item Price', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
@@ -360,8 +347,7 @@ function angelleye_paypal_button_module() {
                 
                 $pp_return         = isset($this->shortcode_atts['pp_return']) ? $this->shortcode_atts['pp_return'] : '';
                 $pp_cancel_return  = isset($this->shortcode_atts['pp_cancel_return']) ? $this->shortcode_atts['pp_cancel_return'] : '';
-                
-                $set_our_price        = isset($this->shortcode_atts['set_our_price']) ? $this->shortcode_atts['set_our_price'] : '';
+                                
                 $use_custom        = isset($this->shortcode_atts['use_custom']) ? $this->shortcode_atts['use_custom'] : '';
                 
                 $use_pbm           = isset($this->shortcode_atts['use_pbm']) ? $this->shortcode_atts['use_pbm'] : '';
