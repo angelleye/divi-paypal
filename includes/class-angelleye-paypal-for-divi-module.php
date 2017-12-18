@@ -209,7 +209,7 @@ function angelleye_paypal_button_module() {
                          	'label'           => esc_html__( 'Item Price', 'angelleye_paypal_divi' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Enter the price for the item / service being sold.', 'angelleye_paypal_divi' ),
+				'description'     => esc_html__( 'Enter the price for the item / service being sold. Leave blank to allow the user to enter their own amount during checkout.', 'angelleye_paypal_divi' ),
                         ),
                        'pp_currency_code'=> array(
                             'label'           => esc_html__( 'Currency', 'angelleye_paypal_divi' ),
