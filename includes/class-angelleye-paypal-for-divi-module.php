@@ -8,8 +8,11 @@ function angelleye_paypal_button_module() {
          * Function init() callled while initialization of all Divi modules 
          * Name, slug, and some other settings for the module are initialize here.       
         */   
-	function init() {            
-                wp_enqueue_script( 'local-storage-clear', plugins_url('../admin/js/angelleye-paypal-for-divi-admin.js',__FILE__), array(), '1.0.0', true );
+	function init() {                            
+                $theme_version = et_get_theme_version();
+                if (version_compare($theme_version, '3.0', '<')) {
+                    wp_enqueue_script( 'local-storage-clear', plugins_url('../admin/js/angelleye-paypal-for-divi-admin.js',__FILE__), array(), '1.0.0', true );
+                }
 		$this->name = esc_html__( 'PayPal Button', 'angelleye_paypal_divi' );
 		$this->slug = 'et_pb_paypal_button';
 
