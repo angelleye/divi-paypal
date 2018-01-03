@@ -97,6 +97,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 == Changelog ==
 
 = 1.0.5 - xx.xx.2017 =
+* Tweak - Adds a note about leaving the price blank if you want to let the payer enter their own amount. ([#27](https://github.com/angelleye/divi-paypal/issues/27))
 * Fix - Resolves PHP notices causing problems with drop down menu when PayPal Button Manager is being used. ([#24](https://github.com/angelleye/divi-paypal/issues/24)) ([#25](https://github.com/angelleye/divi-paypal/issues/25))
 
 = 1.0.4 - 02.25.2017 =
