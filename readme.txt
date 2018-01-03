@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B85H6VLV9YGRA
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
-Tested up to: 4.8
-Stable tag: 1.0.4
+Tested up to: 4.9.1
+Stable tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -96,7 +96,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 1.0.5 - xx.xx.2017 =
+= 1.0.5 - 01.03.2018 =
 * Tweak - Adds a note about leaving the price blank if you want to let the payer enter their own amount. ([#27](https://github.com/angelleye/divi-paypal/issues/27))
 * Tweak - Adds cursor style to PayPal buttons. ([#29](https://github.com/angelleye/divi-paypal/issues/29))
 * Fix - Resolves PHP notices causing problems with drop down menu when PayPal Button Manager is being used. ([#24](https://github.com/angelleye/divi-paypal/issues/24)) ([#25](https://github.com/angelleye/divi-paypal/issues/25))
