@@ -100,6 +100,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * Tweak - Adds a note about leaving the price blank if you want to let the payer enter their own amount. ([#27](https://github.com/angelleye/divi-paypal/issues/27))
 * Tweak - Adds cursor style to PayPal buttons. ([#29](https://github.com/angelleye/divi-paypal/issues/29))
 * Fix - Resolves PHP notices causing problems with drop down menu when PayPal Button Manager is being used. ([#24](https://github.com/angelleye/divi-paypal/issues/24)) ([#25](https://github.com/angelleye/divi-paypal/issues/25))
+* Fix - Resolves compatibility issues with latest updates to the Divi theme. ([#30](https://github.com/angelleye/divi-paypal/issues/30))
 
 = 1.0.4 - 02.25.2017 =
 * Feature - Adds multi-currency support. ([#23](https://github.com/angelleye/divi-paypal/issues/23))
