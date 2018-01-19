@@ -361,8 +361,12 @@ function angelleye_paypal_button_module() {
                 $pp_option_shipping ='';
                 $pp_option_tax      ='';
                 $pp_option_handling ='';
-                             
-                    
+                
+                /* people enter the amount for the button with the $ included sometimes so we are going to stripe 
+                 * all characters from the paypal amount variable.                   
+                 */                
+                $pp_amount = !empty($pp_amount) ? filter_var($pp_amount, FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND) : '';
+                $pp_amount = !empty($pp_amount) ? number_format($pp_amount, 2, '.', '') : '';    
 		$module_class = ET_Builder_Element::add_module_order_class( $module_class, $function_name );
 
 		$module_class .= " et_pb_module et_pb_bg_layout_{$background_layout}";  
