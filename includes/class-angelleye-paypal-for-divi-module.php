@@ -29,6 +29,7 @@ function angelleye_paypal_button_module() {
                         'pp_handling',
                         'pp_return',
                         'pp_cancel_return',
+                        'open_in_new_tab',
                         'use_custom',
                         'button_text',
                         'src',
@@ -253,6 +254,16 @@ function angelleye_paypal_button_module() {
                                     'options' => $all_page,
                                     'description'     => esc_html__( 'A URL to which PayPal redirects the buyers\' browsers if they cancel checkout before completing their payments.', 'angelleye_paypal_divi' ),
                         ),
+                        'open_in_new_tab' => array(
+                            'label'           => esc_html__( 'Open in New Tab', 'angelleye_paypal_divi' ),
+                            'type'            => 'yes_no_button',
+                            'option_category' => 'basic_option',
+                            'options'         => array(
+                                        'off' => esc_html__( 'No', 'angelleye_paypal_divi' ),
+                                        'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),					    
+                            ),
+                            'description'     => esc_html__( 'Enable this option to open PayPal button url in new tab.', 'angelleye_paypal_divi' ),
+                        ),
                         'use_custom' => array(
                                 'label'           => esc_html__( 'Custom Button Display', 'angelleye_paypal_divi' ),
 				'type'            => 'yes_no_button',
@@ -350,7 +361,8 @@ function angelleye_paypal_button_module() {
                 
                 $pp_return         = isset($this->shortcode_atts['pp_return']) ? $this->shortcode_atts['pp_return'] : '';
                 $pp_cancel_return  = isset($this->shortcode_atts['pp_cancel_return']) ? $this->shortcode_atts['pp_cancel_return'] : '';
-                                
+                      
+                $open_in_new_tab   = isset($this->shortcode_atts['open_in_new_tab']) ? $this->shortcode_atts['open_in_new_tab'] : '';
                 $use_custom        = isset($this->shortcode_atts['use_custom']) ? $this->shortcode_atts['use_custom'] : '';
                 
                 $use_pbm           = isset($this->shortcode_atts['use_pbm']) ? $this->shortcode_atts['use_pbm'] : '';
@@ -423,10 +435,17 @@ function angelleye_paypal_button_module() {
                        $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_cc_147x47.png';
                        $pp_alt = 'Donate';
                    }
+                   
+                   if('' !== $open_in_new_tab && 'on' === $open_in_new_tab){
+                       $target = 'target="paypal"';
+                   }
+                   else{
+                       $target = '';
+                   }
                 
                         $output = sprintf(
                             '<div class="et_pb_button_module_wrapper et_pb_module%6$s">                            
-                                <form target="paypal" action="https://www.%11$spaypal.com/cgi-bin/webscr" method="post"> 
+                                <form %21$s action="https://www.%11$spaypal.com/cgi-bin/webscr" method="post"> 
                                    <input type="hidden" name="bn" value="AngellEYE_SP_Divi" />
                                    <input type="hidden" name="business" value="%12$s">
                                    <input type="hidden" name="cmd" value="%1$s">
@@ -482,7 +501,8 @@ function angelleye_paypal_button_module() {
                             ,
                             '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',get_permalink($pp_return)) : '',
                             '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',get_permalink($pp_cancel_return)) : '',
-                            $pp_currency_code
+                            $pp_currency_code,
+                            $target    
                     );
                     return $output;
                 }		
