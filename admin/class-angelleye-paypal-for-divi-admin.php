@@ -123,9 +123,9 @@ class Angelleye_Paypal_For_Divi_Admin {
     }
 
     public function links_action_paypal_divi($links) {
-        $links[] = '<a href="https://www.angelleye.com/category/docs/divi-paypal-module-documentation/" target="_blank">' . esc_html('Docs', 'angelleye_paypal_divi') . '</a>';
-        $links[] = '<a href="https://wordpress.org/support/plugin/angelleye-paypal-for-divi/" target="_blank">' . esc_html('Support', 'angelleye_paypal_divi') . '</a>';
-        $links[] = '<a href="https://wordpress.org/support/plugin/angelleye-paypal-for-divi/reviews/" target="_blank">' . esc_html('Write a Review', 'angelleye_paypal_divi') . '</a>';
+        $links[] = '<a href="https://www.angelleye.com/category/docs/divi-paypal-module-documentation/" target="_blank">' . __('Docs', 'angelleye_paypal_divi') . '</a>';
+        $links[] = '<a href="https://wordpress.org/support/plugin/angelleye-paypal-for-divi/" target="_blank">' . __('Support', 'angelleye_paypal_divi') . '</a>';
+        $links[] = '<a href="https://wordpress.org/support/plugin/angelleye-paypal-for-divi/reviews/" target="_blank">' . __('Write a Review', 'angelleye_paypal_divi') . '</a>';
         return $links;
     }
 
@@ -172,7 +172,12 @@ class Angelleye_Paypal_For_Divi_Admin {
         ?>
         <div class="notice notice-info is-dismissible">        
             <p>
-        <?php _e('<b>PayPal for Divi</b> is designed for the <a href="https://www.elegantthemes.com/gallery/divi/" target="_blank">Divi theme by Elegant Themes.</a> Please install and activate the Divi theme prior to activating <b>PayPal for Divi</b>.'); ?>
+        <?php echo sprintf('<b>%1$s</b>%2$s<a href="https://www.elegantthemes.com/gallery/divi/" target="_blank">%3$s</a> %4$s <b>%1$s</b>.',
+                            __('PayPal for Divi','angelleye_paypal_divi'),
+                            __('is designed for the ','angelleye_paypal_divi'),
+                            __('Divi theme by Elegant Themes.','angelleye_paypal_divi'),
+                            __('Please install and activate the Divi theme prior to activating ','angelleye_paypal_divi')
+                ); ?>
             </p>
         </div>
         <?php

@@ -76,7 +76,7 @@ class AngellEYE_PayPal_For_Divi_Store_Setting_Class {
                           <?php 
                             if($message!=''):
                           ?>  
-                          <div id="message" class="notice notice-info">       
+                            <div id="message" class="notice notice-info" style="padding: 10px;">       
                               <?php echo $message; ?>
                           </div>
                           <?php endif; ?>  
