@@ -96,6 +96,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 1.0.6 - 06.20.2018 =
+* Adds option to have forms open in new browser tab or not. ([#32](https://github.com/angelleye/divi-paypal/issues/32))
+
 = 1.0.5 - 01.03.2018 =
 * Tweak - Adds a note about leaving the price blank if you want to let the payer enter their own amount. ([#27](https://github.com/angelleye/divi-paypal/issues/27))
 * Tweak - Adds cursor style to PayPal buttons. ([#29](https://github.com/angelleye/divi-paypal/issues/29))
