@@ -262,7 +262,7 @@ function angelleye_paypal_button_module() {
                                         'off' => esc_html__( 'No', 'angelleye_paypal_divi' ),
                                         'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),					    
                             ),
-                            'description'     => esc_html__( 'Enable this option to open PayPal button url in new tab.', 'angelleye_paypal_divi' ),
+                            'description'     => esc_html__( 'Enable this option to open PayPal button URL in a new tab.', 'angelleye_paypal_divi' ),
                         ),
                         'use_custom' => array(
                                 'label'           => esc_html__( 'Custom Button Display', 'angelleye_paypal_divi' ),
