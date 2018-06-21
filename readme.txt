@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B85H6VLV9YGRA
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
-Tested up to: 4.9.1
-Stable tag: 1.0.5
+Tested up to: 4.9.6
+Stable tag: 1.0.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -96,7 +96,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 1.0.6 - 06.20.2018 =
+= 1.0.6 - 06.21.2018 =
 * Feature - Adds option to have forms open in new browser tab or not. ([#32](https://github.com/angelleye/divi-paypal/issues/32))
 * Tweak - Adds better data sanitization for overall privacy and security. ([PFD-1](https://github.com/angelleye/divi-paypal/pull/35)) ([#31](https://github.com/angelleye/divi-paypal/issues/31))
 
