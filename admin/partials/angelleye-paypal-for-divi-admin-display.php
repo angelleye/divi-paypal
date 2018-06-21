@@ -37,13 +37,14 @@ class AngellEYE_PayPal_For_Divi_Admin_Display {
      * @access   public
      */
     public static function angelleye_paypal_divi_options() {
-        $setting_tabs = apply_filters('angelleye_paypal_divi_setting_tab', array('company' => 'General','store' => 'Store'));
-        $current_tab = (isset($_GET['tab'])) ? $_GET['tab'] : 'company';
+        $setting_tabs = apply_filters('angelleye_paypal_divi_setting_tab', array('company' => __('General','angelleye_paypal_divi'),'store' => __('Store','angelleye_paypal_divi')));
+        $current_tab = (isset($_GET['tab'])) ? sanitize_key($_GET['tab']) : 'company';
         ?>
         <h2 class="nav-tab-wrapper">
             <?php
-            foreach ($setting_tabs as $name => $label)
-                echo '<a href="' . admin_url('admin.php?page=angelleye-paypal-divi-option&tab=' . $name) . '" class="nav-tab ' . ( $current_tab == $name ? 'nav-tab-active' : '' ) . '">' . $label . '</a>';
+            foreach ($setting_tabs as $name => $label){
+                echo '<a href="' . esc_url(admin_url('admin.php?page=angelleye-paypal-divi-option&tab=' . $name)) . '" class="nav-tab ' . ( $current_tab == $name ? esc_attr('nav-tab-active') : '' ) . '">' . esc_html($label) . '</a>';
+            }
             ?>
         </h2>
         <?php

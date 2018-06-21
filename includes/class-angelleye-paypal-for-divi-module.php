@@ -425,15 +425,15 @@ function angelleye_paypal_button_module() {
                    if($pp_select_button =='on'){
                        $cmd    = '_xclick';
                        $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_cc_171x47.png';
-                       $pp_alt = 'Buy Now With Credit Cards';                    
-                       $pp_option_shipping = '' !== trim($pp_shipping) ? '<input type="hidden" name="shipping" value="'.$pp_shipping.'">' : '';
-                       $pp_option_tax = '' !== trim($pp_tax) ? '<input type="hidden" name="tax" value="'.$pp_tax.'">' : '';                    
-                       $pp_option_handling = '' !== trim($pp_handling) ? '<input type="hidden" name="handling" value="'.$pp_handling.'">' : '';
+                       $pp_alt = __('Buy Now With Credit Cards','angelleye_paypal_divi');
+                       $pp_option_shipping = '' !== trim($pp_shipping) ? '<input type="hidden" name="shipping" value="'.esc_attr($pp_shipping).'">' : '';
+                       $pp_option_tax = '' !== trim($pp_tax) ? '<input type="hidden" name="tax" value="'.esc_attr($pp_tax).'">' : '';                    
+                       $pp_option_handling = '' !== trim($pp_handling) ? '<input type="hidden" name="handling" value="'.esc_attr($pp_handling).'">' : '';
                    }
                    elseif($pp_select_button =='off'){
                        $cmd    = '_donations';
                        $pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_cc_147x47.png';
-                       $pp_alt = 'Donate';
+                       $pp_alt = __('Donate','angelleye_paypal_divi');
                    }
                    
                    if('' !== $open_in_new_tab && 'on' === $open_in_new_tab){
@@ -499,10 +499,10 @@ function angelleye_paypal_button_module() {
                                                            '' !==  $src ? $src : $pp_img,$pp_alt
                                                            )                        
                             ,
-                            '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',get_permalink($pp_return)) : '',
-                            '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',get_permalink($pp_cancel_return)) : '',
-                            $pp_currency_code,
-                            $target    
+                            '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',  esc_url(get_permalink($pp_return))) : '',
+                            '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',esc_url(get_permalink($pp_cancel_return))) : '',
+                            $pp_currency_code
+
                     );
                     return $output;
                 }		
