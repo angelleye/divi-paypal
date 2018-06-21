@@ -501,7 +501,8 @@ function angelleye_paypal_button_module() {
                             ,
                             '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',  esc_url(get_permalink($pp_return))) : '',
                             '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',esc_url(get_permalink($pp_cancel_return))) : '',
-                            $pp_currency_code
+                            $pp_currency_code,
+                            $target    
 
                     );
                     return $output;

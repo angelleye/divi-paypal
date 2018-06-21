@@ -100,12 +100,7 @@ class Angelleye_Paypal_For_Divi_Admin {
          * The class responsible for defining all actions that occur in the Dashboard
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/angelleye-paypal-for-divi-admin-display.php';
-
-        /**
-         * The class responsible for defining function for display Html element
-         */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/partials/angelleye-paypal-for-divi-admin-html-output.php';                
-
+        
         /**
          * The class responsible for defining function for display company setting tab
          */
