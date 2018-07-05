@@ -16,9 +16,71 @@ function angelleye_paypal_button_module() {
                 
 		$this->name = esc_html__( 'PayPal Button', 'angelleye_paypal_divi' );
 		$this->slug = 'et_pb_paypal_button';
-                $this->vb_support = 'on';
+                //$this->vb_support = 'on';
                 $this->main_css_element = '%%order_class%%';
                                                                
+                $this->custom_css_fields = array(
+			'main_element' => array(
+				'label'    => esc_html__( 'Main Element', 'angelleye_paypal_divi' ),
+				'no_space_before_selector' => true,
+			),
+		);
+
+		$this->settings_modal_toggles = array(
+			'general'  => array(
+				'toggles' => array(
+					'main_content' => esc_html__( 'Text', 'angelleye_paypal_divi' ),
+					'link'         => esc_html__( 'Link', 'angelleye_paypal_divi' ),
+				),
+			),
+			'advanced' => array(
+				'toggles' => array(
+					'alignment'  => esc_html__( 'Alignment', 'angelleye_paypal_divi' ),
+					'text'       => array(
+						'title'    => esc_html__( 'Text', 'angelleye_paypal_divi' ),
+						'priority' => 49,
+					),
+				),
+			),
+		);
+
+		$this->advanced_fields = array(
+			'borders'               => array(
+				'default' => false,
+			),
+			'button'                => array(
+				'button' => array(
+					'label' => esc_html__( 'Button', 'angelleye_paypal_divi' ),
+					'css' => array(
+						'main' => $this->main_css_element,
+					),
+					'box_shadow' => false,
+				),
+			),
+			'margin_padding' => array(
+				'css' => array(
+					'padding' => "{$this->main_css_element}_wrapper {$this->main_css_element}, {$this->main_css_element}_wrapper {$this->main_css_element}:hover",
+					'margin' => "{$this->main_css_element}_wrapper",
+					'important' => 'all',
+				),
+			),
+			'text'                  => array(
+				'use_text_orientation' => false,
+				'use_background_layout' => true,
+				'options' => array(
+					'background_layout' => array(
+						'default_on_front' => 'light',
+					),
+				),
+			),
+			'text_shadow'           => array(
+				// Text Shadow settings are already included on button's advanced style
+				'default' => false,
+			),
+			'background'            => false,
+			'fonts'                 => false,
+			'max_width'             => false,
+		);
                 
                 $this->fields_defaults = array(
                     'use_pbm'           => array( 'on' ),
@@ -114,7 +176,7 @@ function angelleye_paypal_button_module() {
                         $all_accounts[$result_records_value['account_id']] = $result_records_value['title'].' ('.$result_records_value['account_id'].')';
                     }
                     if(empty($all_accounts)){
-                        $all_accounts['noAccount']='Please Add Paypal Account';
+                        $all_accounts['noAccount']=__('Please Add Paypal Account','angelleye_paypal_divi');
                     }
                     /* end */   
                     
@@ -211,14 +273,14 @@ function angelleye_paypal_button_module() {
 				'description'     => esc_html__( 'Enter a handling fee if you would like to include one with this item / service.', 'angelleye_paypal_divi' ),
                         ), 
                         'pp_return' => array(
-				'label'           => esc_html__( ' Return Url', 'et_builder' ),
+				'label'           => esc_html__( ' Return Url', 'angelleye_paypal_divi' ),
 				'type'            => 'select',
 				'option_category' => 'basic_option',
                                 'options' => $all_page,
 				'description'     => esc_html__( 'The URL to which PayPal redirects buyers\' browser after they complete their payments.', 'angelleye_paypal_divi' ),
 			),
                         'pp_cancel_return' => array(
-                                    'label'           => esc_html__( ' Cancel Url', 'et_builder' ),
+                                    'label'           => esc_html__( ' Cancel Url', 'angelleye_paypal_divi' ),
                                     'type'            => 'select',
                                     'option_category' => 'basic_option',
                                     'options' => $all_page,
