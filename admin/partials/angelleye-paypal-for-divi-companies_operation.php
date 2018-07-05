@@ -25,9 +25,9 @@ class AngellEYE_PayPal_For_Divi_Company_Operations {
         if(!isset($_POST['paypal_for_divi_account_id']) || sanitize_key($_POST['paypal_for_divi_account_id'])==''){
             return false;
         }
-        $title =  isset($_POST['company_title']) ? sanitize_email($_POST['company_title']) : '';
-        $account_id = isset($_POST['paypal_for_divi_account_id']) ? strtoupper(sanitize_key($_POST['paypal_for_divi_account_id'])) : '';
-        $paypal_mode = isset($_POST['paypal_mode']) ? ucfirst(sanitize_key($_POST['paypal_mode'])) : '';
+        $title =  isset($_POST['company_title']) ? sanitize_text_field($_POST['company_title']) : '';
+        $account_id = isset($_POST['paypal_for_divi_account_id']) ? sanitize_text_field($_POST['paypal_for_divi_account_id']) : '';
+        $paypal_mode = isset($_POST['paypal_mode']) ? sanitize_text_field($_POST['paypal_mode']) : '';
         
         $add_result = $wpdb->insert($table_name, array('title' => $title,
                                                        'account_id' => $account_id,
@@ -40,9 +40,9 @@ class AngellEYE_PayPal_For_Divi_Company_Operations {
         global $wpdb;
         $table_name = $wpdb->prefix . "angelleye_paypal_for_divi_companies";
         $id = sanitize_key($_GET['cmp_id']);
-        $title =  isset($_POST['company_title']) ? sanitize_email($_POST['company_title']) : '';
-        $account_id = isset($_POST['paypal_for_divi_account_id']) ? strtoupper(sanitize_key($_POST['paypal_for_divi_account_id'])) : '';
-        $paypal_mode = isset($_POST['paypal_mode']) ? ucfirst(sanitize_key($_POST['paypal_mode'])) : '';
+        $title =  isset($_POST['company_title']) ? sanitize_text_field($_POST['company_title']) : '';
+        $account_id = isset($_POST['paypal_for_divi_account_id']) ? sanitize_text_field($_POST['paypal_for_divi_account_id']) : '';
+        $paypal_mode = isset($_POST['paypal_mode']) ? sanitize_text_field($_POST['paypal_mode']) : '';
         $edit_result = $wpdb->update($table_name, array('title' => $title,'account_id' => $account_id,'paypal_mode' => $paypal_mode) , array('ID' => $id), array('%s'), array('%d'));
         
         return $edit_result;
