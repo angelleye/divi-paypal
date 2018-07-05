@@ -13,49 +13,19 @@ function angelleye_paypal_button_module() {
                 if (version_compare($theme_version, '3.0', '<')) {
                     wp_enqueue_script( 'local-storage-clear', plugins_url('../admin/js/angelleye-paypal-for-divi-admin.js',__FILE__), array(), '1.0.0', true );
                 }
+                
 		$this->name = esc_html__( 'PayPal Button', 'angelleye_paypal_divi' );
 		$this->slug = 'et_pb_paypal_button';
-
-		$this->whitelisted_fields = array(
-                        'use_pbm',
-                        'pbm_list',
-                        'pp_business_name',
-                        'pp_select_button',
-			'pp_item_name',
-                        'pp_currency_code',
-			'pp_amount',
-                        'pp_shipping',
-                        'pp_tax',
-                        'pp_handling',
-                        'pp_return',
-                        'pp_cancel_return',
-                        'open_in_new_tab',
-                        'use_custom',
-                        'button_text',
-                        'src',
-                        'background_layout',
-                        'button_alignment',
-			'admin_label',
-			'module_id',
-			'module_class'                        
-		);
+                $this->vb_support = 'on';
+                $this->main_css_element = '%%order_class%%';
+                                                               
+                
                 $this->fields_defaults = array(
                     'use_pbm'           => array( 'on' ),
                     'background_color'  => array( et_builder_accent_color(), 'add_default_setting' ),
                     'background_layout' => array( 'light' )                        
                 );
-		$this->main_css_element = '%%order_class%%';
-		$this->advanced_options = array(
-			'button' => array(
-				'button' => array(
-					'label' => esc_html__( 'Button', 'angelleye_paypal_divi' ),
-					'css'   => array(
-						'main' => $this->main_css_element,
-					),
-				),
-			),
-		);
-                $this->custom_css_options = array();
+				                
 	}
         /*
          *  Function get_fields. This method returns an array of fields that the module will
@@ -197,9 +167,9 @@ function angelleye_paypal_button_module() {
 					   'off'  => esc_html__( 'Donate', 'angelleye_paypal_divi' ),
 				),
                                 'affects'         => array(
-					'#et_pb_pp_shipping',
-                                        '#et_pb_pp_tax',
-                                        '#et_pb_pp_handling',
+					'pp_shipping',
+                                        'pp_tax',
+                                        'pp_handling',
 				),
 				'description'     => esc_html__( 'Choose between a PayPal *Buy Now* button or *Donate* button.', 'angelleye_paypal_divi' ),
 			),			
@@ -273,9 +243,9 @@ function angelleye_paypal_button_module() {
 					    'on'  => esc_html__( 'Yes', 'angelleye_paypal_divi' ),					    
 				),
                                 'affects'         => array(
-					'#et_pb_button_text',
-                                        '#et_pb_background_layout',
-                                        '#et_pb_src',
+					'button_text',
+                                        'background_layout',
+                                        'src',
 				),
 				'description'     => esc_html__( 'Enable this option to use a text only or custom graphic button in place of the default Buy Now / Donate button.', 'angelleye_paypal_divi' ),
                         ),
@@ -341,34 +311,34 @@ function angelleye_paypal_button_module() {
         /*
          *  Function shortcode_callback. This method returns the content the module will display
          */
-	function shortcode_callback( $atts, $content = null, $function_name ) {
-		$module_id         = isset($this->shortcode_atts['module_id']) ? $this->shortcode_atts['module_id'] : '';
-		$module_class      = isset($this->shortcode_atts['module_class']) ? $this->shortcode_atts['module_class'] : '';		
-		$button_text       = isset($this->shortcode_atts['button_text']) ? $this->shortcode_atts['button_text'] : '';
-                $src               = isset($this->shortcode_atts['src']) ? $this->shortcode_atts['src'] : '';
-                $pp_item_name      = isset($this->shortcode_atts['pp_item_name']) ? $this->shortcode_atts['pp_item_name'] : '';
-                $pp_amount         = isset($this->shortcode_atts['pp_amount']) ? $this->shortcode_atts['pp_amount'] : '';
-		$custom_icon       = isset($this->shortcode_atts['button_icon']) ? $this->shortcode_atts['button_icon'] : '';
-		$button_custom     = isset($this->shortcode_atts['custom_button']) ? $this->shortcode_atts['custom_button'] : '';
-		$button_alignment  = isset($this->shortcode_atts['button_alignment']) ? $this->shortcode_atts['button_alignment'] : '';
-                $background_layout = isset($this->shortcode_atts['background_layout']) ? $this->shortcode_atts['background_layout'] : '';
-                $pp_select_button  = isset($this->shortcode_atts['pp_select_button']) ? $this->shortcode_atts['pp_select_button'] : '';
+	function render( $atts, $content = null, $function_name ) {
+		$module_id         = isset($this->props['module_id']) ? $this->props['module_id'] : '';
+		$module_class      = isset($this->props['module_class']) ? $this->props['module_class'] : '';		
+		$button_text       = isset($this->props['button_text']) ? $this->props['button_text'] : '';
+                $src               = isset($this->props['src']) ? $this->props['src'] : '';
+                $pp_item_name      = isset($this->props['pp_item_name']) ? $this->props['pp_item_name'] : '';
+                $pp_amount         = isset($this->props['pp_amount']) ? $this->props['pp_amount'] : '';
+		$custom_icon       = isset($this->props['button_icon']) ? $this->props['button_icon'] : '';
+		$button_custom     = isset($this->props['custom_button']) ? $this->props['custom_button'] : '';
+		$button_alignment  = isset($this->props['button_alignment']) ? $this->props['button_alignment'] : '';
+                $background_layout = isset($this->props['background_layout']) ? $this->props['background_layout'] : '';
+                $pp_select_button  = isset($this->props['pp_select_button']) ? $this->props['pp_select_button'] : '';
                 $test_mode         = '';
-                $pp_business_name  = isset($this->shortcode_atts['pp_business_name']) ? $this->shortcode_atts['pp_business_name'] : '';
-                $pp_shipping       = isset($this->shortcode_atts['pp_shipping']) ? $this->shortcode_atts['pp_shipping'] : '';
-                $pp_tax            = isset($this->shortcode_atts['pp_tax']) ? $this->shortcode_atts['pp_tax'] : '';
-                $pp_handling       = isset($this->shortcode_atts['pp_handling']) ? $this->shortcode_atts['pp_handling'] : '';
+                $pp_business_name  = isset($this->props['pp_business_name']) ? $this->props['pp_business_name'] : '';
+                $pp_shipping       = isset($this->props['pp_shipping']) ? $this->props['pp_shipping'] : '';
+                $pp_tax            = isset($this->props['pp_tax']) ? $this->props['pp_tax'] : '';
+                $pp_handling       = isset($this->props['pp_handling']) ? $this->props['pp_handling'] : '';
                 
-                $pp_return         = isset($this->shortcode_atts['pp_return']) ? $this->shortcode_atts['pp_return'] : '';
-                $pp_cancel_return  = isset($this->shortcode_atts['pp_cancel_return']) ? $this->shortcode_atts['pp_cancel_return'] : '';
+                $pp_return         = isset($this->props['pp_return']) ? $this->props['pp_return'] : '';
+                $pp_cancel_return  = isset($this->props['pp_cancel_return']) ? $this->props['pp_cancel_return'] : '';
                       
-                $open_in_new_tab   = isset($this->shortcode_atts['open_in_new_tab']) ? $this->shortcode_atts['open_in_new_tab'] : '';
-                $use_custom        = isset($this->shortcode_atts['use_custom']) ? $this->shortcode_atts['use_custom'] : '';
+                $open_in_new_tab   = isset($this->props['open_in_new_tab']) ? $this->props['open_in_new_tab'] : '';
+                $use_custom        = isset($this->props['use_custom']) ? $this->props['use_custom'] : '';
                 
-                $use_pbm           = isset($this->shortcode_atts['use_pbm']) ? $this->shortcode_atts['use_pbm'] : '';
-                $pbm_list          = isset($this->shortcode_atts['pbm_list']) ? $this->shortcode_atts['pbm_list'] : '';
+                $use_pbm           = isset($this->props['use_pbm']) ? $this->props['use_pbm'] : '';
+                $pbm_list          = isset($this->props['pbm_list']) ? $this->props['pbm_list'] : '';
                 
-                $pp_currency_code  = isset($this->shortcode_atts['pp_currency_code']) ? $this->shortcode_atts['pp_currency_code'] : '';
+                $pp_currency_code  = isset($this->props['pp_currency_code']) ? $this->props['pp_currency_code'] : '';
                 
                 $pp_option_shipping ='';
                 $pp_option_tax      ='';
@@ -510,7 +480,7 @@ function angelleye_paypal_button_module() {
 	}
 }
         $et_builder_module_paypal_button = new ET_Builder_Module_Paypal_Button();
-        add_shortcode('et_pb_paypal_button', array($et_builder_module_paypal_button, '_shortcode_callback'));      
+        add_shortcode('et_pb_paypal_button', array($et_builder_module_paypal_button, '_render'));      
     }
 }
 add_action('et_builder_ready', 'angelleye_paypal_button_module');
