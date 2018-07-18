@@ -98,5 +98,43 @@ class Angelleye_Paypal_For_Divi_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/angelleye-paypal-for-divi-public.js', array( 'jquery' ), $this->version, false );
 
-	}        
+	}
+
+        public function pfd_get_environment(){
+            global $wpdb;     
+            $pp_business_name  = sanitize_text_field($_POST['pp_business_name']);
+            if(isset($_POST['nonce']) && wp_verify_nonce( $_POST['nonce'], 'et_admin_load_nonce')){
+                $tablecompanies = $wpdb->prefix . 'angelleye_paypal_for_divi_companies'; // do not forget about tables prefix
+                $result_mode = $wpdb->get_results("SELECT paypal_mode FROM `{$tablecompanies}` WHERE account_id ='{$pp_business_name}'", ARRAY_A);
+                $test_mode=$result_mode[0]['paypal_mode'];
+                if ( 'Sandbox' === $test_mode ) {
+                    echo json_encode(array('success'=>'true' ,'mode' =>'sandbox'));                   
+                }
+                else{
+                    echo json_encode(array('success'=>'true' ,'mode' =>'live'));                    
+                }
+            }
+            else{                
+                echo json_encode(array('success'=>'true' ,'mode' =>'live'));
+            }
+            wp_die();
+        }
+        
+        public function check_pbm_active(){
+            $pbm_list = sanitize_text_field($_POST['pbm_list']);
+            if(empty($pbm_list)){
+                $button_manager_args = array(
+                    'post_type' => 'paypal_buttons',
+                    'post_status' => 'publish',
+                    'posts_per_page' => -1,
+                    'order'   => 'ASC'
+                );
+                $button_manager_posts_array = get_posts($button_manager_args);
+                $pbm_list = isset($button_manager_posts_array[0]->ID) ? $button_manager_posts_array[0]->ID : '';                
+            }
+            $paypal_button_manager_post_meta=get_post_meta($pbm_list);
+            $_pbm_form = isset($paypal_button_manager_post_meta['paypal_button_response'][0]) ? $paypal_button_manager_post_meta['paypal_button_response'][0] : '';
+            echo json_encode(array('success'=>'true','pbm_form' => $_pbm_form));
+            wp_die();
+        }
 }

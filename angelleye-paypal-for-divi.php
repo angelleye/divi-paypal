@@ -58,6 +58,18 @@ function deactivate_angelleye_paypal_for_divi() {
 register_activation_hook( __FILE__, 'activate_angelleye_paypal_for_divi' );
 register_deactivation_hook( __FILE__, 'deactivate_angelleye_paypal_for_divi' );
 
+if ( ! function_exists( 'ae_paypal_divi_initialize_extension' ) ):
+/**
+ * Creates the extension's main class instance.
+ *
+ * @since 1.0.0
+ */
+function ae_paypal_divi_initialize_extension() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/MyExtension.php';
+}
+add_action( 'divi_extensions_init', 'ae_paypal_divi_initialize_extension' );
+endif;
+
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.

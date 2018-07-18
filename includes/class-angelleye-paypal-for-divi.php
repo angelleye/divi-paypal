@@ -123,7 +123,7 @@ class Angelleye_Paypal_For_Divi {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-angelleye-paypal-for-divi-public.php';
 
-                require_once plugin_dir_path(__FILE__).'/class-angelleye-paypal-for-divi-module.php';
+                //require_once plugin_dir_path(__FILE__).'/class-angelleye-paypal-for-divi-module.php';
                 
 		$this->loader = new Angelleye_Paypal_For_Divi_Loader();
 
@@ -180,6 +180,10 @@ class Angelleye_Paypal_For_Divi {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+                $this->loader->add_action('wp_ajax_pfd_get_environment',$plugin_public,'pfd_get_environment');
+                $this->loader->add_action('wp_ajax_nopriv_pfd_get_environment',$plugin_public,'pfd_get_environment');
+                $this->loader->add_action('wp_ajax_check_pbm_active',$plugin_public,'check_pbm_active');
+                $this->loader->add_action('wp_ajax_nopriv_check_pbm_active',$plugin_public,'check_pbm_active');                
 	}
 
 	/**
