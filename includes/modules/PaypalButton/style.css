@@ -1,20 +1,7 @@
 
-
-@font-face {    
-  font-family: 'FontAwesome';
-  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-.fa {
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 .et-fb-modules-list .et_fb_paypal_button:before{
-    font-family: 'FontAwesome';  content: "\f1ed";
+    content: url('icon/paypalgrey.png');
+}
+.et-fb-modules-list .et_fb_paypal_button:hover::before{
+    content: url('icon/paypal.png');
 }
