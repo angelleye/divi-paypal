@@ -121,9 +121,7 @@ class Angelleye_Paypal_For_Divi {
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-angelleye-paypal-for-divi-public.php';
-
-                //require_once plugin_dir_path(__FILE__).'/class-angelleye-paypal-for-divi-module.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-angelleye-paypal-for-divi-public.php';                
                 
 		$this->loader = new Angelleye_Paypal_For_Divi_Loader();
 
