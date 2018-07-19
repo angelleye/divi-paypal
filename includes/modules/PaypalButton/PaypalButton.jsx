@@ -56,7 +56,6 @@ class PaypalButton extends Component {
         let button_align ='';
         let pbm_active = "";
         button_align = 'et_pb_button_module_wrapper et_pb_module et_pb_button_alignment_'+pp_button.button_alignment;
-        console.log(window);
         if (window.Angelleye_paypal_diviBuilderData.pbm_plugin_active === 'true') {
           pbm_active = this._check_pbm_active(pp_button.pbm_list);
           return (
@@ -64,12 +63,17 @@ class PaypalButton extends Component {
             </div>
           );
         }
+        if(pp_button.pp_business_name === '' || pp_button.pp_business_name === undefined){
+          return ( <div class="pfd_alert">
+                      <b>PayPal Button:</b> Please select PayPal Account ID.
+                  </div>
+                );
+        }
         const env_mode = this._pfd_get_environment_mode(pp_button.pp_business_name);
         const utils = window.ET_Builder.API.Utils;
         let cmd,returnElement,cancelElement,pp_option_shipping,pp_option_tax,pp_option_handling,buttonElement = "";
         let customButtonIcon,customModuleClass,customButtonClass,customButtonModuleId,customButtonIconClass ='';
         let pp_img,pp_alt,form_action_url= '';
-
 
         if (env_mode === 'sandbox') {
           form_action_url = "https://www.sandbox.paypal.com/cgi-bin/webscr";
@@ -84,10 +88,16 @@ class PaypalButton extends Component {
             pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_buynow_cc_171x47.png';
             pp_alt = 'Buy Now With Credit Cards';
         }
-        else{
+        else if (pp_button.pp_select_button === 'off') {
             cmd = '_donations';
             pp_img = 'https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_cc_147x47.png';
             pp_alt = 'Donate';
+        }
+        else{
+          return ( <div class="pfd_alert">
+                      <b>PayPal Button:</b> Please select Button Type.
+                  </div>
+                );
         }
         returnElement = ((pp_button.pp_return !== '') ? <input type="hidden" name="return" value={pp_button.pp_return} /> : "");
         cancelElement = (pp_button.pp_cancel_return !== '' ? <input type="hidden" name="cancel_return" value={pp_button.pp_cancel_return} /> : "");

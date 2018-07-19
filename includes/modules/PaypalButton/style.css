@@ -5,3 +5,11 @@
 .et-fb-modules-list .et_fb_paypal_button:hover::before{
     content: url('icon/paypal.png');
 }
+.pfd_alert{
+    background-color: #6c2eb9;
+    color: whitesmoke;
+    padding: 25px;
+    text-align: center;
+}
+
+    

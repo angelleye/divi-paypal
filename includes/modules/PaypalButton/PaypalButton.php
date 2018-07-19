@@ -284,8 +284,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                         'on' => esc_html__('Yes', 'angelleye_paypal_divi'),
                     ),
                     'affects' => array(
-                        'button_text',
-                        'background_layout',
+                        'button_text',                        
                         'src',
                     ),
                     'description' => esc_html__('Enable this option to use a text only or custom graphic button in place of the default Buy Now / Donate button.', 'angelleye_paypal_divi'),
@@ -295,17 +294,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                     'type' => 'text',
                     'option_category' => 'basic_option',
                     'description' => esc_html__('Enter a value here to be displayed in a text only button. (If an Image URL is set this text will not be displayed.)', 'angelleye_paypal_divi'),
-                ),
-                'background_layout' => array(
-                    'label' => esc_html__('Text Color', 'angelleye_paypal_divi'),
-                    'type' => 'select',
-                    'option_category' => 'color_option',
-                    'options' => array(
-                        'light' => esc_html__('Dark', 'angelleye_paypal_divi'),
-                        'dark' => esc_html__('Light', 'angelleye_paypal_divi'),
-                    ),
-                    'description' => esc_html__('Adjust whether your text only button uses light or dark text. If you are working with a dark background, then your text should be light. If your background is light, then your text should be set to dark.', 'angelleye_paypal_divi'),
-                ),
+                ),                
                 'src' => array(
                     'label' => esc_html__('Image URL', 'angelleye_paypal_divi'),
                     'type' => 'upload',
@@ -407,8 +396,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                 $pp_amount         = isset($this->props['pp_amount']) ? $this->props['pp_amount'] : '';
 		$custom_icon       = isset($this->props['button_icon']) ? $this->props['button_icon'] : '';
 		$button_custom     = isset($this->props['custom_button']) ? $this->props['custom_button'] : '';
-		$button_alignment  = isset($this->props['button_alignment']) ? $this->props['button_alignment'] : '';
-                $background_layout = isset($this->props['background_layout']) ? $this->props['background_layout'] : '';
+		$button_alignment  = isset($this->props['button_alignment']) ? $this->props['button_alignment'] : '';                
                 $pp_select_button  = isset($this->props['pp_select_button']) ? $this->props['pp_select_button'] : '';
                 $test_mode         = '';
                 $pp_business_name  = isset($this->props['pp_business_name']) ? $this->props['pp_business_name'] : '';
@@ -438,7 +426,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                 $pp_amount = !empty($pp_amount) ? number_format($pp_amount, 2, '.', '') : '';
 		$module_class = ET_Builder_Element::add_module_order_class( $module_class, $function_name );
 
-		$module_class .= " et_pb_module et_pb_bg_layout_{$background_layout}";
+		$module_class .= " et_pb_module et_pb_bg_layout_light";
 
                 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
                 if (is_plugin_active('paypal-wp-button-manager/paypal-wp-button-manager.php')) {
@@ -461,6 +449,10 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                         // Nothing to output if Account is not setup
                    if ( 'noAccount' === $pp_business_name) {
                            return;
+                   }
+                   
+                   if(empty($pp_business_name)){
+                       return;
                    }
 
                    global $wpdb;
