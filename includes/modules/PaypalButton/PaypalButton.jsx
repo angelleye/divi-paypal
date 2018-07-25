@@ -65,7 +65,7 @@ class PaypalButton extends Component {
         }
         if(pp_button.pp_business_name === '' || pp_button.pp_business_name === undefined){
           return ( <div class="pfd_alert">
-                      <b>PayPal Button:</b> Please select PayPal Account ID.
+                      <b>PayPal Button:</b> Please select a PayPal Account ID
                   </div>
                 );
         }
@@ -95,7 +95,7 @@ class PaypalButton extends Component {
         }
         else{
           return ( <div class="pfd_alert">
-                      <b>PayPal Button:</b> Please select Button Type.
+                      <b>PayPal Button:</b> Please select a Button Type
                   </div>
                 );
         }
