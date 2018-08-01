@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
 Tested up to: 4.9.6
-Stable tag: 1.0.6
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -96,7 +96,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 1.1.0 - xx.xx.2018 =
+= 1.1.0 - 08.01.2018 =
 * [[PFD-13](https://github.com/angelleye/divi-paypal/pull/39)] - Feature - Adds Divi Visual Builder Compatibility.
 * [[PFD-11](https://github.com/angelleye/divi-paypal/pull/37)] - Fix - Resolves an issue with PayPal account ID sanitization causing data conflicts.
 * [[PFD-12](https://github.com/angelleye/divi-paypal/pull/38)] - Fix - Resolves issues with compatibility in latest version of Divi builder.
