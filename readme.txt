@@ -99,7 +99,8 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 = 1.1.0 - xx.xx.2018 =
 * [[PFD-13](https://github.com/angelleye/divi-paypal/pull/39)] - Feature - Adds Divi Visual Builder Compatibility.
 * [[PFD-11](https://github.com/angelleye/divi-paypal/pull/37)] - Fix - Resolves an issue with PayPal account ID sanitization causing data conflicts.
-* [[PFD-12](PFD-12](https://github.com/angelleye/divi-paypal/pull/38)] - Fix - Resolves issues with compatibility in latest version of Divi builder.
+* [[PFD-12](https://github.com/angelleye/divi-paypal/pull/38)] - Fix - Resolves issues with compatibility in latest version of Divi builder.
+* [[PFD-14](https://github.com/angelleye/divi-paypal/pull/40)] - Fix - Adds a missing space in the admin notice.
 
 = 1.0.6 - 06.21.2018 =
 * Feature - Adds option to have forms open in new browser tab or not. ([#32](https://github.com/angelleye/divi-paypal/issues/32))
