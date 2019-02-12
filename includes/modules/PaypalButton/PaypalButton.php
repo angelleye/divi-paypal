@@ -197,6 +197,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                     'type' => 'select',
                     'option_category' => 'layout',
                     'options' => $all_accounts,
+                    'default' => key($all_accounts),
                     'description' => esc_html__('Enter your PayPal account ID or email address to specify where the payment should be sent.', 'angelleye_paypal_divi'),
                 ),
                 'pp_select_button' => array(
@@ -207,6 +208,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                         'on' => esc_html__('Buy Now', 'angelleye_paypal_divi'),
                         'off' => esc_html__('Donate', 'angelleye_paypal_divi'),
                     ),
+                    'default' => 'on',
                     'affects' => array(
                         'pp_shipping',
                         'pp_tax',
@@ -231,6 +233,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                     'type' => 'select',
                     'option_category' => 'layout',
                     'options' => $currency_codes,
+                    'default' => key($currency_codes),
                     'description' => esc_html__('Select your currency in which payment will be made.', 'angelleye_paypal_divi'),
                 ),
                 'pp_shipping' => array(
@@ -256,6 +259,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                     'type' => 'select',
                     'option_category' => 'basic_option',
                     'options' => $all_page,
+                    'default' => key($all_page),
                     'description' => esc_html__('The URL to which PayPal redirects buyers\' browser after they complete their payments.', 'angelleye_paypal_divi'),
                 ),
                 'pp_cancel_return' => array(
@@ -263,6 +267,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                     'type' => 'select',
                     'option_category' => 'basic_option',
                     'options' => $all_page,
+                    'default' => key($all_page),
                     'description' => esc_html__('A URL to which PayPal redirects the buyers\' browsers if they cancel checkout before completing their payments.', 'angelleye_paypal_divi'),
                 ),
                 'open_in_new_tab' => array(
@@ -313,6 +318,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                         'center' => esc_html__('Center', 'angelleye_paypal_divi'),
                         'right' => esc_html__('Right', 'angelleye_paypal_divi'),
                     ),
+                    'default' =>'left',
                     'description' => esc_html__('Adjust the alignment of your button.', 'angelleye_paypal_divi'),
                 ),
                 'admin_label' => array(
