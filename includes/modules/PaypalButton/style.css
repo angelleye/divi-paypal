@@ -1,9 +1,9 @@
 
 .et-fb-modules-list .et_fb_paypal_button:before{
-    content: url('icon/paypalgrey.png');
+    content: url('icon/paypalgrey.png')!important;
 }
 .et-fb-modules-list .et_fb_paypal_button:hover::before{
-    content: url('icon/paypal.png');
+    content: url('icon/paypal.png') !important;
 }
 .pfd_alert{
     background-color: #6c2eb9;
