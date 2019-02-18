@@ -96,6 +96,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 1.1.1 - xx.xx.2019 =
+* Fix - Adjustments for compatibility with latest updates in Divi theme. ([PFD-18](https://github.com/angelleye/divi-paypal/pull/41))
+
 = 1.1.0 - 08.01.2018 =
 * [[PFD-13](https://github.com/angelleye/divi-paypal/pull/39)] - Feature - Adds Divi Visual Builder Compatibility.
 * [[PFD-11](https://github.com/angelleye/divi-paypal/pull/37)] - Fix - Resolves an issue with PayPal account ID sanitization causing data conflicts.
