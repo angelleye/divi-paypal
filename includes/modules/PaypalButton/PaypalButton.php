@@ -163,32 +163,34 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
              * Currency Array
              */
 
-            $currency_codes = array(
+            $currency_codes = apply_filters('ae_paypal_divi_currency_codes', array(
                 'USD' => 'U.S. Dollar (USD)',
                 'CAD' => 'Canadian Dollar (CAD)',
-                'AUD' => 'Austrailian Dollar (AUD)',
+                'AUD' => 'Australian Dollar (AUD)',
                 'BRL' => 'Brazilian Real (BRL)',
-                'CZK' => 'Czeck Koruna (CZK)',
+                'CZK' => 'Czech koruna (CZK)',
                 'DKK' => 'Danish Krone (DKK)',
                 'EUR' => 'Euro (EUR)',
                 'HKD' => 'Hong Kong Dollar (HKD)',
                 'HUF' => 'Hungarian Forint (HUF)',
+                'INR' => 'Indian rupee (INR)',
                 'ILS' => 'Israeli New Sheqel (ILS)',
                 'JPY' => 'Japanese Yen (JPY)',
                 'MYR' => 'Malaysian Ringgit (MYR)',
                 'MXN' => 'Mexican Peso (MXN)',
+                'TWD' => 'New Taiwan dollar',
+                'NZD' => 'New Zealand dollar',
                 'NOK' => 'Norwegian Krone (NOK)',
-                'NZD' => 'New Zealand Dollar (NZD)',
                 'PHP' => 'Philippine Peso (PHP)',
                 'PLN' => 'Polish Zloty (PLN)',
                 'GBP' => 'Pound Sterling (GBP)',
+                'RUB' => 'Russian ruble',
                 'SGD' => 'Singapore Dollar (SGD)',
                 'SEK' => 'Swedish Krona (SEK)',
                 'CHF' => 'Swiss Franc (CHF)',
-                'TWD' => 'Taiwan New Dollar (TWD)',
                 'THB' => 'Thai Baht (THB)',
                 'TRY' => 'Turkish Lira (TRY)',
-            );
+            ));
             /* currency end */
 
             $fields = array(
