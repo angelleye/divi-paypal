@@ -36,6 +36,11 @@ if ( ! defined( 'ANGELLEYE_PAYPAL_DIVI' ) ) {
 if ( ! defined( 'ANGELLEYE_PAYPAL_DIVI_BASE_PATH' ) ) {
 	define( 'ANGELLEYE_PAYPAL_DIVI_BASE_PATH', plugin_dir_path( __FILE__ ));
 }
+
+if (!defined('AEU_ZIP_URL')) {
+    define('AEU_ZIP_URL', 'http://downloads.angelleye.com/ae-updater/angelleye-updater/angelleye-updater.zip');
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-angelleye-paypal-for-divi-activator.php
@@ -75,6 +80,13 @@ endif;
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-angelleye-paypal-for-divi.php';
+
+/**
+ * Required functions
+ */
+if (!function_exists('angelleye_queue_update')) {
+    require_once( 'includes/angelleye-functions.php' );
+}
 
 /**
  * Begins execution of the plugin.
