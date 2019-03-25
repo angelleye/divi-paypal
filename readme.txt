@@ -19,7 +19,6 @@ PayPal for Divi adds a PayPal Button module into the Divi page builder tool maki
  * Buy Now Button
  * Donate Button
  
- dfsdfsdfsdfsdfsfsdfsfs
 
 [youtube https://www.youtube.com/watch?v=4G8U-RruMCw]
 

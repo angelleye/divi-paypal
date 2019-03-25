@@ -12,7 +12,6 @@ The module makes it quick and easy to add PayPal Buy Now and Donate buttons to y
 - Divi Theme by Elegant Themes.
 
 ## Installation
-gdfgdgdgdgdgdgdg
 
 Automatic Installation
 -----------------------
