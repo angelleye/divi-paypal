@@ -98,6 +98,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 = 2.0.0 =
 * Feature - Adds INR (Indian Rupee) currency code compatibility. ([PFD-5](https://github.com/angelleye/divi-paypal/pull/43))
+* Feature - Moves plugin code away from WordPress directory hosting to our own servers. ([PFD-24](https://github.com/angelleye/divi-paypal/pull/44))
 
 = 1.1.1 - 02.18.2019 =
 * Fix - Adjustments for compatibility with latest updates in Divi theme. ([PFD-18](https://github.com/angelleye/divi-paypal/pull/41)) ([PFDA-1](https://github.com/angelleye/divi-paypal/pull/42))
