@@ -119,8 +119,8 @@ class Angelleye_Paypal_For_Divi_Admin {
 
     public function links_action_paypal_divi($links) {
         $links[] = '<a href="https://www.angelleye.com/category/docs/divi-paypal-module-documentation/" target="_blank">' . __('Docs', 'angelleye_paypal_divi') . '</a>';
-        $links[] = '<a href="https://wordpress.org/support/plugin/angelleye-paypal-for-divi/" target="_blank">' . __('Support', 'angelleye_paypal_divi') . '</a>';
-        $links[] = '<a href="https://wordpress.org/support/plugin/angelleye-paypal-for-divi/reviews/" target="_blank">' . __('Write a Review', 'angelleye_paypal_divi') . '</a>';
+        $links[] = '<a href="https://www.angelleye.com/support/" target="_blank">' . __('Support', 'angelleye_paypal_divi') . '</a>';
+        $links[] = '<a href="https://www.angelleye.com/product/divi-paypal-module-plugin/#tab-reviews" target="_blank">' . __('Write a Review', 'angelleye_paypal_divi') . '</a>';
         return $links;
     }
 

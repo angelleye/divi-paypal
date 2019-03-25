@@ -57,7 +57,7 @@ class AngellEYE_PayPal_For_Divi_Store_Setting_Class {
 			<div class="plugin-card-top">                            
                             <div class="name column-name">
                                 <h3>
-                                    <a href="https://wordpress.org/plugins/paypal-wp-button-manager/" class="thickbox" target="_blank">PayPal WP Button Manager
+                                    <a href="https://www.angelleye.com/product/wordpress-paypal-button-manager/" class="thickbox" target="_blank">PayPal WP Button Manager
                                         <img src="//ps.w.org/paypal-wp-button-manager/assets/icon-256x256.jpg?rev=1153193" class="plugin-icon" alt="">
                                     </a>
                                 </h3>

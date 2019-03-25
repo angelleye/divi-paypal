@@ -22,10 +22,10 @@ PayPal for Divi adds a PayPal Button module into the Divi page builder tool maki
 [youtube https://www.youtube.com/watch?v=4G8U-RruMCw]
 
 = PayPal WP Button Manager Compatibility =
-If you are using our [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin to create buttons, or if you would like to install it and use it to create and manage buttons, you will then be able to easily add buttons created by the Button Manager through the PayPal Button Divi module.
+If you are using our [PayPal WP Button Manager](https://www.angelleye.com/product/wordpress-paypal-button-manager/) plugin to create buttons, or if you would like to install it and use it to create and manage buttons, you will then be able to easily add buttons created by the Button Manager through the PayPal Button Divi module.
 
 = Divi Theme by Elegant Themes Compatibility =
-This plugin is built specifically for the Divi theme.  If you would like to add PayPal buttons to a non-Divi WordPress site, take a look at our [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin.
+This plugin is built specifically for the Divi theme.  If you would like to add PayPal buttons to a non-Divi WordPress site, take a look at our [PayPal WP Button Manager](https://www.angelleye.com/product/wordpress-paypal-button-manager/) plugin.
 
 = Quality Control =
 Payment processing can't go wrong.  It's as simple as that.  Our certified PayPal engineers have developed and thoroughly tested this plugin on the PayPal sandbox (test) servers to ensure your customers don't have problems paying you.  
@@ -92,9 +92,13 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 = Can I create more than just Buy Now and Donate buttons? =
 
-* We have plans to expand upon this PayPal for Divi module.  In the mean-time, take a look at our free [PayPal WP Button Manager](https://wordpress.org/plugins/paypal-wp-button-manager/) plugin, which allows you to build a variety of PayPal buttons within WordPress.
+* We have plans to expand upon this PayPal for Divi module.  In the mean-time, take a look at our free [PayPal WP Button Manager](https://www.angelleye.com/product/wordpress-paypal-button-manager/) plugin, which allows you to build a variety of PayPal buttons within WordPress.
 
 == Changelog ==
+
+= 2.0.0 =
+* Feature - Adds INR (Indian Rupee) currency code compatibility. ([PFD-5](https://github.com/angelleye/divi-paypal/pull/43))
+* Feature - Moves plugin code away from WordPress directory hosting to our own servers. ([PFD-24](https://github.com/angelleye/divi-paypal/pull/44))
 
 = 1.1.1 - 02.18.2019 =
 * Fix - Adjustments for compatibility with latest updates in Divi theme. ([PFD-18](https://github.com/angelleye/divi-paypal/pull/41)) ([PFDA-1](https://github.com/angelleye/divi-paypal/pull/42))
