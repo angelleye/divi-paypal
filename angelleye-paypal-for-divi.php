@@ -87,7 +87,6 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-angelleye-paypal-for-divi.
 if (!function_exists('angelleye_queue_update')) {
     require_once( 'includes/angelleye-functions.php' );
 }
-
 /**
  * Begins execution of the plugin.
  *
