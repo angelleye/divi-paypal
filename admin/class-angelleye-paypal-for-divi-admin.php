@@ -167,7 +167,7 @@ class Angelleye_Paypal_For_Divi_Admin {
         ?>
         <div class="notice notice-info is-dismissible">        
             <p>
-        <?php echo sprintf('<b>%1$s</b>%2$s<a href="https://www.elegantthemes.com/gallery/divi/" target="_blank">%3$s</a> %4$s <b>%1$s</b>.',
+        <?php echo sprintf('<b>%1$s</b>%2$s<a href="https://www.elegantthemes.com/affiliates/idevaffiliate.php?id=50694_1_1_3" target="_blank">%3$s</a> %4$s <b>%1$s</b>.',
                             __('PayPal for Divi ','angelleye_paypal_divi'),
                             __('is designed for the ','angelleye_paypal_divi'),
                             __('Divi theme by Elegant Themes.','angelleye_paypal_divi'),
