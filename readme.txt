@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B85H6VLV9YGRA
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
-Tested up to: 5.1
-Stable tag: 1.1.1
+Tested up to: 5.1.1
+Stable tag: 2.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -97,8 +97,8 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.0  - xx.xx.2019 =
-* Feature - Adds AE Updater compatibility for future notices and automated updates. [PFD-25]
+= 2.0.0  - 04.04.2019 =
+* Feature - Adds AE Updater compatibility for future notices and automated updates. [PFD-25] ([PFD-26](https://github.com/angelleye/divi-paypal/pull/48))
 * Feature - Adds INR (Indian Rupee) currency code compatibility. ([PFD-5](https://github.com/angelleye/divi-paypal/pull/43))
 * Feature - Moves plugin code away from WordPress directory hosting to our own servers. ([PFD-24](https://github.com/angelleye/divi-paypal/pull/44))
 
