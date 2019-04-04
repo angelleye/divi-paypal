@@ -97,7 +97,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 == Changelog ==
 
 = 2.0.0  - xx.xx.2019 =
-* Feature - Adds AE Updater compatibility for future notices and automated updates. [PFD-25]
+* Feature - Adds AE Updater compatibility for future notices and automated updates. [PFD-25] ([PFD-26](https://github.com/angelleye/divi-paypal/pull/48))
 * Feature - Adds INR (Indian Rupee) currency code compatibility. ([PFD-5](https://github.com/angelleye/divi-paypal/pull/43))
 * Feature - Moves plugin code away from WordPress directory hosting to our own servers. ([PFD-24](https://github.com/angelleye/divi-paypal/pull/44))
 
