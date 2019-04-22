@@ -7,6 +7,7 @@ import './style.css';
 
 let mode = '';
 let pbm_form = '';
+let page_link = '';
 
 class PaypalButton extends Component {
 
@@ -46,6 +47,24 @@ class PaypalButton extends Component {
           }
       });
       return pbm_form;
+  }
+
+  _get_page_permalink_by_page_id(page_id) {
+    $.ajax({
+      url: window.et_fb_options.ajaxurl,
+      type: 'POST',
+      data: {
+        'action': 'ae_get_page_link',
+        'nonce': window.et_fb_options.et_admin_load_nonce,
+        'page_id': page_id
+      },
+      async: false,
+      dataType: "json",
+      success: function (response) {
+        page_link = response.page_url;
+      }
+    });
+    return page_link;
   }
 
   render() {
