@@ -63,7 +63,7 @@ class PaypalButton extends Component {
       success: function (response) {
         page_link = response.page_url;
       }
-    });
+    });    
     return page_link;
   }
 
@@ -118,8 +118,8 @@ class PaypalButton extends Component {
                   </div>
                 );
         }
-        returnElement = ((pp_button.pp_return !== '') ? <input type="hidden" name="return" value={pp_button.pp_return} /> : "");
-        cancelElement = (pp_button.pp_cancel_return !== '' ? <input type="hidden" name="cancel_return" value={pp_button.pp_cancel_return} /> : "");
+        returnElement = ((pp_button.pp_return !== '') ? <input type="hidden" name="return" value={this._get_page_permalink_by_page_id(pp_button.pp_return)} /> : "");
+        cancelElement = (pp_button.pp_cancel_return !== '' ? <input type="hidden" name="cancel_return" value={this._get_page_permalink_by_page_id(pp_button.pp_cancel_return)} /> : "");
         if('' !== pp_button.use_custom && 'on' === pp_button.use_custom && ('' ===  pp_button.src || undefined ===  pp_button.src)){
             customButtonIconClass = ( ('' !== pp_button.button_icon && pp_button.button_icon !== undefined)? ' et_pb_custom_button_icon' : '');
             customButtonIcon = ( ('' !== pp_button.button_icon && pp_button.button_icon !== undefined)? utils.processFontIcon(pp_button.button_icon) : '');
