@@ -1,5 +1,4 @@
-(function ($) {
-
+jQuery(function () {
     var el_notice = jQuery(".angelleye-notice");
     el_notice.fadeIn(750);
     jQuery(".angelleye-notice-dismiss").click(function (e) {
@@ -16,5 +15,4 @@
         };
         jQuery.post(ajaxurl, param);
     }
-    window.localStorage.clear();
-})(jQuery);
+});
