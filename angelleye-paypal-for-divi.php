@@ -41,6 +41,10 @@ if (!defined('AEU_ZIP_URL')) {
     define('AEU_ZIP_URL', 'https://updates.angelleye.com/ae-updater/angelleye-updater/angelleye-updater.zip');
 }
 
+if (!defined('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL')) {
+    define('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL', 'http://localhost/activation/');
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-angelleye-paypal-for-divi-activator.php
