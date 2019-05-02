@@ -92,7 +92,7 @@ class Angelleye_Paypal_For_Divi_Admin {
          * between the defined hooks and the functions defined in this
          * class.
          */
-        //wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/angelleye-paypal-for-divi-admin.js', array('jquery'), $this->version, false);
+        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/angelleye-paypal-for-divi-admin.js', array('jquery'), $this->version, false);
     }
 
     private function load_dependencies() {
