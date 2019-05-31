@@ -184,7 +184,9 @@ class Angelleye_Paypal_For_Divi {
                 $this->loader->add_action('wp_ajax_pfd_get_environment',$plugin_public,'pfd_get_environment');
                 $this->loader->add_action('wp_ajax_nopriv_pfd_get_environment',$plugin_public,'pfd_get_environment');
                 $this->loader->add_action('wp_ajax_check_pbm_active',$plugin_public,'check_pbm_active');
-                $this->loader->add_action('wp_ajax_nopriv_check_pbm_active',$plugin_public,'check_pbm_active');                
+				$this->loader->add_action('wp_ajax_nopriv_check_pbm_active',$plugin_public,'check_pbm_active');    
+				$this->loader->add_action('wp_ajax_ae_get_page_link',$plugin_public,'ae_get_page_link');    
+				$this->loader->add_action('wp_ajax_nopriv_ae_get_page_link',$plugin_public,'ae_get_page_link');    				            
 	}
 
 	/**

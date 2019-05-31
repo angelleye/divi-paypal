@@ -143,7 +143,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                     ) );
                     $posts = $posts->posts;
                     foreach( (array) $posts as $post ) {
-                        $all_page[esc_url(get_page_link($post->ID))] = $post->post_title;
+                        $all_page[$post->ID] = $post->post_title;
                     }
                 }
             }
@@ -171,7 +171,7 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                 );
                 $pages = get_pages($args);
                 foreach ($pages as $p) {
-                    $all_page[get_page_link($p->ID)] = $p->post_title;
+                    $all_page[$p->ID] = $p->post_title;
                 }
             }
             /* end */
@@ -580,8 +580,8 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                                                            '' !==  $src ? $src : $pp_img,$pp_alt
                                                            )
                             ,
-                            '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',  $pp_return) : '',
-                            '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',$pp_cancel_return) : '',
+                            '' !== $pp_return ? sprintf('<input type="hidden" name="return" value="%1$s">',  get_page_link($pp_return)) : '',
+                            '' !== $pp_cancel_return ? sprintf('<input type="hidden" name="cancel_return" value="%1$s">',get_page_link($pp_cancel_return)) : '',
                             $pp_currency_code,
                             $target
 
