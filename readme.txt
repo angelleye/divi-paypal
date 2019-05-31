@@ -97,6 +97,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 2.0.1 - 05.31.2019 =
+* Tweak - Adjustments for compatibility with WPML. ([PFD-6](https://github.com/angelleye/divi-paypal/pull/49))
+
 = 2.0.0  - 04.04.2019 =
 * Feature - Adds AE Updater compatibility for future notices and automated updates. [PFD-25] ([PFD-26](https://github.com/angelleye/divi-paypal/pull/48))
 * Feature - Adds INR (Indian Rupee) currency code compatibility. ([PFD-5](https://github.com/angelleye/divi-paypal/pull/43))
