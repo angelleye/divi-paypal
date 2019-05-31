@@ -119,30 +119,60 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
             );
             return $fields;
         } else {
-            /*
-             * Below code is to get all the pages of the website to put into the return url and cancle url
-             */
-            $args = array(
-                'sort_order' => 'ASC',
-                'sort_column' => 'post_title',
-                'hierarchical' => 1,
-                'exclude' => '',
-                'include' => '',
-                'meta_key' => '',
-                'meta_value' => '',
-                'authors' => '',
-                'child_of' => 0,
-                'parent' => -1,
-                'exclude_tree' => '',
-                'number' => '',
-                'offset' => 0,
-                'post_type' => 'page',
-                'post_status' => 'publish'
-            );
-            $pages = get_pages($args);
+
             $all_page = array();
-            foreach ($pages as $p) {
-                $all_page[get_page_link($p->ID)] = $p->post_title;
+            /**
+             * Adding compatibility to WPML plugin.
+             * It loads all pages created for the active languages.
+             * It checks for the WPML plugin is activated or installed.
+             */
+            if (is_plugin_active('sitepress-multilingual-cms/sitepress.php')) {
+                $languages = apply_filters( 'wpml_active_languages', NULL, array( 'skip_missing' => 0));
+                foreach( (array) $languages as $lang ) {
+
+                    /* change language */
+                    do_action( 'wpml_switch_language', $lang['code'] );
+
+                    /* building query */
+                    $posts = new WP_Query( array(
+                        'sort_order' => 'ASC',
+                        'sort_column' => 'post_title',
+                        'post_type' => 'page',
+                        'posts_per_page' => -1,
+                        'post_status' => 'publish',
+                    ) );
+                    $posts = $posts->posts;
+                    foreach( (array) $posts as $post ) {
+                        $all_page[esc_url(get_page_link($post->ID))] = $post->post_title;
+                    }
+                }
+            }
+            else{
+                /*
+                 * Below code is to get all the pages of the website to put into the return url and cancel url
+                 */
+
+                $args = array(
+                    'sort_order' => 'ASC',
+                    'sort_column' => 'post_title',
+                    'hierarchical' => 1,
+                    'exclude' => '',
+                    'include' => '',
+                    'meta_key' => '',
+                    'meta_value' => '',
+                    'authors' => '',
+                    'child_of' => 0,
+                    'parent' => -1,
+                    'exclude_tree' => '',
+                    'number' => '',
+                    'offset' => 0,
+                    'post_type' => 'page',
+                    'post_status' => 'publish'
+                );
+                $pages = get_pages($args);
+                foreach ($pages as $p) {
+                    $all_page[get_page_link($p->ID)] = $p->post_title;
+                }
             }
             /* end */
 
@@ -257,17 +287,17 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                     'description' => esc_html__('Enter a handling fee if you would like to include one with this item / service.', 'angelleye_paypal_divi'),
                 ),
                 'pp_return' => array(
-                    'label' => esc_html__(' Return Url', 'angelleye_paypal_divi'),
+                    'label' => esc_html__('Return Url', 'angelleye_paypal_divi'),
                     'type' => 'select',
-                    'option_category' => 'basic_option',
+                    'option_category' => 'layout',
                     'options' => $all_page,
                     'default' => key($all_page),
                     'description' => esc_html__('The URL to which PayPal redirects buyers\' browser after they complete their payments.', 'angelleye_paypal_divi'),
                 ),
                 'pp_cancel_return' => array(
-                    'label' => esc_html__(' Cancel Url', 'angelleye_paypal_divi'),
+                    'label' => esc_html__('Cancel Url', 'angelleye_paypal_divi'),
                     'type' => 'select',
-                    'option_category' => 'basic_option',
+                    'option_category' => 'layout',
                     'options' => $all_page,
                     'default' => key($all_page),
                     'description' => esc_html__('A URL to which PayPal redirects the buyers\' browsers if they cancel checkout before completing their payments.', 'angelleye_paypal_divi'),
