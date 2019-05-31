@@ -163,6 +163,9 @@ class Angelleye_Paypal_For_Divi {
                 }                
                 $this->loader->add_action( 'admin_notices', $plugin_admin, 'check_divi_available' );
                 $this->loader->add_filter( 'plugin_action_links_' . ANGELLEYE_PAYPAL_DIVI, $plugin_admin, 'links_action_paypal_divi' );
+                $this->loader->add_action( 'admin_notices', $plugin_admin, 'angelleye_divi_display_push_notification' );
+                $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'angelleye_divi_display_push_notification_enqueue_scripts' );
+                $this->loader->add_action('wp_ajax_angelleye_dismiss_notice', $plugin_admin, 'angelleye_dismiss_notice', 10);
 	}
 
 	/**
