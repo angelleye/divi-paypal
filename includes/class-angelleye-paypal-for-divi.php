@@ -69,7 +69,7 @@ class Angelleye_Paypal_For_Divi {
 	public function __construct() {
 
 		$this->plugin_name = 'angelleye-paypal-for-divi';
-		$this->version = '2.0.1';
+		$this->version = '2.0.1.1';
 
 		$this->load_dependencies();
 		$this->set_locale();
