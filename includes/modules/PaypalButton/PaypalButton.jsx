@@ -134,7 +134,6 @@ class PaypalButton extends Component {
     return (
       <div className={button_align}>
         <form target={this.props.open_in_new_tab === 'on' ? "paypal" : "_self"} action={form_action_url} method="post">
-            <input type="hidden" name="bn" value="AngellEYE_SP_Divi"/>
             <input type="hidden" name="business" value={pp_button.pp_business_name}/>
             <input type="hidden" name="cmd" value={cmd} />
             <input type="hidden" name="item_name" value={pp_button.pp_item_name} />

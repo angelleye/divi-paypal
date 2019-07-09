@@ -527,7 +527,6 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                         $output = sprintf(
                             '<div class="et_pb_button_module_wrapper et_pb_module%6$s">
                                 <form %21$s action="https://www.%11$spaypal.com/cgi-bin/webscr" method="post">
-                                   <input type="hidden" name="bn" value="AngellEYE_SP_Divi" />
                                    <input type="hidden" name="business" value="%12$s">
                                    <input type="hidden" name="cmd" value="%1$s">
                                    <input type="hidden" name="item_name" value="%7$s">
