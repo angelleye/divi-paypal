@@ -97,6 +97,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 2.0.2 - XX.XX.2019 =
+* Tweak - Update push notification system sync interval time. ([PFD-29](https://github.com/angelleye/divi-paypal/pull/52)) 
+
 = 2.0.1.1 - 07.09.2019 =
 * Tweak - Minor adjustment to PayPal API requests.
 
