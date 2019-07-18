@@ -7,6 +7,7 @@ import './style.css';
 
 let mode = '';
 let pbm_form = '';
+let page_link = '';
 
 class PaypalButton extends Component {
 
@@ -46,6 +47,24 @@ class PaypalButton extends Component {
           }
       });
       return pbm_form;
+  }
+
+  _get_page_permalink_by_page_id(page_id) {
+    $.ajax({
+      url: window.et_fb_options.ajaxurl,
+      type: 'POST',
+      data: {
+        'action': 'ae_get_page_link',
+        'nonce': window.et_fb_options.et_admin_load_nonce,
+        'page_id': page_id
+      },
+      async: false,
+      dataType: "json",
+      success: function (response) {
+        page_link = response.page_url;
+      }
+    });    
+    return page_link;
   }
 
   render() {
@@ -99,8 +118,8 @@ class PaypalButton extends Component {
                   </div>
                 );
         }
-        returnElement = ((pp_button.pp_return !== '') ? <input type="hidden" name="return" value={pp_button.pp_return} /> : "");
-        cancelElement = (pp_button.pp_cancel_return !== '' ? <input type="hidden" name="cancel_return" value={pp_button.pp_cancel_return} /> : "");
+        returnElement = ((pp_button.pp_return !== '') ? <input type="hidden" name="return" value={this._get_page_permalink_by_page_id(pp_button.pp_return)} /> : "");
+        cancelElement = (pp_button.pp_cancel_return !== '' ? <input type="hidden" name="cancel_return" value={this._get_page_permalink_by_page_id(pp_button.pp_cancel_return)} /> : "");
         if('' !== pp_button.use_custom && 'on' === pp_button.use_custom && ('' ===  pp_button.src || undefined ===  pp_button.src)){
             customButtonIconClass = ( ('' !== pp_button.button_icon && pp_button.button_icon !== undefined)? ' et_pb_custom_button_icon' : '');
             customButtonIcon = ( ('' !== pp_button.button_icon && pp_button.button_icon !== undefined)? utils.processFontIcon(pp_button.button_icon) : '');

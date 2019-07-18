@@ -136,5 +136,21 @@ class Angelleye_Paypal_For_Divi_Public {
             $_pbm_form = isset($paypal_button_manager_post_meta['paypal_button_response'][0]) ? $paypal_button_manager_post_meta['paypal_button_response'][0] : '';
             echo json_encode(array('success'=>'true','pbm_form' => $_pbm_form));
             wp_die();
-        }
+		}
+		
+		public function ae_get_page_link(){     
+			if(wp_verify_nonce($_POST['nonce'],'et_admin_load_nonce')){
+                if (filter_var($_POST['page_id'], FILTER_VALIDATE_URL)) {
+                    echo json_encode(array('success'=>'true','page_url' => $_POST['page_id']));
+                }
+                else{
+                    $page_id = sanitize_text_field($_POST['page_id']);
+                    echo json_encode(array('success'=>'true','page_url' => get_page_link($page_id)));
+                }
+			}
+			else{
+				echo json_encode(array('success'=>'false','page_url' => ''));
+			}			
+			wp_die();
+		}
 }
