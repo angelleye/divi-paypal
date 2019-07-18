@@ -92,7 +92,7 @@ class Angelleye_Paypal_For_Divi_Admin {
          * between the defined hooks and the functions defined in this
          * class.
          */
-        //wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/angelleye-paypal-for-divi-admin.js', array('jquery'), $this->version, false);
+        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/angelleye-paypal-for-divi-admin.js', array('jquery'), $this->version, false);
     }
 
     private function load_dependencies() {
@@ -176,6 +176,89 @@ class Angelleye_Paypal_For_Divi_Admin {
             </p>
         </div>
         <?php
+    }
+    
+    public function angelleye_get_push_notifications() {
+            $args = array(
+                'plugin_name' => 'angelleye-paypal-for-divi',
+            );
+            $api_url = PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL . '?Wordpress_Plugin_Notification_Sender';
+            $api_url .= '&action=angelleye_get_plugin_notification';
+            $request = wp_remote_post($api_url, array(
+                'method' => 'POST',
+                'timeout' => 45,
+                'redirection' => 5,
+                'httpversion' => '1.0',
+                'blocking' => true,
+                'headers' => array('user-agent' => 'AngellEYE'),
+                'body' => $args,
+                'cookies' => array(),
+                'sslverify' => false
+            ));
+            if (is_wp_error($request) or wp_remote_retrieve_response_code($request) != 200) {
+                return false;
+            }
+            if ($request != '') {
+                $response = json_decode(wp_remote_retrieve_body($request));
+            } else {
+                $response = false;
+            }
+            return $response;
+        }
+        
+        public function angelleye_display_push_notification($response_data) {
+            echo '<div class="notice notice-success angelleye-notice" style="display:none;" id="'.$response_data->id.'">'
+                    . '<div class="angelleye-notice-logo-push"><span> <img src="'.$response_data->ans_company_logo.'"> </span></div>'
+                    . '<div class="angelleye-notice-message">' 
+                        . '<h3>' . $response_data->ans_message_title .'</h3>'
+                        . '<div class="angelleye-notice-message-inner">' 
+                            . '<p>' . $response_data->ans_message_description . '</p>'
+                            . '<div class="angelleye-notice-action"><a target="_blank" href="'.$response_data->ans_button_url.'" class="button button-primary">'.$response_data->ans_button_label.'</a></div>'
+                        . '</div>' 
+                    . '</div>'
+                    . '<div class="angelleye-notice-cta">'
+                    . '<button class="angelleye-notice-dismiss angelleye-dismiss-welcome" data-msg="'.$response_data->id.'">Dismiss</button>'
+                    . '</div>'
+                . '</div>';
+
+        }
+    
+    public function angelleye_divi_display_push_notification() {
+        global $current_user;
+        $user_id = $current_user->ID;
+        if (false === ( $response = get_transient('angelleye_paypal_divi_push_notification_result') )) {
+            $response = $this->angelleye_get_push_notifications();
+            if(is_object($response)) {
+                set_transient('angelleye_paypal_divi_push_notification_result', $response, 12 * HOUR_IN_SECONDS);
+            }
+        }
+        if(is_object($response)) {
+            foreach ($response->data as $key => $response_data) {
+                if(!get_user_meta($user_id, $response_data->id)) {
+                    $this->angelleye_display_push_notification($response_data);
+                }
+            }
+        }
+    }
+    
+    public function angelleye_divi_display_push_notification_enqueue_scripts() {
+        wp_enqueue_script('angelleye-paypal-for-divi-admin-push-notification', plugin_dir_url(__FILE__) . 'js/angelleye-paypal-for-divi-admin-push-notification.js', array('jquery'), $this->version, false);
+    }
+    
+    public function angelleye_dismiss_notice() {
+        global $current_user;
+        $user_id = $current_user->ID;
+        if( !empty($_POST['action']) && $_POST['action'] == 'angelleye_dismiss_notice' ) {
+            $notices = array('ignore_pp_ssl', 'ignore_pp_sandbox', 'ignore_pp_woo', 'ignore_pp_check', 'ignore_pp_donate', 'ignore_paypal_plus_move_notice', 'ignore_billing_agreement_notice', 'ignore_paypal_pro_payflow_reference_transaction_notice', 'is_disable_pw_premium_extension_notice');
+            foreach ($notices as $notice) {
+                if ( !empty($_POST['data']) && $_POST['data'] == $notice) {
+                    add_user_meta($user_id, $notice, 'true', true);
+                    wp_send_json_success();
+                }
+            }
+            add_user_meta($user_id, wc_clean($_POST['data']), 'true', true);
+            wp_send_json_success();
+        }
     }
 
 }

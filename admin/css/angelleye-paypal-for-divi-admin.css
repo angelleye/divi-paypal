@@ -15,3 +15,77 @@ form#paypal_for_divi_integration_form {
     float: left;
     width: 50%;
 }
+
+.notice.notice-success.angelleye-notice {
+    padding: 0 !important;
+    margin: 5px 0 10px;
+    background: #FFF;
+    overflow: hidden;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+    min-height: 80px;
+    display: table; /* The magic ingredient! */
+    font: 13px "Open Sans", sans-serif;
+}
+.angelleye-notice > div {
+    display: table-cell;
+    vertical-align: middle;
+    cursor: default;
+    line-height: 1.5;
+}
+.angelleye-notice-logo-push {
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.angelleye-notice-logo-push span {
+    display: block;
+    margin: 0px 10px 0px 10px;
+}
+.notice.notice-success.angelleye-notice {
+    font: 13px "Open Sans", sans-serif;
+        line-height: normal;
+}
+.angelleye-notice-message {
+    color: #23282D;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 20px;
+    padding: 3px 5px;
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+}
+.angelleye-notice-message h3 {
+    margin: 4px 0px !important;
+}
+.angelleye-notice-message-inner {
+    margin-bottom: 10px;
+}
+.angelleye-notice-message p {
+    margin: 3px 0px !important;
+    padding: 0px;
+}
+.angelleye-notice-action {
+    padding-top: 5px;
+}
+.angelleye-notice-cta {
+    border-left: 1px solid #E5E5E5;
+    background: #F8F8F8;
+    padding: 0 30px;
+    position: relative;
+    white-space: nowrap;
+}
+.wp-core-ui .angelleye-notice-cta button,
+.wp-core-ui .angelleye-notice-cta .button-primary:active {
+    vertical-align: middle;
+}
+.angelleye-notice-dismiss {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: #C5C5C5;
+    -webkit-font-smoothing: antialiased;
+}

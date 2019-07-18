@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B85H6VLV9YGRA
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
-Tested up to: 5.1.1
-Stable tag: 2.0.0
+Tested up to: 5.2.2
+Stable tag: 2.0.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -96,6 +96,16 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * We have plans to expand upon this PayPal for Divi module.  In the mean-time, take a look at our free [PayPal WP Button Manager](https://www.angelleye.com/product/wordpress-paypal-button-manager/) plugin, which allows you to build a variety of PayPal buttons within WordPress.
 
 == Changelog ==
+
+= 2.0.1.2 - 07.18.2019 =
+* Tweak - Update push notification system sync interval time. ([PFD-29](https://github.com/angelleye/divi-paypal/pull/52)) 
+
+= 2.0.1.1 - 07.09.2019 =
+* Tweak - Minor adjustment to PayPal API requests.
+
+= 2.0.1 - 05.31.2019 =
+* Feature - Adds AE notification system. ([PFD-27](https://github.com/angelleye/divi-paypal/pull/51))
+* Tweak - Adjustments for compatibility with WPML. ([PFD-6](https://github.com/angelleye/divi-paypal/pull/49))
 
 = 2.0.0  - 04.04.2019 =
 * Feature - Adds AE Updater compatibility for future notices and automated updates. [PFD-25] ([PFD-26](https://github.com/angelleye/divi-paypal/pull/48))

@@ -16,7 +16,7 @@
  * Plugin Name:       PayPal for Divi
  * Plugin URI:        http://www.angelleye.com/product/divi-paypal-module-plugin/
  * Description:       Adds a PayPal Buy Now / Donate button module to the Divi theme by Elegant Themes.  Quickly and easily create PayPal Buy Now and Donate buttons.
- * Version:           2.0.0
+ * Version:           2.0.1.2
  * Author:            Angell EYE
  * Author URI:        http://www.angelleye.com/
  * License:           GNU General Public License v3.0
@@ -39,6 +39,10 @@ if ( ! defined( 'ANGELLEYE_PAYPAL_DIVI_BASE_PATH' ) ) {
 
 if (!defined('AEU_ZIP_URL')) {
     define('AEU_ZIP_URL', 'https://updates.angelleye.com/ae-updater/angelleye-updater/angelleye-updater.zip');
+}
+
+if (!defined('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL')) {
+    define('PAYPAL_FOR_WOOCOMMERCE_PUSH_NOTIFICATION_WEB_URL', 'https://www.angelleye.com/');
 }
 
 /**
