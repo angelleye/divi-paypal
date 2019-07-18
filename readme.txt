@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
 Tested up to: 5.2.2
-Stable tag: 2.0.1.1
+Stable tag: 2.0.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -97,8 +97,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.2 - XX.XX.2019 =
+= 2.0.1.2 - 07.18.2019 =
 * Tweak - Update push notification system sync interval time. ([PFD-29](https://github.com/angelleye/divi-paypal/pull/52)) 
+* Tweak - Resolves issues with front end builder in Cancel Url and Return URL not being selected. ([PFD-28](https://github.com/angelleye/divi-paypal/pull/50)) 
 
 = 2.0.1.1 - 07.09.2019 =
 * Tweak - Minor adjustment to PayPal API requests.

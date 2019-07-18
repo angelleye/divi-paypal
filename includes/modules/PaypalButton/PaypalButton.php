@@ -421,6 +421,21 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
         );
     }
 
+    /**
+     * Till v2.0.0 of this plugin, we stored directly url in database but to add compatibility
+     * with WPML plugin, we stored page id in database.
+     * So Below function will give page id of the url that stored in db and works with old created buttons.
+     * @return int
+     */
+    function check_cancel_return_url($value){
+        if (filter_var($value, FILTER_VALIDATE_URL)) {
+            return url_to_postid($value);
+        }
+        else{
+            return $value;
+        }
+    }
+
     /*
      *  Function render. This method returns the content the module will display
      */
@@ -442,8 +457,8 @@ class ET_Builder_Module_Paypal_Button extends ET_Builder_Module {
                 $pp_tax            = isset($this->props['pp_tax']) ? $this->props['pp_tax'] : '';
                 $pp_handling       = isset($this->props['pp_handling']) ? $this->props['pp_handling'] : '';
 
-                $pp_return         = isset($this->props['pp_return']) ? $this->props['pp_return'] : '';
-                $pp_cancel_return  = isset($this->props['pp_cancel_return']) ? $this->props['pp_cancel_return'] : '';
+                $pp_return         = isset($this->props['pp_return']) ? $this->check_cancel_return_url($this->props['pp_return']) : '';
+                $pp_cancel_return  = isset($this->props['pp_cancel_return']) ? $this->check_cancel_return_url($this->props['pp_cancel_return']) : '';
 
                 $open_in_new_tab   = isset($this->props['open_in_new_tab']) ? $this->props['open_in_new_tab'] : '';
                 $use_custom        = isset($this->props['use_custom']) ? $this->props['use_custom'] : '';
