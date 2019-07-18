@@ -99,6 +99,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 = 2.0.1.2 - 07.18.2019 =
 * Tweak - Update push notification system sync interval time. ([PFD-29](https://github.com/angelleye/divi-paypal/pull/52)) 
+* Tweak - Resolves issues with front end builder in Cancel Url and Return URL not being selected. ([PFD-28](https://github.com/angelleye/divi-paypal/pull/50)) 
 
 = 2.0.1.1 - 07.09.2019 =
 * Tweak - Minor adjustment to PayPal API requests.
