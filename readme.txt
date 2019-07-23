@@ -97,15 +97,14 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.1.2 - 07.18.2019 =
-* Tweak - Update push notification system sync interval time. ([PFD-29](https://github.com/angelleye/divi-paypal/pull/52)) 
+= 2.0.1.2 - 07.23.2019 =
 * Tweak - Resolves issues with front end builder in Cancel Url and Return URL not being selected. ([PFD-28](https://github.com/angelleye/divi-paypal/pull/50)) 
 
 = 2.0.1.1 - 07.09.2019 =
 * Tweak - Minor adjustment to PayPal API requests.
 
 = 2.0.1 - 05.31.2019 =
-* Feature - Adds AE notification system. ([PFD-27](https://github.com/angelleye/divi-paypal/pull/51))
+* Feature - Adds AE notification system. ([PFD-27](https://github.com/angelleye/divi-paypal/pull/51)) ([PFD-29](https://github.com/angelleye/divi-paypal/pull/52))
 * Tweak - Adjustments for compatibility with WPML. ([PFD-6](https://github.com/angelleye/divi-paypal/pull/49))
 
 = 2.0.0  - 04.04.2019 =
