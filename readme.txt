@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B85H6VLV9YGRA
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
-Tested up to: 5.2.2
-Stable tag: 2.0.1.2
+Tested up to: 5.3
+Stable tag: 2.0.1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -96,6 +96,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 * We have plans to expand upon this PayPal for Divi module.  In the mean-time, take a look at our free [PayPal WP Button Manager](https://www.angelleye.com/product/wordpress-paypal-button-manager/) plugin, which allows you to build a variety of PayPal buttons within WordPress.
 
 == Changelog ==
+
+= 2.0.1.3 - 11.20.2019 =
+* Verification - WordPress 5.3 compatibility.
 
 = 2.0.1.2 - 07.23.2019 =
 * Tweak - Resolves issues with front end builder in Cancel Url and Return URL not being selected. ([PFD-28](https://github.com/angelleye/divi-paypal/pull/50)) 
