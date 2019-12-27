@@ -97,6 +97,9 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
+= 2.0.1.4 - 12.XX.2019 =
+* Tweak - Adjustment to Updater plugin notice dismissible. ([PFD-30](https://github.com/angelleye/divi-paypal/pull/53))
+
 = 2.0.1.3 - 11.20.2019 =
 * Verification - WordPress 5.3 compatibility.
 
