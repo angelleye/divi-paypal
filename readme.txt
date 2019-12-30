@@ -3,8 +3,8 @@ Contributors: angelleye
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B85H6VLV9YGRA
 Tags: angelleye, paypal, divi, theme, elegant themes, payments, buy now, donate
 Requires at least: 3.8
-Tested up to: 5.3
-Stable tag: 2.0.1.3
+Tested up to: 5.3.2
+Stable tag: 2.0.1.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -97,7 +97,7 @@ Automatic updates should work great for you.  As always, though, we recommend ba
 
 == Changelog ==
 
-= 2.0.1.4 - 12.XX.2019 =
+= 2.0.1.4 - 12.30.2019 =
 * Tweak - Adjustment to Updater plugin notice dismissible. ([PFD-30](https://github.com/angelleye/divi-paypal/pull/53))
 
 = 2.0.1.3 - 11.20.2019 =
